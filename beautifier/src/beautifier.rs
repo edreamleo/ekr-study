@@ -80,7 +80,7 @@ impl Annotator<'_> {
                 "ws",    // pseudo-token.
                 "Comment", "Dedent", "Indent", "Newline",
                 "Nl", // Real tokens.
-                      //@-<< define Annotator::insignificant_tokens >>
+                //@-<< define Annotator::insignificant_tokens >>
             ],
             lws: String::new(),
             op_kinds: [
@@ -675,7 +675,7 @@ impl Beautifier {
                 "While" => self.do_While(),
                 "With" => self.do_With(),
                 "ws" => self.do_ws(kind, value),
-                _ => println!("No visitor for: {kind}"),
+                _ => (),  // *** println!("No visitor for: {kind}"),
             }
             //@-<< LB: beautify: dispatch on annotated_token.kind >>
         }
@@ -712,19 +712,24 @@ impl Beautifier {
         let t1 = std::time::Instant::now();
         let contents = fs::read_to_string(file_name).expect("Error reading{file_name}");
         self.stats.read_time += t1.elapsed().as_nanos();
+
         // Create (an immutable!) list of input tokens.
         let t2 = std::time::Instant::now();
-        let input_tokens = self.make_input_list(&contents);
+        let _input_tokens = self.make_prototype_input_list(&contents);
         self.stats.make_tokens_time += t2.elapsed().as_nanos();
-        // Annotate tokens (the prepass).
-        let t3 = std::time::Instant::now();
-        let mut annotator = Annotator::new(&input_tokens);
-        let annotated_tokens = annotator.annotate();
-        self.stats.annotation_time += t3.elapsed().as_nanos();
-        // Beautify.
-        let t4 = std::time::Instant::now();
-        self.beautify(&annotated_tokens);
-        self.stats.beautify_time += t4.elapsed().as_nanos();
+
+        // ***
+            // let input_tokens = self.make_input_list(&contents);
+            // self.stats.make_tokens_time += t2.elapsed().as_nanos();
+            // // Annotate tokens (the prepass).
+            // let t3 = std::time::Instant::now();
+            // let mut annotator = Annotator::new(&input_tokens);
+            // let annotated_tokens = annotator.annotate();
+            // self.stats.annotation_time += t3.elapsed().as_nanos();
+            // // Beautify.
+            // let t4 = std::time::Instant::now();
+            // self.beautify(&annotated_tokens);
+            // self.stats.beautify_time += t4.elapsed().as_nanos();
     }
     //@+node:ekr.20240929074037.7: *3* LB.do_*
     //@+node:ekr.20241002071143.1: *4* tbo.do_ws
@@ -1191,7 +1196,11 @@ impl Beautifier {
             }
         }
     }
-    //@+node:ekr.20240929074037.112: *3* LB.make_input_list
+    //@+node:ekr.20240929074037.112: *3* LB.make_input_list (rewrite: lex is too slow)
+    /// rustpython_parser:lexer is too slow.
+    /// To do: write our own lexer.
+    /// make_input_list: 11.80 ms.
+
     fn make_input_list<'a>(&mut self, contents: &'a str) -> Vec<InputTok<'a>> {
         //! Return an input_list from the tokens given by the RustPython lex.
         let mut n_tokens: u64 = 0;
@@ -1341,6 +1350,42 @@ impl Beautifier {
         // Update counts.
         self.stats.n_tokens += n_tokens;
         self.stats.n_ws_tokens += n_ws_tokens;
+        return result;
+    }
+    //@+node:ekr.20250116134245.1: *3* LB.make_prototype_input_list
+    /// make_prototype_input_list: 2.95 to 3.30 ms.
+
+    fn make_prototype_input_list<'a>(&mut self, contents: &'a str) -> Vec<InputTok<'a>> {
+
+        let mut index: u32 = 0;
+        let mut n_tokens: u64 = 0;
+        let mut result: Vec<InputTok> = Vec::new();
+        let mut dummy: u32 = 0;
+        let state: u32 = 0;
+        
+        for _ch in contents.chars() {
+            n_tokens += 1;
+            // Simulate some calculation.
+            match state {
+                0 => {
+                    dummy += 1;
+                    dummy += 1;
+                    dummy += 1;
+                    dummy += 1;
+                    index += 1;
+                },
+                _ => (),
+            }
+            result.push(InputTok::new(index, &"class", &"value"));
+        }
+        
+        // ***
+        // println!("dummy: {dummy}")
+        // println!("state: {state}")
+
+        // Update counts.
+        self.stats.n_tokens += n_tokens;
+        // self.stats.n_ws_tokens += n_ws_tokens;
         return result;
     }
     //@+node:ekr.20240929074037.115: *3* LB.show_args
