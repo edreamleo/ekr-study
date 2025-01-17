@@ -22,21 +22,26 @@ use std::path;
 
 //@+others
 //@+node:ekr.20250117091938.1: ** enum LexState
+#[derive(Debug)]
 enum LexState {
     NoState,
+    Comment,
     FR,  // f-string or identifier.
     Identifier,
     Number,
     String1,
+    String1Esc,
     String2,
-    String1Esc,  // Next character is escaped.
     String2Esc,
+    TrippleString1,
+    TrippleString1Esc,
+    TrippleString2,
+    TrippleString2Esc,
     WSBlanks,
     WSTabs,
 }
     
 //@+node:ekr.20240929024648.120: ** struct InputTok
-#[allow(dead_code)]
 #[derive(Debug)]
 struct InputTok<'a> {
     index: usize,  // was u32
@@ -587,24 +592,43 @@ impl Beautifier {
     }
     //@+node:ekr.20250116134245.1: *3* LB.make_prototype_input_list ***
     /// make_prototype_input_list
-    /// w/  result_push: 2.95 to 3.30 ms.
+    /// w/  result_push: 1.08 ms to 1.35 ms. (Old: 2.95 to 3.30 ms.)
     /// w/o result_push: 0.72 ms to 0.90 ms.
 
     fn make_prototype_input_list<'a>(&mut self, contents: &'a str) -> Vec<InputTok<'a>> {
 
         let mut index: usize = 0;
-        let mut start_index: usize = 0;
+        let mut line_number: usize = 0;
         let mut n_tokens: u64 = 0;
+        let mut n_ws_tokens: u64 = 0;
+        let mut start_index: usize = 0;
         let mut state: LexState = LexState::NoState;
         let mut result: Vec<InputTok> = Vec::new();
         
         for ch in contents.chars() {
-            n_tokens += 1;
-            // Simulate some calculation.
+            index += 1;
+            if index >= contents.len() {
+                let n = contents.len();
+                let token = &contents[start_index..index-1];
+                println!("BREAK! line: {line_number} {start_index} index: {index} contents.len(): {n} ch: {ch} state: {state:?}");
+                println!("Token: {token}");
+                break;
+            }
             use LexState::*;
             match &state {
                 NoState => {
                     match ch {
+                        '\n' => {
+                            n_tokens += 1;
+                            line_number += 1;
+                            let value = &contents[start_index..index];
+                            result.push(InputTok{index: index, kind: &"newline", value: &value});
+                            start_index = index;
+                            // state = NoState;
+                        }
+                        '#' => {
+                            state = Comment;
+                        },
                         ' ' => {        state = WSBlanks;
                         },
                         '\t' => {       state = WSTabs;
@@ -620,36 +644,119 @@ impl Beautifier {
                         },
                     }
                     index += 1;
-                    // result.push(InputTok{index: index, kind: &"class", value: &"value"});
                 },
+                Comment => {
+                    if ch == '\n' {
+                        n_tokens += 1;
+                        let value = &contents[start_index..index];
+                        result.push(InputTok{index: index, kind: &"comment", value: &value});
+                        start_index = index;
+                        state = NoState;
+                    }
+                }
                 FR => {}, // f-string or identifier.
                 Identifier => {
-                    state = NoState;
-                }, 
-                Number => {}, 
-                String1 => {
-                    if ch == '\'' {
-                        let value = &contents[start_index..index];
-                        result.push(InputTok{index: index, kind: &"string", value: &value});
-                        state = NoState;
-                        start_index = index + 1;
+                    match ch {
+                        'A'..='Z' | 'a'..='z' | '_' => {},
+                        _ => {
+                            n_tokens += 1;
+                            let value = &contents[start_index..index];
+                            result.push(InputTok{index: index, kind: &"identifier", value: &value});
+                            start_index = index;
+                            state = NoState;
+                        },
                     }
-                }, 
-                String2 => {}, 
-                String1Esc => {},   // Next character is escaped.
-                String2Esc => {},
-                WSBlanks => {},
-                WSTabs => {},
+                },
+                Number => {
+                    match ch {
+                        '0'..='9' => {}
+                        _ => {
+                            n_tokens += 1;
+                            let value = &contents[start_index..index];
+                            result.push(InputTok{index: index, kind: &"number", value: &value});
+                            start_index = index;
+                            state = NoState;
+                        },
+                    }
+                }
+                String1 => {
+                    match ch {
+                        '\\' => {
+                            state = String1Esc;
+                        },
+                        '\'' => {
+                            n_tokens += 1;
+                            let value = &contents[start_index..index];
+                            result.push(InputTok{index: index, kind: &"string", value: &value});
+                            start_index = index;
+                            state = NoState;
+                        },
+                        '\n' => {
+                            let value = &contents[start_index..index];
+                            println!("String1: Can not happen! line: {line_number} {value}");
+                            state = NoState;
+                        }
+                        _ => {},
+                    }
+                },
+                String2 => {
+                    match ch {
+                        '\\' => {
+                            state = String2Esc;
+                        },
+                        '"' => {
+                            n_tokens += 1;
+                            let value = &contents[start_index..index];
+                            result.push(InputTok{index: index, kind: &"string", value: &value});
+                            println!("Push string: {line_number} {value}");
+                            start_index = index;
+                            state = NoState;
+                        },
+                        '\n' => {
+                            line_number += 1;
+                        }
+                        _ => {},
+                    }
+                },  
+                String1Esc => {
+                    state = String1;
+                },
+                String2Esc => {
+                    state = String2;
+                },
+                WSBlanks => {
+                    if ch != ' ' {
+                        n_tokens += 1;
+                        n_ws_tokens += 1;
+                        result.push(InputTok{
+                            index: index, kind: &"ws",
+                            value: &contents[start_index..index]
+                        });
+                        start_index = index;
+                        state = NoState;
+                    }
+                },  
+                WSTabs => {
+                    if ch != '\t' {
+                        n_tokens += 1;
+                        n_ws_tokens += 1;
+                        result.push(InputTok{
+                            index: index, kind: &"ws",
+                            value: &contents[start_index..index]
+                        });
+                        start_index = index;
+                        state = NoState;
+                    }
+                },  
             }
         }
-        
-        // ***
+
         // println!("dummy: {dummy}")
-        // println!("state: {state}")
+        // println!("state: {state:?}");
 
         // Update counts.
         self.stats.n_tokens += n_tokens;
-        // self.stats.n_ws_tokens += n_ws_tokens;
+        self.stats.n_ws_tokens += n_ws_tokens;
         return result;
     }
     //@+node:ekr.20240929074037.115: *3* LB.show_args
