@@ -4,10 +4,14 @@
 
 // From https://docs.rs/rustpython-parser/0.3.1/rustpython_parser/lexer/index.html
 
+//@+<< beautifier.rs: suppressions >>
+//@+node:ekr.20250117061304.1: ** << beautifier.rs: suppressions >>
+
 // #! macros must be first.
-// #![allow(dead_code)]
+#![allow(dead_code)]
 // #![allow(unused_imports)]
-// #![allow(unused_variables)]
+#![allow(unused_variables)]
+//@-<< beautifier.rs: suppressions >>
 
 extern crate rustpython_parser;
 use rustpython_parser::{lexer::lex, Mode, Tok};
@@ -1352,8 +1356,10 @@ impl Beautifier {
         self.stats.n_ws_tokens += n_ws_tokens;
         return result;
     }
-    //@+node:ekr.20250116134245.1: *3* LB.make_prototype_input_list
-    /// make_prototype_input_list: 2.95 to 3.30 ms.
+    //@+node:ekr.20250116134245.1: *3* LB.make_prototype_input_list ***
+    /// make_prototype_input_list
+    /// w/  result_push: 2.95 to 3.30 ms.
+    /// w/o result_push: 0.72 ms to 0.90 ms.
 
     fn make_prototype_input_list<'a>(&mut self, contents: &'a str) -> Vec<InputTok<'a>> {
 
@@ -1373,10 +1379,12 @@ impl Beautifier {
                     dummy += 1;
                     dummy += 1;
                     index += 1;
+                    // result.push(InputTok::new(index, &"class", &"value"));
                 },
-                _ => (),
+                _ => {
+                    result.push(InputTok::new(index, &"class", &"value"));
+                },
             }
-            result.push(InputTok::new(index, &"class", &"value"));
         }
         
         // ***

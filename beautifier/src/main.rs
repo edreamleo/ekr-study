@@ -3,9 +3,7 @@
 //@@language rust
 // main.rs
 
-// #![allow(unused_imports)]
-#![allow(unused_variables)]
-#![allow(dead_code)]
+// extern crates must be in crate root.
 
 // For the f! macro.
 #[macro_use]
