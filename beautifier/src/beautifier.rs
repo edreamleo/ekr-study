@@ -31,13 +31,15 @@ enum LexState {
     String2,
     String1Esc,  // Next character is escaped.
     String2Esc,
+    WSBlanks,
+    WSTabs,
 }
     
 //@+node:ekr.20240929024648.120: ** struct InputTok
 #[allow(dead_code)]
 #[derive(Debug)]
 struct InputTok<'a> {
-    index: u32,
+    index: usize,  // was u32
     kind: &'a str,
     value: &'a str,
 }
@@ -590,27 +592,54 @@ impl Beautifier {
 
     fn make_prototype_input_list<'a>(&mut self, contents: &'a str) -> Vec<InputTok<'a>> {
 
-        let mut index: u32 = 0;
+        let mut index: usize = 0;
+        let mut start_index: usize = 0;
         let mut n_tokens: u64 = 0;
+        let mut state: LexState = LexState::NoState;
         let mut result: Vec<InputTok> = Vec::new();
-        let mut dummy: u32 = 0;
-        let state: u32 = 0;
         
-        for _ch in contents.chars() {
+        for ch in contents.chars() {
             n_tokens += 1;
             // Simulate some calculation.
-            match state {
-                0 => {
-                    dummy += 1;
-                    dummy += 1;
-                    dummy += 1;
-                    dummy += 1;
+            use LexState::*;
+            match &state {
+                NoState => {
+                    match ch {
+                        ' ' => {        state = WSBlanks;
+                        },
+                        '\t' => {       state = WSTabs;
+                        },
+                        '0'..'9' => {   state = Number;
+                        },
+                        '\'' => {       state = String1;
+                        },
+                        '"' => {        state = String2;
+                        },
+                        // 'A'..='Z' | 'a'..='z' | '_'
+                        _ => {          state = Identifier;
+                        },
+                    }
                     index += 1;
                     // result.push(InputTok{index: index, kind: &"class", value: &"value"});
                 },
-                _ => {
-                    result.push(InputTok{index: index, kind: &"class", value: &"value"});
-                },
+                FR => {}, // f-string or identifier.
+                Identifier => {
+                    state = NoState;
+                }, 
+                Number => {}, 
+                String1 => {
+                    if ch == '\'' {
+                        let value = &contents[start_index..index];
+                        result.push(InputTok{index: index, kind: &"string", value: &value});
+                        state = NoState;
+                        start_index = index + 1;
+                    }
+                }, 
+                String2 => {}, 
+                String1Esc => {},   // Next character is escaped.
+                String2Esc => {},
+                WSBlanks => {},
+                WSTabs => {},
             }
         }
         
