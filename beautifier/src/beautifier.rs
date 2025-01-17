@@ -21,6 +21,18 @@ use std::fs;
 use std::path;
 
 //@+others
+//@+node:ekr.20250117091938.1: ** enum LexState
+enum LexState {
+    NoState,
+    FR,  // f-string or identifier.
+    Identifier,
+    Number,
+    String1,
+    String2,
+    String1Esc,  // Next character is escaped.
+    String2Esc,
+}
+    
 //@+node:ekr.20240929024648.120: ** struct InputTok
 #[allow(dead_code)]
 #[derive(Debug)]
