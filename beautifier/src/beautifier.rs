@@ -603,40 +603,9 @@ impl Beautifier {
     /// w graphemes:
     ///     w/o result_push: 11.09 ms to 12.05 ms.
 
-    fn state_from_char(ch: char) -> LexState {
-        use LexState::*;
-        match ch {
-            '#' => {
-                 return Comment;
-            },
-            ' ' => {
-                return WSBlanks;
-            },
-            '\t' => {
-                return WSTabs;
-            },
-            '0'..'9' => {
-                return Number;
-            },
-            '\'' => {
-                return String1;
-            },
-            '"' => {
-                return String2;
-            },
-            'A'..='Z' | 'a'..='z' | '_' => {
-                return Identifier;
-            },
-            _ => {
-                return NoState
-            },
-        }
-    }
-
     fn make_prototype_input_list<'a>(&mut self, contents: &'a str) -> Vec<InputTok<'a>> {
 
         // Stats & debugging.
-        let trace: bool = true;
         let mut line_number: usize = 0;
         let mut n_tokens: u64 = 0;
         let mut n_ws_tokens: u64 = 0;
@@ -653,38 +622,12 @@ impl Beautifier {
             }
             if ch == '\n'  {
                 line_number += 1;
-                // if trace {
-                    // println!("line: {line_number} {start_index}..{index} state: {state:?}");  // ch: {ch:?}
-                // }
+                // println!("line: {line_number} {start_index}..{index} state: {state:?}");  // ch: {ch:?}
             }
             use LexState::*;
             match &state {
                 NoState => {
                     state = Self::state_from_char(ch);
-                    // match ch {
-                        // '#' => {
-                             // state = Comment;
-                        // },
-                        // ' ' => {
-                            // state = WSBlanks;
-                        // },
-                        // '\t' => {
-                            // state = WSTabs;
-                        // },
-                        // '0'..'9' => {
-                            // state = Number;
-                        // },
-                        // '\'' => {
-                            // state = String1;
-                        // },
-                        // '"' => {
-                            // state = String2;
-                        // },
-                        // 'A'..='Z' | 'a'..='z' | '_' => {
-                            // state = Identifier;
-                        // },
-                        // _ => {},
-                    // }
                 },
                 Comment => {
                     match ch {
@@ -692,10 +635,8 @@ impl Beautifier {
                             // Add the comment.
                             let value = &contents[start_index..index-1];
                             result.push(InputTok{index: start_index, kind: &"comment", value: value});
-                            // if trace {
-                                // let n = index - start_index;
-                                // println!("comment: {n}");
-                            // }
+                            // let n = index - start_index;
+                            // println!("comment: {n}");
                             n_tokens += 1;
         
                             // Add the newline.
@@ -714,9 +655,7 @@ impl Beautifier {
                         'A'..='Z' | 'a'..='z' | '_' => {},
                         _ => {
                             let value = &contents[start_index..index-1];
-                            // if trace {
-                                // println!("id: {value}");
-                            // }
+                            // println!("id: {value}");
                             result.push(InputTok{index: start_index, kind: &"identifier", value: value});
                             n_tokens += 1;
                             start_index = index;
@@ -726,12 +665,12 @@ impl Beautifier {
                 },
                 Number => {
                     match ch {
-                        '0'..='9' => {},
+                        '0'..='9' => {
+                            // println!("number: {ch:?}");
+                        },
                         _ => {
                             let value = &contents[start_index..index-1];
-                            if trace {
-                                println!("number: {value}");
-                            }
+                            // println!("number: {value}");
                             result.push(InputTok{index: start_index, kind: &"number", value: value});
                             n_tokens += 1;
                             start_index = index;
@@ -747,14 +686,12 @@ impl Beautifier {
                         },
                         '\'' => {
                             let value = &contents[start_index..index];
-                            if trace {
-                                let n = index - start_index;
-                                println!("string1 len: {n}");
-                            }
+                            // let n = index - start_index;
+                            // println!("string1 len: {n}");
                             result.push(InputTok{index: start_index, kind: &"string", value: value});
                             n_tokens += 1;
                             start_index = index;
-                            state = Self::state_from_char(ch);
+                            state = NoState
                         },
                         _ => {},
                     }
@@ -766,14 +703,12 @@ impl Beautifier {
                         },
                         '"' => {
                             let value = &contents[start_index..index];
-                            // if trace {
-                                // let n = index - start_index;
-                                // println!("string2 len: {n}");
-                            // }
+                            // let n = index - start_index;
+                            // println!("string2 len: {n}");
                             result.push(InputTok{index: start_index, kind: &"string", value: value});
                             n_tokens += 1;
                             start_index = index;
-                            state = Self::state_from_char(ch);
+                            state = NoState
                         },
                         _ => {},
                     }
@@ -789,26 +724,21 @@ impl Beautifier {
                         ' ' => {},
                         _ => {
                             let value = &contents[start_index..index-1];
-                            if trace {
-                                let n = index - start_index;
-                                println!("blanks: {n}");
-                            }
+                            // let n = index - start_index;
+                            // println!("blanks: {n}");
                             result.push(InputTok{index: start_index, kind: &"ws", value: value});
                             n_tokens += 1;
                             n_ws_tokens += 1;
                             start_index = index;
                             state = Self::state_from_char(ch);
-                            // println!("END BLANKS: {ch:?} {state:?}"); 
                         },
                     }
                 },  
                 WSTabs => {
                     if ch != '\t' {
                         let value = &contents[start_index..index];
-                        if trace {
-                            let n = index - start_index;
-                            println!("  tabs: {n}");
-                        }
+                        // let n = index - start_index;
+                        // println!("  tabs: {n}");
                         result.push(InputTok{index: start_index, kind: &"ws", value: value});
                         n_tokens += 1;
                         n_ws_tokens += 1;
@@ -826,6 +756,39 @@ impl Beautifier {
         self.stats.n_tokens += n_tokens;
         self.stats.n_ws_tokens += n_ws_tokens;
         return result;
+    }
+    //@+node:ekr.20250118132858.1: *3* LB.state_from_char
+    fn state_from_char(ch: char) -> LexState {
+
+        // println!("state_from_char: {ch:?}");
+        use LexState::*;
+        match ch {
+            '#' => {
+                return Comment;
+            },
+            ' ' => {
+                return WSBlanks;
+            },
+            '\t' => {
+                return WSTabs;
+            },
+            '0'..'9' => {
+                // println!("Start Number {ch:?}");
+                return Number;
+            },
+            '\'' => {
+                return String1;
+            },
+            '"' => {
+                return String2;
+            },
+            'A'..='Z' | 'a'..='z' | '_' => {
+                return Identifier;
+            },
+            _ => {
+                return NoState
+            },
+        }
     }
     //@+node:ekr.20240929074037.115: *3* LB.show_args
     fn show_args(&self) {
