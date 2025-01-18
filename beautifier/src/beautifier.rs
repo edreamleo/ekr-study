@@ -6,19 +6,22 @@
 
 //@+<< beautifier.rs: suppressions >>
 //@+node:ekr.20250117061304.1: ** << beautifier.rs: suppressions >>
-
 // #! macros must be first.
 #![allow(dead_code)]
 #![allow(unused_imports)]
 #![allow(unused_variables)]
 //@-<< beautifier.rs: suppressions >>
 
+//@+<< beatufier.rs: crates and use >>
+//@+node:ekr.20250117235612.1: ** << beatufier.rs: crates and use >>
 extern crate rustpython_parser;
 use rustpython_parser::{lexer::lex, Mode, Tok};
+use unicode_segmentation::UnicodeSegmentation;
 use std::collections::HashMap;
 use std::env;
 use std::fs;
 use std::path;
+//@-<< beatufier.rs: crates and use >>
 
 //@+others
 //@+node:ekr.20250117091938.1: ** enum LexState
@@ -33,10 +36,10 @@ enum LexState {
     String1Esc,
     String2,
     String2Esc,
-    TrippleString1,
-    TrippleString1Esc,
-    TrippleString2,
-    TrippleString2Esc,
+    // TrippleString1,
+    // TrippleString1Esc,
+    // TrippleString2,
+    // TrippleString2Esc,
     WSBlanks,
     WSTabs,
 }
@@ -44,7 +47,7 @@ enum LexState {
 //@+node:ekr.20240929024648.120: ** struct InputTok
 #[derive(Debug)]
 struct InputTok<'a> {
-    index: usize,  // was u32
+    // index: usize,  // was u32
     kind: &'a str,
     value: &'a str,
 }
@@ -597,122 +600,123 @@ impl Beautifier {
 
     fn make_prototype_input_list<'a>(&mut self, contents: &'a str) -> Vec<InputTok<'a>> {
 
-        let mut index: usize = 0;
+        // Stats.
         let mut line_number: usize = 0;
         let mut n_tokens: u64 = 0;
         let mut n_ws_tokens: u64 = 0;
-        let mut start_index: usize = 0;
+        
+        // The main loop.
         let mut state: LexState = LexState::NoState;
         let mut result: Vec<InputTok> = Vec::new();
+        let mut token: String = String::new();
         
-        for ch in contents.chars() {
-            index += 1;
-            if index >= contents.len() {
-                let n = contents.len();
-                let token = &contents[start_index..index-1];
-                println!("BREAK! line: {line_number} {start_index} index: {index} contents.len(): {n} ch: {ch} state: {state:?}");
-                println!("Token: {token}");
-                break;
-            }
+        for ch in contents.graphemes(true) {
+            token.push_str(ch);
+            
+            // let is_newline = ch == "\n" || ch == "\r\n";
+            // println!("line: {line_number} {start_index}..{index} NL? {is_newline} ch: {ch:?} state: {state:?}");
+            // if index > 100 { break; }
             use LexState::*;
             match &state {
                 NoState => {
                     match ch {
-                        '\n' => {
+                        "\n" | "\r\n" => {
                             n_tokens += 1;
                             line_number += 1;
-                            let value = &contents[start_index..index];
-                            result.push(InputTok{index: index, kind: &"newline", value: &value});
-                            start_index = index;
-                            // state = NoState;
-                        }
-                        '#' => {
-                            state = Comment;
+                            result.push(InputTok{kind: &"newline", value: &String::from(token)});
+                            token.clear();
                         },
-                        ' ' => {        state = WSBlanks;
+                        "#" => {
+                             state = Comment;
                         },
-                        '\t' => {       state = WSTabs;
+                        " " => {
+                            state = WSBlanks;
                         },
-                        '0'..'9' => {   state = Number;
+                        "\t" => {
+                            state = WSTabs;
                         },
-                        '\'' => {       state = String1;
+                        "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" => {
+                            state = Number;
                         },
-                        '"' => {        state = String2;
+                        "'" => {
+                            state = String1;
+                        },
+                        "\"" => {
+                            state = String2;
                         },
                         // 'A'..='Z' | 'a'..='z' | '_'
-                        _ => {          state = Identifier;
+                        _ => {
+                            state = Identifier;
                         },
                     }
-                    index += 1;
+                    // *** index += 1;
                 },
                 Comment => {
-                    if ch == '\n' {
+                    if ch == "\n" || ch == "\r\n" {
+                        line_number += 1;
                         n_tokens += 1;
-                        let value = &contents[start_index..index];
-                        result.push(InputTok{index: index, kind: &"comment", value: &value});
-                        start_index = index;
+                        result.push(InputTok{kind: &"comment", value: &String::from(token)});
+                        token.clear();
                         state = NoState;
                     }
                 }
                 FR => {}, // f-string or identifier.
                 Identifier => {
                     match ch {
-                        'A'..='Z' | 'a'..='z' | '_' => {},
+                        // *** 'A'..='Z' | 'a'..='z' | '_' => {},
                         _ => {
                             n_tokens += 1;
-                            let value = &contents[start_index..index];
-                            result.push(InputTok{index: index, kind: &"identifier", value: &value});
-                            start_index = index;
+                            result.push(InputTok{kind: &"identifier", value: &String::from(token)});
+                            token.clear();
+                            // start_index = index;
                             state = NoState;
                         },
                     }
                 },
                 Number => {
                     match ch {
-                        '0'..='9' => {}
+                        // '0'..='9' => {}
+                        "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" => {
+                        },
                         _ => {
                             n_tokens += 1;
-                            let value = &contents[start_index..index];
-                            result.push(InputTok{index: index, kind: &"number", value: &value});
-                            start_index = index;
+                            result.push(InputTok{kind: &"number", value: &String::from(token)});
+                            token.clear();
+                            // start_index = index;
                             state = NoState;
                         },
                     }
                 }
                 String1 => {
+                    // This is a *Python* single-quoted string.
                     match ch {
-                        '\\' => {
+                        "\\" => {
                             state = String1Esc;
                         },
-                        '\'' => {
+                        "'" => {
                             n_tokens += 1;
-                            let value = &contents[start_index..index];
-                            result.push(InputTok{index: index, kind: &"string", value: &value});
-                            start_index = index;
+                            result.push(InputTok{kind: &"string", value: &String::from(token)});
+                            token.clear();
                             state = NoState;
                         },
-                        '\n' => {
-                            let value = &contents[start_index..index];
-                            println!("String1: Can not happen! line: {line_number} {value}");
-                            state = NoState;
-                        }
+                        "\n" | "\r\n" => {
+                            line_number += 1;
+                        },
                         _ => {},
                     }
                 },
                 String2 => {
                     match ch {
-                        '\\' => {
+                        "\\" => {
                             state = String2Esc;
                         },
-                        '"' => {
+                        "\"" => {
                             n_tokens += 1;
-                            let value = &contents[start_index..index];
-                            result.push(InputTok{index: index, kind: &"string", value: &value});
-                            println!("Push string: {line_number} {value}");
-                            start_index = index;
+                            result.push(InputTok{kind: &"string", value: &String::from(token)});
+                            token.clear();
                             state = NoState;
                         },
-                        '\n' => {
+                        "\n" | "\r\n" => {
                             line_number += 1;
                         }
                         _ => {},
@@ -725,26 +729,26 @@ impl Beautifier {
                     state = String2;
                 },
                 WSBlanks => {
-                    if ch != ' ' {
+                    if ch != " " {
+                        if ch == "\n" || ch == "\r\n" {
+                            line_number += 1;
+                        }
                         n_tokens += 1;
                         n_ws_tokens += 1;
-                        result.push(InputTok{
-                            index: index, kind: &"ws",
-                            value: &contents[start_index..index]
-                        });
-                        start_index = index;
+                        result.push(InputTok{kind: &"ws", value: &String::from(token)});
+                        token.clear();
                         state = NoState;
                     }
                 },  
                 WSTabs => {
-                    if ch != '\t' {
+                    if ch != "\t" {
+                        if ch == "\n" || ch == "\r\n" {
+                            line_number += 1;
+                        }
                         n_tokens += 1;
                         n_ws_tokens += 1;
-                        result.push(InputTok{
-                            index: index, kind: &"ws",
-                            value: &contents[start_index..index]
-                        });
-                        start_index = index;
+                        result.push(InputTok{kind: &"ws", value: &String::from(token)});
+                        token.clear();
                         state = NoState;
                     }
                 },  
