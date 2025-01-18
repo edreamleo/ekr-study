@@ -10,13 +10,14 @@
 #![allow(dead_code)]
 #![allow(unused_imports)]
 #![allow(unused_variables)]
+// #![allow(unused_assignments)]
 //@-<< beautifier.rs: suppressions >>
 
 //@+<< beatufier.rs: crates and use >>
 //@+node:ekr.20250117235612.1: ** << beatufier.rs: crates and use >>
 extern crate rustpython_parser;
 use rustpython_parser::{lexer::lex, Mode, Tok};
-use unicode_segmentation::UnicodeSegmentation;
+// use unicode_segmentation::UnicodeSegmentation;
 use std::collections::HashMap;
 use std::env;
 use std::fs;
@@ -47,7 +48,7 @@ enum LexState {
 //@+node:ekr.20240929024648.120: ** struct InputTok
 #[derive(Debug)]
 struct InputTok<'a> {
-    // index: usize,  // was u32
+    index: usize,  // index into slices.
     kind: &'a str,
     value: &'a str,
 }
@@ -113,6 +114,7 @@ impl Beautifier {
         // Create (an immutable!) list of input tokens.
         let t2 = std::time::Instant::now();
         let _input_tokens = self.make_prototype_input_list(&contents);
+        // let _input_tokens = self.make_input_list(&contents);
         self.stats.make_tokens_time += t2.elapsed().as_nanos();
 
         // ***
@@ -593,10 +595,13 @@ impl Beautifier {
             }
         }
     }
-    //@+node:ekr.20250116134245.1: *3* LB.make_prototype_input_list ***
+    //@+node:ekr.20250116134245.1: *3* LB.make_prototype_input_list
     /// make_prototype_input_list
-    /// w/  result_push: 1.08 ms to 1.35 ms. (Old: 2.95 to 3.30 ms.)
-    /// w/o result_push: 0.72 ms to 0.90 ms.
+    /// w/o graphemes:
+    ///     w/  result_push: 1.08 ms to 1.35 ms. (Old: 2.95 to 3.30 ms.)
+    ///     w/o result_push: 0.72 ms to 0.90 ms.
+    /// w graphemes:
+    ///     w/o result_push: 11.09 ms to 12.05 ms.
 
     fn make_prototype_input_list<'a>(&mut self, contents: &'a str) -> Vec<InputTok<'a>> {
 
@@ -608,81 +613,84 @@ impl Beautifier {
         // The main loop.
         let mut state: LexState = LexState::NoState;
         let mut result: Vec<InputTok> = Vec::new();
-        let mut token: String = String::new();
+        let mut index: usize = 0;
+        let mut start_index: usize = 0;
         
-        for ch in contents.graphemes(true) {
-            token.push_str(ch);
-            
-            // let is_newline = ch == "\n" || ch == "\r\n";
-            // println!("line: {line_number} {start_index}..{index} NL? {is_newline} ch: {ch:?} state: {state:?}");
-            // if index > 100 { break; }
+        for ch in contents.chars() {
+            index += 1;
+            if ch == '\r' {
+                index += 1;
+                continue;
+            }
+            if ch == '\n'  {
+                    line_number += 1;
+            }
+            // println!("line: {line_number} {start_index}..{index} ch: {ch:?} state: {state:?}");
             use LexState::*;
             match &state {
                 NoState => {
                     match ch {
-                        "\n" | "\r\n" => {
+                        '\n' => {
                             n_tokens += 1;
-                            line_number += 1;
-                            result.push(InputTok{kind: &"newline", value: &String::from(token)});
-                            token.clear();
+                            result.push(
+                                InputTok{index: start_index, kind: &"newline", value: &contents[start_index..index]}
+                            );
+                            start_index = index;
                         },
-                        "#" => {
+                        '#' => {
                              state = Comment;
                         },
-                        " " => {
+                        ' ' => {
                             state = WSBlanks;
                         },
-                        "\t" => {
+                        '\t' => {
                             state = WSTabs;
                         },
-                        "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" => {
+                        '0'..'9' => {
                             state = Number;
                         },
-                        "'" => {
+                        '\'' => {
                             state = String1;
                         },
-                        "\"" => {
+                        '"' => {
                             state = String2;
                         },
-                        // 'A'..='Z' | 'a'..='z' | '_'
-                        _ => {
+                        'A'..='Z' | 'a'..='z' | '_' => {
                             state = Identifier;
                         },
+                        _ => {},
                     }
-                    // *** index += 1;
                 },
                 Comment => {
-                    if ch == "\n" || ch == "\r\n" {
-                        line_number += 1;
-                        n_tokens += 1;
-                        result.push(InputTok{kind: &"comment", value: &String::from(token)});
-                        token.clear();
-                        state = NoState;
+                    match ch {
+                        '\n' => {
+                            n_tokens += 1;
+                            // *** result.push(InputTok{kind: &"comment", value: &String::from(token)});
+                            start_index = index;
+                            state = NoState;
+                        },
+                        _ => {},
                     }
                 }
                 FR => {}, // f-string or identifier.
                 Identifier => {
                     match ch {
-                        // *** 'A'..='Z' | 'a'..='z' | '_' => {},
+                        'A'..='Z' | 'a'..='z' | '_' => {},
                         _ => {
                             n_tokens += 1;
-                            result.push(InputTok{kind: &"identifier", value: &String::from(token)});
-                            token.clear();
-                            // start_index = index;
+                            // *** result.push(InputTok{kind: &"identifier", value: &String::from(token)});
                             state = NoState;
                         },
                     }
                 },
                 Number => {
                     match ch {
-                        // '0'..='9' => {}
-                        "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" => {
-                        },
+                        // "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" => {
+                        '0'..='9' => {},
                         _ => {
                             n_tokens += 1;
-                            result.push(InputTok{kind: &"number", value: &String::from(token)});
-                            token.clear();
-                            // start_index = index;
+                            // *** result.push(InputTok{kind: &"number", value: &String::from(token)});
+                            start_index = index;
                             state = NoState;
                         },
                     }
@@ -690,35 +698,29 @@ impl Beautifier {
                 String1 => {
                     // This is a *Python* single-quoted string.
                     match ch {
-                        "\\" => {
+                        '\\' => {
                             state = String1Esc;
                         },
-                        "'" => {
+                        '\'' => {
                             n_tokens += 1;
-                            result.push(InputTok{kind: &"string", value: &String::from(token)});
-                            token.clear();
+                            // *** result.push(InputTok{kind: &"string", value: &String::from(token)});
+                            start_index = index;
                             state = NoState;
-                        },
-                        "\n" | "\r\n" => {
-                            line_number += 1;
                         },
                         _ => {},
                     }
                 },
                 String2 => {
                     match ch {
-                        "\\" => {
+                        '\\' => {
                             state = String2Esc;
                         },
-                        "\"" => {
+                        '"' => {
+                            // *** result.push(InputTok{kind: &"string", value: &String::from(token)});
                             n_tokens += 1;
-                            result.push(InputTok{kind: &"string", value: &String::from(token)});
-                            token.clear();
+                            start_index = index;
                             state = NoState;
                         },
-                        "\n" | "\r\n" => {
-                            line_number += 1;
-                        }
                         _ => {},
                     }
                 },  
@@ -729,33 +731,27 @@ impl Beautifier {
                     state = String2;
                 },
                 WSBlanks => {
-                    if ch != " " {
-                        if ch == "\n" || ch == "\r\n" {
-                            line_number += 1;
-                        }
+                    if ch != ' ' {
                         n_tokens += 1;
                         n_ws_tokens += 1;
-                        result.push(InputTok{kind: &"ws", value: &String::from(token)});
-                        token.clear();
+                        // *** result.push(InputTok{kind: &"ws", value: &String::from(token)});
+                        start_index = index;
                         state = NoState;
                     }
                 },  
                 WSTabs => {
-                    if ch != "\t" {
-                        if ch == "\n" || ch == "\r\n" {
-                            line_number += 1;
-                        }
+                    if ch != '\t' {
                         n_tokens += 1;
                         n_ws_tokens += 1;
-                        result.push(InputTok{kind: &"ws", value: &String::from(token)});
-                        token.clear();
+                        // *** result.push(InputTok{kind: &"ws", value: &String::from(token)});
+                        start_index = index;
                         state = NoState;
                     }
                 },  
             }
         }
 
-        // println!("dummy: {dummy}")
+        println!("lines: {line_number}");
         // println!("state: {state:?}");
 
         // Update counts.
@@ -794,11 +790,6 @@ impl Beautifier {
             )
         );
     }
-    //@+node:ekr.20241002163554.1: *3* LB.string_to_static_str (not used)
-    fn string_to_static_str(&self, s: String) -> &'static str {
-        Box::leak(s.into_boxed_str())
-    }
-
     //@-others
 }
 //@+node:ekr.20240929074547.1: ** class Stats
