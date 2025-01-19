@@ -63,7 +63,8 @@ struct InputTok<'a> {
 pub struct Beautifier {
     // Set in LB:beautify_one_file...
     args: Vec<String>,
-    files_list: Vec<String>,
+    // *** Use FILES instead.
+    // files_list: Vec<String>,
     stats: Stats,
     output_list: Vec<String>,
 }
@@ -78,7 +79,8 @@ impl Beautifier {
         let mut x = Beautifier {
             // Set in beautify_one_file
             args: Vec::new(),
-            files_list: Vec::new(),
+            // *** Use FILES instead.
+            // files_list: Vec::new(),
             output_list: Vec::new(),
             stats: Stats::new(),
         };
@@ -97,7 +99,10 @@ impl Beautifier {
     //@+node:ekr.20240929074037.4: *3* LB.beautify_all_files
     pub fn beautify_all_files(&mut self) {
 
-        for file_name in self.files_list.clone() {
+        // *** Use FILES instead.
+        // for file_name in self.files_list.clone() {
+
+        for file_name in FILES {
             self.beautify_one_file(&file_name);
         }
     }
@@ -594,10 +599,12 @@ impl Beautifier {
                     self.args.push(arg.to_string())
                 } else if arg.as_str().starts_with("--") || arg.as_str().starts_with("--") {
                     println!("Ignoring invalid arg: {arg}");
-                } else {
-                    println!("File: {arg}");
-                    self.files_list.push(arg.to_string());
                 }
+                // *** Use FILES instead.
+                    // else {
+                        // println!("File: {arg}");
+                        // self.files_list.push(arg.to_string());
+                    // }
             }
         }
     }
@@ -817,7 +824,10 @@ impl Beautifier {
                 println!("  {arg}");
             }
         }
-        for file_arg in self.files_list.iter() {
+        
+        // *** Use FILES instead.
+        // for file_arg in self.files_list.iter() {
+        for file_arg in FILES {
             println!("  {file_arg}");
         }
     }
@@ -992,11 +1002,6 @@ pub fn main() {
     if true {
         // testing.
         println!("");
-        // for file_path in [
-            // // "C:\\Repos\\ekr-study\\beautifier\\test\\test1.py",
-            // "C:\\Repos\\leo-editor\\leo\\core\\leoFrame.py",
-            // // "C:\\Repos\\leo-editor\\leo\\core\\leoApp.py"
-        // ] {
         for file_path in FILES {
             x.beautify_one_file(&file_path);
         }
