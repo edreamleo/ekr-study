@@ -10,11 +10,12 @@
 #![allow(dead_code)]
 #![allow(unused_imports)]
 #![allow(unused_variables)]
+#![allow(non_upper_case_globals)]
 // #![allow(unused_assignments)]
 //@-<< beautifier.rs: suppressions >>
 
-//@+<< beatufier.rs: crates and use >>
-//@+node:ekr.20250117235612.1: ** << beatufier.rs: crates and use >>
+//@+<< beatufier.rs: crates and switches >>
+//@+node:ekr.20250117235612.1: ** << beatufier.rs: crates and switches >>
 extern crate rustpython_parser;
 use rustpython_parser::{lexer::lex, Mode, Tok};
 // use unicode_segmentation::UnicodeSegmentation;
@@ -22,7 +23,7 @@ use std::collections::HashMap;
 use std::env;
 use std::fs;
 use std::path;
-//@-<< beatufier.rs: crates and use >>
+//@-<< beatufier.rs: crates and switches >>
 
 //@+others
 //@+node:ekr.20250117091938.1: ** enum LexState
@@ -90,7 +91,7 @@ impl Beautifier {
     }
     //@+node:ekr.20240929074037.4: *3* LB.beautify_all_files
     pub fn beautify_all_files(&mut self) {
-        // for file_name in self.files_list.clone() {
+
         for file_name in self.files_list.clone() {
             self.beautify_one_file(&file_name);
         }
@@ -616,17 +617,23 @@ impl Beautifier {
         let mut index: usize = 0;
         let mut start_index: usize = 0;
         for ch in contents.chars() {  // ch is a char.
+            // println!("index: {index:3} ch: {ch:?}");
             index += 1;
             if ch == '\r' {
                 continue;
             }
             if ch == '\n'  {
                 line_number += 1;
-                // println!("line: {line_number} {start_index}..{index} state: {state:?}");  // ch: {ch:?}
+                // println!("line: {line_number} {start_index}..{index} state: {state:?}");
             }
             use LexState::*;
             match &state {
                 NoState => {
+                    if ch == '\n' {
+                        result.push(InputTok{index: index, kind: &"nl", value: &"\n"});
+                        n_tokens += 1;
+                        start_index = index;
+                    }
                     state = Self::state_from_char(ch);
                 },
                 Comment => {
@@ -749,8 +756,16 @@ impl Beautifier {
             }
         }
 
-        println!("lines: {line_number}");
-        // println!("state: {state:?}");
+        // Print summaries.
+        println!("\nlines: {line_number}");
+        if true {
+            for (i, z) in result.iter().enumerate() {
+                println!("{i}: {z:?}");
+                if i > 10 {
+                    break;
+                }
+            }
+        }
 
         // Update counts.
         self.stats.n_tokens += n_tokens;
@@ -965,7 +980,7 @@ fn is_python_keyword(_token: &InputTok) -> bool {
 fn is_unary_op_with_prev(_prev_token: &InputTok, _token: &InputTok) -> bool {
     return false; // ***
 }
-//@+node:ekr.20241003093722.1: ** fn: main
+//@+node:ekr.20241003093722.1: ** fn: main (sets files)
 //@@language rust
 pub fn main() {
     // Main line of beautifier.
@@ -974,8 +989,9 @@ pub fn main() {
         // testing.
         println!("");
         for file_path in [
+            "C:\\Repos\\ekr-study\\beautifier\\test\\test1.py",
             // "C:\\Repos\\ekr-tbo-in-rust\\test\\test1.py",
-            "C:\\Repos\\leo-editor\\leo\\core\\leoFrame.py",
+            // "C:\\Repos\\leo-editor\\leo\\core\\leoFrame.py",
             // "C:\\Repos\\leo-editor\\leo\\core\\leoApp.py"
         ] {
             x.beautify_one_file(&file_path);
