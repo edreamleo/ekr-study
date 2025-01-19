@@ -597,12 +597,11 @@ impl Beautifier {
         }
     }
     //@+node:ekr.20250116134245.1: *3* LB.make_prototype_input_list
-    /// make_prototype_input_list
+    /// make_prototype_input_list. Stats for leoFrame.py:
     /// w/o graphemes:
-    ///     w/  result_push: 1.08 ms to 1.35 ms. (Old: 2.95 to 3.30 ms.)
-    ///     w/o result_push: 0.72 ms to 0.90 ms.
-    /// w graphemes:
-    ///     w/o result_push: 11.09 ms to 12.05 ms.
+    ///     w/  result.push: 1.2 ms. to 1.3 ms.
+    /// w/ graphemes:
+    ///     w/ result.push: 11.0 ms to 12.0 ms.
 
     fn make_prototype_input_list<'a>(&mut self, contents: &'a str) -> Vec<InputTok<'a>> {
 
@@ -756,9 +755,9 @@ impl Beautifier {
             }
         }
 
-        // Print summaries.
-        println!("\nlines: {line_number}");
-        if true {
+        // Print summaries. These affect timing!
+        if false {
+            println!("\nlines: {line_number}");
             for (i, z) in result.iter().enumerate() {
                 println!("{i}: {z:?}");
                 if i > 10 {
@@ -989,9 +988,8 @@ pub fn main() {
         // testing.
         println!("");
         for file_path in [
-            "C:\\Repos\\ekr-study\\beautifier\\test\\test1.py",
-            // "C:\\Repos\\ekr-tbo-in-rust\\test\\test1.py",
-            // "C:\\Repos\\leo-editor\\leo\\core\\leoFrame.py",
+            // "C:\\Repos\\ekr-study\\beautifier\\test\\test1.py",
+            "C:\\Repos\\leo-editor\\leo\\core\\leoFrame.py",
             // "C:\\Repos\\leo-editor\\leo\\core\\leoApp.py"
         ] {
             x.beautify_one_file(&file_path);
