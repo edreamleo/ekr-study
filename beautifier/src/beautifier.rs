@@ -95,17 +95,6 @@ impl Beautifier {
             self.output_list.push(value.to_string())
         }
     }
-    //@+node:ekr.20240929074037.4: *3* LB.beautify_all_files
-    pub fn beautify_all_files(&mut self) {
-
-        // *** Use FILES instead.
-        // for file_name in self.files_list.clone() {
-
-        for file_name in FILES {
-            self.beautify_one_file(&file_name);
-        }
-    }
-
     //@+node:ekr.20240929074037.5: *3* LB.beautify_one_file
     fn beautify_one_file(&mut self, file_name: &str) {
         self.stats.n_files += 1;
@@ -998,20 +987,25 @@ fn is_unary_op_with_prev(_prev_token: &InputTok, _token: &InputTok) -> bool {
 pub fn main() {
     // Main line of beautifier.
     let mut x = Beautifier::new();
-    if true {
-        // testing.
+    let testing: bool = true;
+    if testing {
         println!("");
         for file_path in FILES {
             x.beautify_one_file(&file_path);
         }
-        x.stats.report();
-    } else {
+        if testing {
+            x.stats.report();
+        }
+    }
+    else {
         if x.enabled("--help") || x.enabled("-h") {
             x.show_help();
             return;
         }
         x.show_args();
-        x.beautify_all_files();
+        for file_path in FILES {
+            x.beautify_one_file(&file_path);
+        }
     }
 }
 //@-others
