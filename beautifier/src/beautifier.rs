@@ -1,6 +1,6 @@
 //@+leo-ver=5-thin
 //@+node:ekr.20240928161210.1: * @file src/beautifier.rs
-// tbo.rs
+// beautifier.rs
 
 // From https://docs.rs/rustpython-parser/0.3.1/rustpython_parser/lexer/index.html
 
@@ -13,9 +13,8 @@
 #![allow(non_upper_case_globals)]
 // #![allow(unused_assignments)]
 //@-<< beautifier.rs: suppressions >>
-
-//@+<< beatufier.rs: crates and switches >>
-//@+node:ekr.20250117235612.1: ** << beatufier.rs: crates and switches >>
+//@+<< beautifier.rs: crates >>
+//@+node:ekr.20250117235612.1: ** << beautifier.rs: crates >>
 extern crate rustpython_parser;
 use rustpython_parser::{lexer::lex, Mode, Tok};
 // use unicode_segmentation::UnicodeSegmentation;
@@ -23,7 +22,13 @@ use std::collections::HashMap;
 use std::env;
 use std::fs;
 use std::path;
-//@-<< beatufier.rs: crates and switches >>
+//@-<< beautifier.rs: crates >>
+//@+<< beautifier.rs: globals >>
+//@+node:ekr.20250119044541.1: ** << beautifier.rs: globals >>
+const LEO_APP: &'static str = "C:\\Repos\\leo-editor\\leo\\core\\leoFrame.py";
+const TEST1: &'static str = "C:\\Repos\\ekr-study\\beautifier\\test\\test1.py";
+const FILES: [&'static str; 1] = [LEO_APP];
+//@-<< beautifier.rs: globals >>
 
 //@+others
 //@+node:ekr.20250117091938.1: ** enum LexState
@@ -979,7 +984,7 @@ fn is_python_keyword(_token: &InputTok) -> bool {
 fn is_unary_op_with_prev(_prev_token: &InputTok, _token: &InputTok) -> bool {
     return false; // ***
 }
-//@+node:ekr.20241003093722.1: ** fn: main (sets files)
+//@+node:ekr.20241003093722.1: ** fn: main (uses FILES)
 //@@language rust
 pub fn main() {
     // Main line of beautifier.
@@ -987,11 +992,12 @@ pub fn main() {
     if true {
         // testing.
         println!("");
-        for file_path in [
-            // "C:\\Repos\\ekr-study\\beautifier\\test\\test1.py",
-            "C:\\Repos\\leo-editor\\leo\\core\\leoFrame.py",
-            // "C:\\Repos\\leo-editor\\leo\\core\\leoApp.py"
-        ] {
+        // for file_path in [
+            // // "C:\\Repos\\ekr-study\\beautifier\\test\\test1.py",
+            // "C:\\Repos\\leo-editor\\leo\\core\\leoFrame.py",
+            // // "C:\\Repos\\leo-editor\\leo\\core\\leoApp.py"
+        // ] {
+        for file_path in FILES {
             x.beautify_one_file(&file_path);
         }
         x.stats.report();
