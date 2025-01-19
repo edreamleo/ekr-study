@@ -985,7 +985,7 @@ fn is_unary_op_with_prev(_prev_token: &InputTok, _token: &InputTok) -> bool {
 //@+node:ekr.20241003093722.1: ** fn: main (uses FILES)
 //@@language rust
 pub fn main() {
-    // Main line of beautifier.
+    //! Main line of beautifier.
     let mut x = Beautifier::new();
     let testing: bool = true;
     // Support help.
