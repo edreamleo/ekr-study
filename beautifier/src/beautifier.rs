@@ -988,24 +988,25 @@ pub fn main() {
     // Main line of beautifier.
     let mut x = Beautifier::new();
     let testing: bool = true;
+    // Support help.
+    if x.enabled("--help") || x.enabled("-h") {
+        x.show_help();
+        return;
+    }
+    // Preamble.
     if testing {
         println!("");
-        for file_path in FILES {
-            x.beautify_one_file(&file_path);
-        }
-        if testing {
-            x.stats.report();
-        }
     }
     else {
-        if x.enabled("--help") || x.enabled("-h") {
-            x.show_help();
-            return;
-        }
         x.show_args();
-        for file_path in FILES {
-            x.beautify_one_file(&file_path);
-        }
+    }
+    // Beautify.
+    for path in FILES {
+        x.beautify_one_file(&path);
+    }
+    // Report.
+    if testing || x.enabled("--report") {
+        x.stats.report();
     }
 }
 //@-others
