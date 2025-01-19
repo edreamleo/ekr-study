@@ -69,8 +69,7 @@ pub struct Beautifier {
     output_list: Vec<String>,
 }
 
-///// Temporary.
-#[allow(dead_code)]
+// Allow do_*.
 #[allow(non_snake_case)]
 impl Beautifier {
     //@+others
