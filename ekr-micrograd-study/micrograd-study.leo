@@ -10,10 +10,7 @@
 <v t="ekr.20250121055447.2" descendentVnodeUnknownAttributes="7d71002858010000003071017d7102580b0000005f5f626f6f6b6d61726b7371037d7104580700000069735f6475706571054930300a73735803000000302e3371067d71075808000000616e6e6f7461746571087d71092858080000007072696f72697479710a4d0f27580a00000070726973657464617465710b580a000000323032312d30332d3330710c7573752e"><vh>@settings</vh>
 <v t="ekr.20250121055447.4"><vh>@bool check-python-code-on-write = True</vh></v>
 <v t="ekr.20250121055447.163"><vh>@data history-list</vh></v>
-<v t="ekr.20250121055447.153"><vh>Buttons &amp; commands</vh>
 <v t="ekr.20250121055447.154"><vh>@button backup</vh></v>
-<v t="ekr.20250121054646.1"><vh>@button manim</vh></v>
-</v>
 <v t="ekr.20250121055447.164" descendentVnodeUnknownAttributes="7d710058010000003071017d71025808000000616e6e6f7461746571037d71042858080000007072696f7269747971054d0f27580a000000707269736574646174657106580a000000323032312d30332d333071077573732e"><vh>@enabled-plugins</vh></v>
 </v>
 <v t="ekr.20250121055447.161" descendentVnodeUnknownAttributes="7d710058010000003071017d7102580b0000005f5f626f6f6b6d61726b7371037d7104580700000069735f6475706571054930300a7373732e"><vh>Scripts</vh>
@@ -72,8 +69,6 @@ A study outline for micrograd:
 https://github.com/karpathy/micrograd
 
 @language python
-</t>
-<t tx="ekr.20250121054646.1">g.execute_shell_commands(f"manim -p -ql main.py SquareToCircle")
 </t>
 <t tx="ekr.20250121054955.1">"""Recursively import all python files in a directory and clean the result."""
 @language python
@@ -299,8 +294,6 @@ def __repr__(self):
 
     out._backward = _backward
     return out
-</t>
-<t tx="ekr.20250121055447.153">@language python
 </t>
 <t tx="ekr.20250121055447.154">"""
 Back up this .leo file.
