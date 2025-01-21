@@ -10,20 +10,20 @@
 #  https://matplotlib.org/stable/api/matplotlib_configuration_api.html#matplotlib.RcParams
 
 axes.facecolor: white
-axes.grid : True
+axes.grid: True
 
-text.hinting_factor : 8
+text.hinting_factor: 8
 xtick.direction: out
 ytick.direction: out
 
 grid.color: lightgrey
-grid.linestyle: -    # solid line
+grid.linestyle: '-'  # solid line
 
 figure.facecolor: (.90, .90, .90)
 figure.edgecolor: 0.50
-figure.figsize: 8, 5.5
+figure.figsize: (8, 5.5)
 
 axes.prop_cycle: cycler('color', ['black', 'lightgrey', 'indigo', 'red', 'blue', 'cyan', 'gray', 'magenta'])
 
-mathtext.fontset : stix
+mathtext.fontset: stix
 #@-leo

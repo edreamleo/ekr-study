@@ -1,5 +1,5 @@
 #@+leo-ver=5-thin
-#@+node:ekr.20241212071918.1: * @file ../../weather.py
+#@+node:ekr.20241212071918.1: * @file weather.py
 import numpy as np
 from matplotlib import pyplot as plt
 import warnings

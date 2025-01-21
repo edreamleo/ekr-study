@@ -1,5 +1,5 @@
 #@+leo-ver=5-thin
-#@+node:ekr.20241212100513.31: * @file C:\Users\Dev\EKR-Study\python\CODE_PYTHON\CH01\CH01_SEC05_2_OvarianCancer.py
+#@+node:ekr.20241212100513.31: * @file Python/CH01\CH01_SEC05_2_OvarianCancer.py
 #@+others
 #@+node:ekr.20241212100513.33: ** import matplotlib.pyplot as plt
 import matplotlib.pyplot as plt
