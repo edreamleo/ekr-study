@@ -21,51 +21,7 @@
 </v>
 </v>
 <v t="ekr.20250121055447.163"></v>
-<v t="ekr.20250121055147.1"><vh>--- outside sources</vh>
-<v t="ekr.20250121055138.1"><vh>micrograd</vh>
-<v t="ekr.20250121055138.2"><vh>Python3.12..micrograd/engine.py</vh>
-<v t="ekr.20250121055138.3"><vh>Value.__init__ &amp; __repr__</vh></v>
-<v t="ekr.20250121055138.4"><vh>Value.backward</vh></v>
-<v t="ekr.20250121055138.5"><vh>Value.relu</vh></v>
-<v t="ekr.20250121055138.6"><vh>Value: fundamental ops</vh>
-<v t="ekr.20250121055138.7"><vh>Value.__add__</vh></v>
-<v t="ekr.20250121055138.8"><vh>Value.__mul__</vh></v>
-<v t="ekr.20250121055138.9"><vh>Value.__pow__</vh></v>
-</v>
-<v t="ekr.20250121055138.10"><vh>Value: derived ops (wrong op?)</vh>
-<v t="ekr.20250121055138.11"><vh>Value.__neg__</vh></v>
-<v t="ekr.20250121055138.12"><vh>Value.__radd__</vh></v>
-<v t="ekr.20250121055138.13"><vh>Value.__sub__</vh></v>
-<v t="ekr.20250121055138.14"><vh>Value.__rsub__</vh></v>
-<v t="ekr.20250121055138.15"><vh>Value.__rmul__</vh></v>
-<v t="ekr.20250121055138.16"><vh>Value.__truediv__</vh></v>
-<v t="ekr.20250121055138.17"><vh>Value.__rtruediv__</vh></v>
-<v t="ekr.20250121055138.18"><vh>Value.__repr__</vh></v>
-</v>
-</v>
-<v t="ekr.20250121055138.19"><vh>Python3.12..micrograd/nn.py</vh>
-<v t="ekr.20250121055138.20"><vh>class Module</vh>
-<v t="ekr.20250121055138.21"><vh>Module.zero_grad</vh></v>
-<v t="ekr.20250121055138.22"><vh>Module.parameters</vh></v>
-</v>
-<v t="ekr.20250121055138.23"><vh>class Neuron</vh>
-<v t="ekr.20250121055138.24"><vh>Neuron.__init__ &amp; __repr__</vh></v>
-<v t="ekr.20250121055138.25"><vh>Neuron.__call__</vh></v>
-<v t="ekr.20250121055138.26"><vh>Neuron.parameters</vh></v>
-</v>
-<v t="ekr.20250121055138.27"><vh>class Layer</vh>
-<v t="ekr.20250121055138.28"><vh>Layer.__init__ &amp; __repr__</vh></v>
-<v t="ekr.20250121055138.29"><vh>Layer.__call__</vh></v>
-<v t="ekr.20250121055138.30"><vh>Layer.parameters</vh></v>
-</v>
-<v t="ekr.20250121055138.31"><vh>class MLP</vh>
-<v t="ekr.20250121055138.32"><vh>MLP.__init__ &amp; __repr__</vh></v>
-<v t="ekr.20250121055138.33"><vh>MLP.__call__</vh></v>
-<v t="ekr.20250121055138.34"><vh>MLP.parameters</vh></v>
-</v>
-</v>
-</v>
-<v t="ekr.20250121054835.1"><vh>manim (3blue-1brown)</vh>
+<v t="ekr.20250121054835.1"><vh>Study outlines</vh>
 <v t="ekr.20250121054835.2"><vh>example_scenes.py</vh>
 <v t="ekr.20250121054835.3"><vh>class OpeningManimExample</vh>
 <v t="ekr.20250121054835.4"><vh>OpeningManimExample.construct</vh></v>
@@ -2484,8 +2440,7 @@
 </v>
 </v>
 </v>
-</v>
-<v t="ekr.20250121054839.1"><vh>--- local files</vh>
+<v t="ekr.20250121054839.1"><vh>--- files</vh>
 <v t="ekr.20250121052813.1"><vh>@file main.py </vh></v>
 <v t="ekr.20250121053749.1"><vh>@edit manim.cfg</vh></v>
 </v>
@@ -2494,12 +2449,8 @@
 <tnodes>
 <t tx="ekr.20250121054642.1">@language rest
 
-ekr-study/ekr-manim-study/manim.leo A study outline for:
-
-- manim community edition
-  https://github.com/ManimCommunity/manim
-- micrograd: 
-  https://github.com/karpathy/micrograd
+A study outline for manim CE (community edition):
+https://github.com/ManimCommunity/manim
 
 @language python
 </t>
@@ -26126,211 +26077,6 @@ if 1:
         last.firstChild().expand()
     c.redraw(last)
 print('Done')</t>
-<t tx="ekr.20250121055138.1"></t>
-<t tx="ekr.20250121055138.10"></t>
-<t tx="ekr.20250121055138.11">def __neg__(self): # -self
-
-    return self * -1
-</t>
-<t tx="ekr.20250121055138.12">def __radd__(self, other): # other + self
-    
-    return self + other
-</t>
-<t tx="ekr.20250121055138.13">def __sub__(self, other): # self - other
-
-    return self + (-other)
-</t>
-<t tx="ekr.20250121055138.14">def __rsub__(self, other): # other - self
-    
-    return other + (-self)
-</t>
-<t tx="ekr.20250121055138.15">def __rmul__(self, other): # other * self
-
-    return self * other
-</t>
-<t tx="ekr.20250121055138.16">def __truediv__(self, other): # self / other
-
-    return self * other**-1
-</t>
-<t tx="ekr.20250121055138.17">def __rtruediv__(self, other): # other / self
-    
-    return other * self**-1
-</t>
-<t tx="ekr.20250121055138.18"></t>
-<t tx="ekr.20250121055138.19">import random
-from micrograd.engine import Value
-
-@others
-@language python
-@tabwidth -4
-</t>
-<t tx="ekr.20250121055138.2">class Value:
-    """ stores a single scalar value and its gradient """
-    @others
-
-@language python
-@tabwidth -4
-</t>
-<t tx="ekr.20250121055138.20">class Module:
-    @others
-</t>
-<t tx="ekr.20250121055138.21">def zero_grad(self):
-    for p in self.parameters():
-        p.grad = 0
-</t>
-<t tx="ekr.20250121055138.22">def parameters(self):
-    return []
-</t>
-<t tx="ekr.20250121055138.23">class Neuron(Module):
-    @others
-</t>
-<t tx="ekr.20250121055138.24">def __init__(self, nin, nonlin=True):
-
-    self.w = [Value(random.uniform(-1,1)) for _ in range(nin)]
-    self.b = Value(0)
-    self.nonlin = nonlin
-
-def __repr__(self):
-    return f"{'ReLU' if self.nonlin else 'Linear'}Neuron({len(self.w)})"
-</t>
-<t tx="ekr.20250121055138.25">def __call__(self, x):
-
-    act = sum(
-        (wi*xi for wi,xi in zip(self.w, x)),
-        self.b
-    )
-    return act.relu() if self.nonlin else act
-</t>
-<t tx="ekr.20250121055138.26">def parameters(self):
-    return self.w + [self.b]
-</t>
-<t tx="ekr.20250121055138.27">class Layer(Module):
-    @others
-</t>
-<t tx="ekr.20250121055138.28">def __init__(self, nin, nout, **kwargs):
-    self.neurons = [Neuron(nin, **kwargs) for _ in range(nout)]
-
-def __repr__(self):
-    return f"Layer of [{', '.join(str(n) for n in self.neurons)}]"
-</t>
-<t tx="ekr.20250121055138.29">def __call__(self, x):
-    out = [
-        n(x) #  Call the Neuron's call method.
-        for n in self.neurons
-    ]
-    return out[0] if len(out) == 1 else out
-</t>
-<t tx="ekr.20250121055138.3">def __init__(self, data, _children=(), _op=''):
-
-    self.data = data
-    self.grad = 0
-
-    # Internal variables used for autograd graph construction...
-
-    self._backward = lambda: None  # EKR: the backward function.
-    self._prev = set(_children)
-    self._op = _op # the op that produced this node, for graphviz / debugging / etc
-
-def __repr__(self):
-    return f"Value(data={self.data}, grad={self.grad})"
-</t>
-<t tx="ekr.20250121055138.30">def parameters(self):
-    return [p for n in self.neurons for p in n.parameters()]
-</t>
-<t tx="ekr.20250121055138.31">class MLP(Module):
-    @others
-</t>
-<t tx="ekr.20250121055138.32">def __init__(self, nin, nouts):
-
-    sz = [nin] + nouts
-    self.layers = [
-        Layer(sz[i], sz[i+1], nonlin=i!=len(nouts)-1)
-        for i in range(len(nouts))
-    ]
-
-def __repr__(self):
-    return f"MLP of [{', '.join(str(layer) for layer in self.layers)}]"
-</t>
-<t tx="ekr.20250121055138.33">def __call__(self, x):
-
-    for layer in self.layers:
-        x = layer(x)  #  Call the Layer's call method.
-    return x
-</t>
-<t tx="ekr.20250121055138.34">def parameters(self):
-    return [p for layer in self.layers for p in layer.parameters()]
-</t>
-<t tx="ekr.20250121055138.4">def backward(self):
-
-    # Topological order all of the children in the graph.
-    topo = []
-    visited = set()
-
-    def build_topo(v):
-        if v not in visited:
-            visited.add(v)
-            for child in v._prev:
-                build_topo(child)
-            topo.append(v)
-
-    build_topo(self)
-
-    # For each variable, apply the chain rule to get its gradient.
-    self.grad = 1
-    for v in reversed(topo):
-        v._backward()
-</t>
-<t tx="ekr.20250121055138.5">def relu(self):
-    
-    
-
-    # out = Value(0 if self.data &lt; 0 else self.data, (self,), 'ReLU')
-    data = 0 if self.data &lt; 0 else self.data
-    out = Value(data=data, childre=tuple(self), op='ReLU')
-
-    def _backward():
-        self.grad += (out.data &gt; 0) * out.grad
-
-    out._backward = _backward
-    return out
-</t>
-<t tx="ekr.20250121055138.6"></t>
-<t tx="ekr.20250121055138.7">def __add__(self, other):
-
-    other = other if isinstance(other, Value) else Value(other)
-    out = Value(data=self.data + other.data, children=(self, other), op='+')
-
-    def _backward():
-        self.grad += out.grad
-        other.grad += out.grad
-
-    out._backward = _backward
-    return out
-</t>
-<t tx="ekr.20250121055138.8">def __mul__(self, other):
-
-    other = other if isinstance(other, Value) else Value(other)
-    out = Value(data=self.data * other.data, children=(self, other), op='*')
-
-    def _backward():
-        self.grad += other.data * out.grad
-        other.grad += self.data * out.grad
-
-    out._backward = _backward
-    return out
-</t>
-<t tx="ekr.20250121055138.9">def __pow__(self, other):
-
-    assert isinstance(other, (int, float)), "only supporting int/float powers for now"
-    out = Value(data=self.data**other, children=tuple(self), op=f"**{other}")
-
-    def _backward():
-        self.grad += (other * self.data**(other-1)) * out.grad
-
-    out._backward = _backward
-    return out
-</t>
-<t tx="ekr.20250121055147.1"></t>
 <t tx="ekr.20250121055447.153">@language python
 </t>
 <t tx="ekr.20250121055447.154">"""
