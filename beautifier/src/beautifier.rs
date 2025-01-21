@@ -608,6 +608,8 @@ impl Beautifier {
             println!("{short_file_name}");
         }
         // Read the file into contents (a String).
+        // Note: fs:read_to_string throws exception if contents is not valid utf-8!
+        // https://doc.rust-lang.org/beta/std/fs/fn.read_to_string.html
         let t1 = std::time::Instant::now();
         let contents = fs::read_to_string(file_name).expect("Error reading{file_name}");
         self.stats.read_time += t1.elapsed().as_nanos();
