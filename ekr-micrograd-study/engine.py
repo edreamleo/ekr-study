@@ -42,11 +42,9 @@ class Value:
     #@+node:ekr.20250121055138.5: ** Value.relu
     def relu(self):
 
-
-
         # out = Value(0 if self.data < 0 else self.data, (self,), 'ReLU')
         data = 0 if self.data < 0 else self.data
-        out = Value(data=data, childre=tuple(self), op='ReLU')
+        out = Value(data=data, _children=tuple(self), _op='ReLU')
 
         def _backward():
             self.grad += (out.data > 0) * out.grad
@@ -58,7 +56,7 @@ class Value:
     def __add__(self, other):
 
         other = other if isinstance(other, Value) else Value(other)
-        out = Value(data=self.data + other.data, children=(self, other), op='+')
+        out = Value(data=self.data + other.data, _children=(self, other), _op='+')
 
         def _backward():
             self.grad += out.grad
@@ -70,7 +68,7 @@ class Value:
     def __mul__(self, other):
 
         other = other if isinstance(other, Value) else Value(other)
-        out = Value(data=self.data * other.data, children=(self, other), op='*')
+        out = Value(data=self.data * other.data, _children=(self, other), _op='*')
 
         def _backward():
             self.grad += other.data * out.grad
@@ -82,7 +80,7 @@ class Value:
     def __pow__(self, other):
 
         assert isinstance(other, (int, float)), "only supporting int/float powers for now"
-        out = Value(data=self.data ** other, children=tuple(self), op=f"**{other}")
+        out = Value(data=self.data ** other, _children=tuple(self), _op=f"**{other}")
 
         def _backward():
             self.grad += (other * self.data ** (other - 1)) * out.grad
