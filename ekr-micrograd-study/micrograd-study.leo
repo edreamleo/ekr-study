@@ -19,6 +19,7 @@
 </v>
 <v t="ekr.20250121055138.2"><vh>@file engine.py</vh></v>
 <v t="ekr.20250121055138.19"><vh>@file nn.py</vh></v>
+<v t="ekr.20250126070211.1"><vh>Study notes</vh></v>
 </vnodes>
 <tnodes>
 <t tx="ekr.20250121054642.1"></t>
@@ -81,5 +82,6 @@ https://www.youtube.com/watch?v=VMj-3S1tku0&amp;list=PLAqhIrjkxbuWI23v9cThsA9GvC
 
 @language python
 </t>
+<t tx="ekr.20250126070211.1">Video: https://www.youtube.com/watch?v=VMj-3S1tku0&amp;list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ</t>
 </tnodes>
 </leo_file>
