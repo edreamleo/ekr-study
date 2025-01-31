@@ -6,9 +6,10 @@
 <preferences/>
 <find_panel_settings/>
 <vnodes>
-<v t="ekr.20131030071311.17125" descendentVnodeUnknownAttributes="7d7100285803000000302e3071017d7102580b0000005f5f626f6f6b6d61726b7371037d7104580700000069735f6475706571054930300a73735809000000302e302e392e362e3071067d7107580b0000005f5f626f6f6b6d61726b7371087d7109580700000069735f64757065710a4930300a7373580a000000302e302e392e362e3234710b7d710c5808000000616e6e6f74617465710d7d710e2858080000007072696f72697479710f4d0f27580a000000707269736574646174657110580a000000323032302d31312d313171117573752e"><vh>Startup</vh>
-<v t="ekr.20250131013029.1" descendentVnodeUnknownAttributes="7d71002858010000003071017d7102580b0000005f5f626f6f6b6d61726b7371037d7104580700000069735f6475706571054930300a73735807000000302e392e362e3071067d7107580b0000005f5f626f6f6b6d61726b7371087d7109580700000069735f64757065710a4930300a73735808000000302e392e362e3234710b7d710c5808000000616e6e6f74617465710d7d710e2858080000007072696f72697479710f4d0f27580a000000707269736574646174657110580a000000323032302d31312d313171117573752e"><vh>@settings</vh>
+<v t="ekr.20131030071311.17125" descendentVnodeUnknownAttributes="7d7100285803000000302e3071017d7102580b0000005f5f626f6f6b6d61726b7371037d7104580700000069735f6475706571054930300a7373580a000000302e302e31302e362e3071067d7107580b0000005f5f626f6f6b6d61726b7371087d7109580700000069735f64757065710a4930300a7373580b000000302e302e31302e362e3234710b7d710c5808000000616e6e6f74617465710d7d710e2858080000007072696f72697479710f4d0f27580a000000707269736574646174657110580a000000323032302d31312d313171117573752e"><vh>Startup</vh>
+<v t="ekr.20250131013029.1" descendentVnodeUnknownAttributes="7d71002858010000003071017d7102580b0000005f5f626f6f6b6d61726b7371037d7104580700000069735f6475706571054930300a73735808000000302e31302e362e3071067d7107580b0000005f5f626f6f6b6d61726b7371087d7109580700000069735f64757065710a4930300a73735809000000302e31302e362e3234710b7d710c5808000000616e6e6f74617465710d7d710e2858080000007072696f72697479710f4d0f27580a000000707269736574646174657110580a000000323032302d31312d313171117573752e"><vh>@settings</vh>
 <v t="ekr.20250131013029.2"><vh>@bool allow-text-zoom = True</vh></v>
+<v t="ekr.20250131014711.1"><vh>@bool beautify-python-code-on-write = False</vh></v>
 <v t="ekr.20250131013029.3"><vh>@bool check-python-code-on-write = True</vh></v>
 <v t="ekr.20250131013029.4"><vh>@bool use-german-keyboard = False</vh></v>
 <v t="ekr.20250131013029.5"><vh>@bool use-mouse-expand-gestures = False</vh></v>
@@ -79,6 +80,7 @@
 <v t="ekr.20250131013112.1"><vh> Recursive import script</vh></v>
 </v>
 <v t="ekr.20250131013112.1"></v>
+<v t="ekr.20250131014444.1"><vh>crash</vh></v>
 <v t="ekr.20250131013559.238"><vh>pylint</vh>
 <v t="ekr.20250131013559.239"><vh>@clean __init__.py</vh>
 <v t="ekr.20250131013559.240"><vh>function: run_pylint</vh></v>
@@ -8627,7 +8629,7 @@ class ImportsChecker(DeprecatedMixin, BaseChecker):
     linter.register_checker(ImportsChecker(linter))
 </t>
 <t tx="ekr.20250131013559.449">name = "imports"
-msgs = {**DeprecatedMixin.DEPRECATED_MODULE_MESSAGE, **MSGS}
+msgs = {** DeprecatedMixin.DEPRECATED_MODULE_MESSAGE, ** MSGS}
 default_deprecated_modules = ()
 
 options = (
@@ -11718,7 +11720,7 @@ def _check_spelling(self, msgid: str, line: str, line_num: int) -&gt; None:
     try:
         # The mypy warning is caught by the except statement
         initial_space = re.search(r"^\s+", line).regs[0][1]  # type: ignore[union-attr]
-    except (IndexError, AttributeError):
+    except(IndexError, AttributeError):
         initial_space = 0
     if line.strip().startswith("#") and "docstring" not in msgid:
         line = line.strip()[1:]
@@ -11778,7 +11780,7 @@ def _check_spelling(self, msgid: str, line: str, line_num: int) -&gt; None:
         else:
             # Present up to N suggestions.
             suggestions = self.spelling_dict.suggest(word)
-            del suggestions[self.linter.config.max_spelling_suggestions :]
+            del suggestions[self.linter.config.max_spelling_suggestions:]
             line_segment = line[word_start_at:]
             match = re.search(rf"(\W|^)({word})(\W|$)", line_segment)
             if match:
@@ -11868,7 +11870,7 @@ if TYPE_CHECKING:
 DeprecationDict = dict[tuple[int, int, int], set[str]]
 
 OPEN_FILES_MODE = ("open", "file")
-OPEN_FILES_FUNCS = (*OPEN_FILES_MODE, "read_text", "write_text")
+OPEN_FILES_FUNCS = (* OPEN_FILES_MODE, "read_text", "write_text")
 UNITTEST_CASE = "unittest.case"
 THREADING_THREAD = "threading.Thread"
 COPY_COPY = "copy.copy"
@@ -12314,11 +12316,11 @@ DEPRECATED_ATTRIBUTES: DeprecationDict = {
 <t tx="ekr.20250131013559.604">name = "stdlib"
 
 msgs: dict[str, MessageDefinitionTuple] = {
-    **DeprecatedMixin.DEPRECATED_METHOD_MESSAGE,
-    **DeprecatedMixin.DEPRECATED_ARGUMENT_MESSAGE,
-    **DeprecatedMixin.DEPRECATED_CLASS_MESSAGE,
-    **DeprecatedMixin.DEPRECATED_DECORATOR_MESSAGE,
-    **DeprecatedMixin.DEPRECATED_ATTRIBUTE_MESSAGE,
+    ** DeprecatedMixin.DEPRECATED_METHOD_MESSAGE,
+    ** DeprecatedMixin.DEPRECATED_ARGUMENT_MESSAGE,
+    ** DeprecatedMixin.DEPRECATED_CLASS_MESSAGE,
+    ** DeprecatedMixin.DEPRECATED_DECORATOR_MESSAGE,
+    ** DeprecatedMixin.DEPRECATED_ATTRIBUTE_MESSAGE,
     "W1501": (
         '"%s" is not a valid mode for open.',
         "bad-open-mode",
@@ -13560,7 +13562,7 @@ def _check_new_format_specifiers(
                 if hasattr(previous, "getitem"):
                     try:
                         previous = previous.getitem(nodes.Const(specifier))
-                    except (
+                    except(
                         astroid.AstroidIndexError,
                         astroid.AstroidTypeError,
                         astroid.AttributeInferenceError,
@@ -14136,7 +14138,7 @@ def hash_lineset(
     # Need different iterators on same lines but each one is shifted 1 from the precedent
     shifted_lines = [iter(lines[i:]) for i in range(min_common_lines)]
 
-    for i, *succ_lines in enumerate(zip(*shifted_lines)):
+    for i, * succ_lines in enumerate(zip(*shifted_lines)):
         start_linenumber = LineNumber(lineset.stripped_lines[i].line_number)
         try:
             end_linenumber = lineset.stripped_lines[i + min_common_lines].line_number
@@ -15209,7 +15211,7 @@ def _(node: nodes.ClassDef | bases.Instance) -&gt; Iterable[str]:
 
     try:
         mro = node.mro()[1:]
-    except (NotImplementedError, TypeError, astroid.MroError):
+    except(NotImplementedError, TypeError, astroid.MroError):
         mro = node.ancestors()
 
     other_values = [value for cls in mro for value in _node_names(cls)]
@@ -15220,7 +15222,7 @@ def _(node: nodes.ClassDef | bases.Instance) -&gt; Iterable[str]:
 <t tx="ekr.20250131013559.728">def _string_distance(seq1: str, seq2: str) -&gt; int:
     seq2_length = len(seq2)
 
-    row = [*list(range(1, seq2_length + 1)), 0]
+    row = [* list(range(1, seq2_length + 1)), 0]
     for seq1_index, seq1_char in enumerate(seq1):
         last_row = row
         row = [0] * seq2_length + [seq1_index + 1]
@@ -15554,7 +15556,7 @@ def _emit_no_member(
         # MRO is invalid.
         try:
             owner.super_mro()
-        except (astroid.MroError, astroid.SuperError):
+        except(astroid.MroError, astroid.SuperError):
             return False
         if not all(has_known_bases(base) for base in owner.type.mro()):
             return False
@@ -15824,7 +15826,7 @@ def _emit_no_member(
 <t tx="ekr.20250131013559.739">def _is_invalid_metaclass(metaclass: nodes.ClassDef) -&gt; bool:
     try:
         mro = metaclass.mro()
-    except (astroid.DuplicateBasesError, astroid.InconsistentMroError):
+    except(astroid.DuplicateBasesError, astroid.InconsistentMroError):
         return True
     return not any(is_builtin_object(cls) and cls.name == "type" for cls in mro)
 
@@ -16859,7 +16861,7 @@ accessed. Python regular expressions are accepted.",
             if isinstance(methods, util.UninferableBase):
                 return None
             itemmethod = methods[0]
-        except (
+        except(
             astroid.AttributeInferenceError,
             IndexError,
         ):
@@ -17864,7 +17866,7 @@ msgs = {
             "https://peps.python.org/pep-0008/#source-file-encoding"
         ),
     ),
-    **{
+    ** {
         bad_char.code: (
             bad_char.description(),
             bad_char.human_code(),
@@ -20106,7 +20108,7 @@ def expand_modules(
             }
             continue
         module_package_path = discover_package_path(something, source_roots)
-        additional_search_path = [".", module_package_path, *path]
+        additional_search_path = [".", module_package_path, * path]
         if os.path.exists(something):
             # this is a file or a directory
             try:
@@ -20498,7 +20500,7 @@ if TYPE_CHECKING:
     try:
         if line in self.linter.file_state._module_msgs_state[msgid]:
             return MSG_STATE_SCOPE_MODULE  # type: ignore[return-value]
-    except (KeyError, TypeError):
+    except(KeyError, TypeError):
         return MSG_STATE_SCOPE_CONFIG  # type: ignore[return-value]
     return None
 
@@ -20643,7 +20645,7 @@ if TYPE_CHECKING:
                         l_start -= 1
                     try:
                         meth(msgid, "module", l_start)
-                    except (
+                    except(
                         exceptions.DeletedMessageError,
                         exceptions.MessageBecameExtensionError,
                     ) as e:
@@ -20863,7 +20865,7 @@ def _merge_mapreduce_data(
             linter.msg_status |= msg_status
 
     _merge_mapreduce_data(linter, all_mapreduce_data)
-    linter.stats = merge_stats([linter.stats, *all_stats])
+    linter.stats = merge_stats([linter.stats, * all_stats])
 </t>
 <t tx="ekr.20250131013600.1064">@path pylint/lint
 # Licensed under the GPL: https://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -21264,8 +21266,8 @@ def in_for_else_branch(parent: nodes.NodeNG, stmt: Statement) -&gt; bool:
                 and hasattr(inferred_func, "qname")
                 and inferred_func.qname()
                 in (
-                    *TYPING_NEVER,
-                    *TYPING_NORETURN,
+                    * TYPING_NEVER,
+                    * TYPING_NORETURN,
                     # In Python 3.7 - 3.8, NoReturn is alias of '_SpecialForm'
                     # "typing._SpecialForm",
                     # But 'typing.Any' also inherits _SpecialForm
@@ -21273,7 +21275,7 @@ def in_for_else_branch(parent: nodes.NodeNG, stmt: Statement) -&gt; bool:
                 )
             ):
                 return True
-    except (StopIteration, astroid.InferenceError):
+    except(StopIteration, astroid.InferenceError):
         pass
 
     return False
@@ -21354,7 +21356,7 @@ def overridden_method(
     """Get overridden method if any."""
     try:
         parent = next(klass.local_attr_ancestors(name))
-    except (StopIteration, KeyError):
+    except(StopIteration, KeyError):
         return None
     try:
         meth_node = parent[name]
@@ -22285,7 +22287,7 @@ scope_type : {self.scope_type}
             if len(all_inferred) == len(other_if_test_all_inferred):
                 if any(
                     not isinstance(test, nodes.Const)
-                    for test in (*all_inferred, *other_if_test_all_inferred)
+                    for test in (* all_inferred, * other_if_test_all_inferred)
                 ):
                     continue
                 if {test.value for test in all_inferred} != {
@@ -24295,8 +24297,8 @@ def _loopvar_name(self, node: astroid.Name) -&gt; None:
                 if isinstance(
                     inferred_return, nodes.FunctionDef
                 ) and inferred_return.qname() in {
-                    *TYPING_NORETURN,
-                    *TYPING_NEVER,
+                    * TYPING_NORETURN,
+                    * TYPING_NEVER,
                     "typing._SpecialForm",
                 }:
                     return
@@ -28776,7 +28778,7 @@ DEFAULT_NAMING_STYLES = {
 
 # Name types that have a 'rgx' option
 KNOWN_NAME_TYPES = {
-    *KNOWN_NAME_TYPES_WITH_STYLE,
+    * KNOWN_NAME_TYPES_WITH_STYLE,
     "typevar",
     "typealias",
 }
@@ -29364,7 +29366,7 @@ def _has_different_parameters_default_value(
             for call in infer_method.nodes_of_class(nodes.Call):
                 try:
                     bound = next(call.func.infer())
-                except (astroid.InferenceError, StopIteration):
+                except(astroid.InferenceError, StopIteration):
                     continue
                 if not isinstance(bound, astroid.BoundMethod):
                     continue
@@ -30023,7 +30025,7 @@ def uninferable_final_decorators(
             # Collect the minimum, unique values that each flag overlaps with
             overlaps = defaultdict(list)
             for flags in bit_flags.values():
-                source, *conflicts = sorted(flags)
+                source, * conflicts = sorted(flags)
                 for conflict in conflicts:
                     overlaps[conflict].append(source)
 
@@ -32372,7 +32374,7 @@ def visit_compare(self, node: nodes.Compare) -&gt; None:
     # while the rest are a list of tuples in node.ops
     # the format of the tuple is ('compare operator sign', node)
     # here we squash everything into `ops` to make it easier for processing later
-    ops: list[tuple[str, nodes.NodeNG]] = [("", node.left), *node.ops]
+    ops: list[tuple[str, nodes.NodeNG]] = [("", node.left), * node.ops]
     iter_ops = iter(ops)
     all_ops = list(itertools.chain(*iter_ops))
     for ops_idx in range(len(all_ops) - 2):
@@ -33378,7 +33380,7 @@ class_scope: dict[str, nodes.NodeNG] = {}
 function_scope: dict[str, nodes.NodeNG] = {}
 
 def __iter__(self) -&gt; Iterator[dict[str, nodes.NodeNG]]:
-    yield from (self.function_scope, self.class_scope, self.module_scope)
+    yield from(self.function_scope, self.class_scope, self.module_scope)
 
 </t>
 <t tx="ekr.20250131013600.517">def get_stack_for_frame(
@@ -35421,7 +35423,7 @@ def _has_return_in_siblings(node: nodes.NodeNG) -&gt; bool:
     try:
         if node.qname() in self._never_returning_functions:
             return True
-    except (TypeError, AttributeError):
+    except(TypeError, AttributeError):
         pass
 
     try:
@@ -37515,7 +37517,7 @@ def __call__(
     for msgid in utils._check_csv(values[0]):
         try:
             xabling_function(msgid)
-        except (
+        except(
             exceptions.DeletedMessageError,
             exceptions.MessageBecameExtensionError,
         ) as e:
@@ -37768,7 +37770,7 @@ def parse_config_file(
     """Parse a config file and return str-str pairs."""
     try:
         return _RawConfParser.parse_config_file(file_path, self.verbose_mode)
-    except (configparser.Error, tomllib.TOMLDecodeError) as e:
+    except(configparser.Error, tomllib.TOMLDecodeError) as e:
         self.linter.add_message("config-parse-error", line=0, args=str(e))
         return {}, []
 </t>
@@ -38238,7 +38240,7 @@ RC_NAMES = (
     Path(".pylintrc.toml"),
 )
 PYPROJECT_NAME = Path("pyproject.toml")
-CONFIG_NAMES = (*RC_NAMES, PYPROJECT_NAME, Path("setup.cfg"), Path("tox.ini"))
+CONFIG_NAMES = (* RC_NAMES, PYPROJECT_NAME, Path("setup.cfg"), Path("tox.ini"))
 
 
 @others
@@ -40550,9 +40552,9 @@ if TYPE_CHECKING:
                 isinstance(parent_node, nodes.Arguments)
                 and current_node
                 in (
-                    *parent_node.annotations,
-                    *parent_node.posonlyargs_annotations,
-                    *parent_node.kwonlyargs_annotations,
+                    * parent_node.annotations,
+                    * parent_node.posonlyargs_annotations,
+                    * parent_node.kwonlyargs_annotations,
                     parent_node.varargannotation,
                     parent_node.kwargannotation,
                 )
@@ -44019,7 +44021,7 @@ def visit_compare(self, node: nodes.Compare) -&gt; None:
 
         try:
             reporter_class = _load_reporter_by_class(reporter_name)
-        except (ImportError, AttributeError, AssertionError) as e:
+        except(ImportError, AttributeError, AssertionError) as e:
             raise exceptions.InvalidReporterError(name) from e
 
         return reporter_class()
@@ -45024,7 +45026,7 @@ def __init__(
     if self.layout:
         self.emit(f"rankdir={self.layout.value}")
     if self.charset:
-        assert (
+        assert(
             self.charset.lower() in ALLOWED_CHARSETS
         ), f"unsupported charset {self.charset}"
         self.emit(f'charset="{self.charset}"')
@@ -46339,7 +46341,7 @@ from pylint.pyreverse.utils import get_annotation_label
                         skip_subtrees.append(root)
                         yield root
                     else:
-                        yield from (
+                        yield from(
                             os.path.join(root, file)
                             for file in files
                             if file.endswith((".py", ".pyi"))
@@ -46735,7 +46737,7 @@ class FilterMixIn:
         return ann
 
     try:
-        default, *_ = node.infer()
+        default, * _ = node.infer()
     except astroid.InferenceError:
         default = ""
 
@@ -46801,8 +46803,8 @@ class FilterMixIn:
         ["dot", "-T?"], capture_output=True, check=False, encoding="utf-8"
     )
     match = re.match(
-        pattern=r".*Use one of: (?P&lt;formats&gt;(\S*\s?)+)",
-        string=dot_output.stderr.strip(),
+        pattern = r".*Use one of: (?P&lt;formats&gt;(\S*\s?)+)",
+        string = dot_output.stderr.strip(),
     )
     if not match:
         print(
@@ -47189,7 +47191,7 @@ from pylint.pyreverse.utils import is_exception
         package = qualified_name
     else:
         package = qualified_name.rsplit(".", maxsplit=1)[0]
-    base_name = ".".join(package.split(".", self.depth)[: self.depth])
+    base_name = ".".join(package.split(".", self.depth)[:self.depth])
     if base_name not in self.used_colors:
         self.used_colors[base_name] = next(self.available_colors)
     return self.used_colors[base_name]
@@ -49019,7 +49021,7 @@ class PyLinter(
     assert self.parent is not self
     if self.parent is None:
         return []
-    return [self.parent, *self.parent.parents()]
+    return [self.parent, * self.parent.parents()]
 
 </t>
 <t tx="ekr.20250131013601.404">def add_text(self, text: str) -&gt; None:
@@ -50165,7 +50167,7 @@ def multiset_difference(
     received_msgs: MessageCounter = Counter()
     received_output_lines = []
     for msg in messages:
-        assert (
+        assert(
             msg.symbol != "fatal"
         ), f"Pylint analysis failed because of '{msg.msg}'"
         received_msgs[msg.line, msg.symbol] += 1
@@ -50181,7 +50183,7 @@ def multiset_difference(
     self._linter.check(modules_to_check)
     expected_messages, expected_output = self._get_expected()
     actual_messages, actual_output = self._get_actual()
-    assert (
+    assert(
         expected_messages == actual_messages
     ), self.error_msg_for_unequal_messages(
         actual_messages, expected_messages, actual_output
@@ -51745,7 +51747,7 @@ CRASH_TEMPLATE_INTRO = "There is a pre-filled template"
         self.packages.items()
         if self.config.batches is None
         else list(self.packages.items())[
-            self.config.batchIdx :: self.config.batches
+            self.config.batchIdx::self.config.batches
         ]
     )
     for package, data in package_data_iter:
@@ -51763,7 +51765,7 @@ CRASH_TEMPLATE_INTRO = "There is a pre-filled template"
     # Assert that a PR run does not introduce new fatal errors
     if self.config.type == "pr":
         plural = "s" if len(fatal_msgs) &gt; 1 else ""
-        assert (
+        assert(
             not fatal_msgs
         ), f"We encountered {len(fatal_msgs)} fatal error message{plural} (see log)."
 
@@ -52185,7 +52187,7 @@ def __init__(self, directory: str, filename: str) -&gt; None:
     for name, value in cp.items("testoptions"):
         conv = self._CONVERTERS.get(name, lambda v: v)
 
-        assert (
+        assert(
             name in POSSIBLE_TEST_OPTIONS
         ), f"[testoptions]' can only contains one of {POSSIBLE_TEST_OPTIONS} and had '{name}'"
         self.options[name] = conv(value)  # type: ignore[literal-required]
@@ -52906,8 +52908,8 @@ from pylint.typing import MessageTypesFullName
         for opt_group in option_groups:
             self.option_groups_descs[opt_group[0]] = opt_group[1]
         self._option_groups: tuple[tuple[str, str], ...] = (
-            *option_groups,
-            *PyLinter.option_groups_descs.items(),
+            * option_groups,
+            * PyLinter.option_groups_descs.items(),
         )
         self.fail_on_symbols: list[str] = []
         """List of message symbols on which pylint should fail, set by --fail-on."""
@@ -54657,7 +54659,7 @@ if TYPE_CHECKING:
         output_files = []
         with contextlib.ExitStack() as stack:
             for reporter_name in reporter_names.split(","):
-                reporter_name, *reporter_output = reporter_name.split(":", 1)
+                reporter_name, * reporter_output = reporter_name.split(":", 1)
 
                 reporter = self._load_reporter_by_name(reporter_name)
                 sub_reporters.append(reporter)
@@ -54791,5 +54793,27 @@ def get_message_definitions(self, msgid_or_symbol: str) -&gt; list[MessageDefini
             non_emittable.append(message)
     return emittable, non_emittable
 </t>
+<t tx="ekr.20250131014444.1">tbo: beautified: test_file.py
+
+Traceback (most recent call last):
+
+  File "C:\Repos\leo-editor\leo\core\leoAtFile.py", line 2347, in runTokenBasedBeautifier
+    changed = beautify_file(filename)
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Repos\leo-editor\leo\core\leoTokens.py", line 109, in beautify_file
+    return tbo.beautify_file(filename)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Repos\leo-editor\leo\core\leoTokens.py", line 833, in beautify_file
+    results = self.beautify(contents, filename, tokens)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Repos\leo-editor\leo\core\leoTokens.py", line 807, in beautify
+    print(self.internal_error_message(repr(e)))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Repos\leo-editor\leo\core\leoTokens.py", line 681, in internal_error_message
+    line_number = self.input_token.line_number
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+AttributeError: 'NoneType' object has no attribute 'line_number</t>
+<t tx="ekr.20250131014711.1"></t>
 </tnodes>
 </leo_file>
