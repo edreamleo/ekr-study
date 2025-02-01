@@ -80,7 +80,6 @@
 <v t="ekr.20250131013112.1"><vh> Recursive import script</vh></v>
 </v>
 <v t="ekr.20250131013112.1"></v>
-<v t="ekr.20250131014444.1"><vh>crash</vh></v>
 <v t="ekr.20250131013559.238"><vh>pylint</vh>
 <v t="ekr.20250131013559.239"><vh>@clean __init__.py</vh>
 <v t="ekr.20250131013559.240"><vh>function: run_pylint</vh></v>
@@ -2792,7 +2791,20 @@
 </v>
 </v>
 </v>
+<v t="ekr.20250201043204.1"><vh>path: tests/functional/b</vh>
+<v t="ekr.20250201043204.2"><vh>bad_char_carriage_return.py</vh></v>
+<v t="ekr.20250201043204.3"><vh>bad_char_backspace.py</vh></v>
+<v t="ekr.20250201043204.4"><vh>bad_char_esc.py</vh></v>
+<v t="ekr.20250201044233.1"><vh>bad_char_sub.py</vh></v>
 </v>
+</v>
+<v t="ekr.20250131015321.1"><vh>--- crash in beautifier</vh></v>
+<v t="ekr.20250131021951.1"><vh>--- new crash</vh></v>
+<v t="ekr.20250131022522.1"><vh>--- another crash</vh></v>
+<v t="ekr.20250131014711.1"></v>
+<v t="ekr.20250131013601.571"></v>
+<v t="ekr.20250131013601.630"></v>
+<v t="ekr.20250131013601.633"></v>
 </vnodes>
 <tnodes>
 <t tx="ekr.20131030071311.17125">By convention, a Startup node contains settings, scripts, etc.
@@ -54793,27 +54805,120 @@ def get_message_definitions(self, msgid_or_symbol: str) -&gt; list[MessageDefini
             non_emittable.append(message)
     return emittable, non_emittable
 </t>
-<t tx="ekr.20250131014444.1">tbo: beautified: test_file.py
+<t tx="ekr.20250131014711.1"></t>
+<t tx="ekr.20250131015321.1">@language rest
+@nosearch
+
+https://github.com/leo-editor/leo-editor/issues/4289
+PR: https://github.com/leo-editor/leo-editor/pull/xxx
+
+@language python
+</t>
+<t tx="ekr.20250131021951.1">With beautify-files command
 
 Traceback (most recent call last):
 
-  File "C:\Repos\leo-editor\leo\core\leoAtFile.py", line 2347, in runTokenBasedBeautifier
-    changed = beautify_file(filename)
-              ^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Repos\leo-editor\leo\core\leoTokens.py", line 109, in beautify_file
-    return tbo.beautify_file(filename)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Repos\leo-editor\leo\core\leoTokens.py", line 833, in beautify_file
-    results = self.beautify(contents, filename, tokens)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Repos\leo-editor\leo\core\leoTokens.py", line 807, in beautify
-    print(self.internal_error_message(repr(e)))
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Repos\leo-editor\leo\core\leoTokens.py", line 681, in internal_error_message
-    line_number = self.input_token.line_number
-                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Repos\leo-editor\leo\core\leoKeys.py", line 2471, in callAltXFunction
+    func(event)
 
-AttributeError: 'NoneType' object has no attribute 'line_number</t>
-<t tx="ekr.20250131014711.1"></t>
+  File "C:\Repos\leo-editor\leo\core\leoBeautify.py", line 84, in orange_files
+    changed = leoAst.Orange(settings=settings).beautify_file(filename)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "C:\Repos\leo-editor\leo\core\leoAst.py", line 1640, in beautify_file
+    contents, encoding, tokens, tree = tog.init_from_file(filename)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  File "C:\Repos\leo-editor\leo\core\leoAst.py", line 2904, in init_from_file
+    self.create_links(tokens, tree)
+
+  File "C:\Repos\leo-editor\leo\core\leoAst.py", line 2886, in create_links
+    self.visit(tree)
+
+  File "C:\Repos\leo-editor\leo\core\leoAst.py", line 3210, in visit
+    method(node)
+
+  File "C:\Repos\leo-editor\leo\core\leoAst.py", line 3392, in do_Module
+    self.visit(node.body)
+
+  File "C:\Repos\leo-editor\leo\core\leoAst.py", line 3200, in visit
+    self.visit(z)
+
+  File "C:\Repos\leo-editor\leo\core\leoAst.py", line 3210, in visit
+    method(node)
+
+  File "C:\Repos\leo-editor\leo\core\leoAst.py", line 3375, in do_FunctionDef
+    self.visit(node.body)
+
+  File "C:\Repos\leo-editor\leo\core\leoAst.py", line 3200, in visit
+    self.visit(z)
+
+  File "C:\Repos\leo-editor\leo\core\leoAst.py", line 3210, in visit
+    method(node)
+
+  File "C:\Repos\leo-editor\leo\core\leoAst.py", line 4162, in do_Return
+    self.name('return')
+
+  File "C:\Repos\leo-editor\leo\core\leoAst.py", line 3017, in name
+    self.token('name', val)
+
+  File "C:\Repos\leo-editor\leo\core\leoAst.py", line 3071, in token
+    raise AssignLinksError(
+
+leo.core.leoAst.AssignLinksError: tog.token
+       file: C:/Repos/ekr-study/ekr-pylint-study/pylint/utils/utils.py
+    line 99: 'diff_str = f"{CMPS[cmp(old, new)]}{(d...(67)'
+Looking for: name.'return'
+      found: name.'or'
+token.index: 622
+</t>
+<t tx="ekr.20250131022522.1">add_token endmarker 376
+Traceback (most recent call last):
+
+  File "C:\Repos\leo-editor\leo\core\leoTokens.py", line 774, in beautify
+    self.pre_scan()
+
+  File "C:\Repos\leo-editor\leo\core\leoTokens.py", line 1500, in pre_scan
+    assert top_state and top_state.kind in ('(', 'arg'), repr(top_state)
+
+AssertionError: None</t>
+<t tx="ekr.20250201043204.1"># Note: The following nodes *replace* the invalid characters with plain text:
+#       BS, CR, SUB, and ESC rather.
+
+# Do *not* attempt to restore these invalid characters.
+# That will invalidate this entire outline!
+
+# See notes in PR </t>
+<t tx="ekr.20250201043204.2">@language python
+# pylint: disable=trailing-whitespace, missing-module-docstring, trailing-newlines, missing-final-newline
+
+# +2: [invalid-character-carriage-return]
+CARRIAGE_RETURN = '''
+--&gt;CR&lt;---
+'''  # bad char  carriage-return should be only used as \r
+</t>
+<t tx="ekr.20250201043204.3">@language python
+# pylint: disable=trailing-whitespace, missing-module-docstring, trailing-newlines, missing-final-newline
+
+# +2: [invalid-character-backspace]
+BACKSPACE = '''
+--&gt;BS&lt;---
+'''  # bad char  backspace should be only used as \b
+</t>
+<t tx="ekr.20250201043204.4">@language python
+# pylint: disable=trailing-whitespace, missing-module-docstring, trailing-newlines, missing-final-newline
+
+# +2: [invalid-character-esc]
+ESC = '''
+--&gt;ESC&lt;---
+'''  # bad char  esc should be only used as \x1B
+</t>
+<t tx="ekr.20250201044233.1"># pylint: disable=trailing-whitespace, missing-module-docstring, trailing-newlines, missing-final-newline
+
+# +2: [invalid-character-sub]
+SUB = '''
+--&gt;SUB&lt;---
+'''  # bad char  sub should be only used as \x1A
+</t>
 </tnodes>
 </leo_file>
