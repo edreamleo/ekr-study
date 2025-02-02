@@ -79,8 +79,20 @@
 </v>
 <v t="ekr.20250131013112.1"><vh> Recursive import script</vh></v>
 </v>
+<v t="ekr.20250202065905.1"><vh>--- recent settings</vh>
 <v t="ekr.20250131013112.1"></v>
-<v t="ekr.20250131013559.238"><vh>pylint</vh>
+<v t="ekr.20250131014711.1"></v>
+</v>
+<v t="ekr.20250202073850.1"><vh>--- others</vh>
+<v t="ekr.20250202065937.1"><vh>--- crashes</vh>
+<v t="ekr.20250131021951.1"><vh>--- new crash</vh></v>
+<v t="ekr.20250131022522.1"><vh>--- another crash</vh></v>
+<v t="ekr.20250131013601.633"><vh>function: diff_string</vh></v>
+</v>
+<v t="ekr.20250202073620.1"><vh>--- installation</vh></v>
+<v t="ekr.20250202073515.1"><vh>--- unit tests</vh></v>
+</v>
+<v t="ekr.20250131013559.238"><vh>Files: ekr-pylint-study/pylint</vh>
 <v t="ekr.20250131013559.239"><vh>@clean __init__.py</vh>
 <v t="ekr.20250131013559.240"><vh>function: run_pylint</vh></v>
 <v t="ekr.20250131013559.241"><vh>function: _run_pylint_config</vh></v>
@@ -2770,7 +2782,7 @@
 <v t="ekr.20250131013601.630"><vh>@clean utils.py</vh>
 <v t="ekr.20250131013601.631"><vh>function: normalize_text</vh></v>
 <v t="ekr.20250131013601.632"><vh>function: cmp</vh></v>
-<v t="ekr.20250131013601.633"><vh>function: diff_string</vh></v>
+<v t="ekr.20250131013601.633"></v>
 <v t="ekr.20250131013601.634"><vh>function: get_module_and_frameid</vh></v>
 <v t="ekr.20250131013601.635"><vh>function: get_rst_title</vh></v>
 <v t="ekr.20250131013601.636"><vh>function: get_rst_section</vh></v>
@@ -2798,13 +2810,9 @@
 <v t="ekr.20250201044233.1"><vh>bad_char_sub.py</vh></v>
 </v>
 </v>
-<v t="ekr.20250131015321.1"><vh>--- crash in beautifier</vh></v>
-<v t="ekr.20250131021951.1"><vh>--- new crash</vh></v>
-<v t="ekr.20250131022522.1"><vh>--- another crash</vh></v>
-<v t="ekr.20250131014711.1"></v>
-<v t="ekr.20250131013601.571"></v>
-<v t="ekr.20250131013601.630"></v>
-<v t="ekr.20250131013601.633"></v>
+<v t="ekr.20250202070018.1"><vh>*** To do</vh></v>
+<v t="ekr.20250202090006.1"><vh>@edit C:\Python\Python3.13\Lib\site-packages\pylint\__init__.py</vh></v>
+<v t="ekr.20250202090618.1"><vh>@edit C:\Python\Python3.13\Lib\site-packages\pylint\typing.py</vh></v>
 </vnodes>
 <tnodes>
 <t tx="ekr.20131030071311.17125">By convention, a Startup node contains settings, scripts, etc.
@@ -54806,14 +54814,6 @@ def get_message_definitions(self, msgid_or_symbol: str) -&gt; list[MessageDefini
     return emittable, non_emittable
 </t>
 <t tx="ekr.20250131014711.1"></t>
-<t tx="ekr.20250131015321.1">@language rest
-@nosearch
-
-https://github.com/leo-editor/leo-editor/issues/4289
-PR: https://github.com/leo-editor/leo-editor/pull/xxx
-
-@language python
-</t>
 <t tx="ekr.20250131021951.1">With beautify-files command
 
 Traceback (most recent call last):
@@ -54920,5 +54920,1807 @@ SUB = '''
 --&gt;SUB&lt;---
 '''  # bad char  sub should be only used as \x1A
 </t>
+<t tx="ekr.20250202065905.1"></t>
+<t tx="ekr.20250202065937.1"></t>
+<t tx="ekr.20250202070018.1">@language rest
+
+- (Done) Run all unit tests.
+  pip install -r requirements_test.txt
+
+- Run without DLLs.
+  python -X frozen_modules
+
+@language python
+</t>
+<t tx="ekr.20250202073515.1">C:\Repos\ekr-study\ekr-pylint-study&gt;cd tests
+
+C:\Repos\ekr-study\ekr-pylint-study\tests&gt;pytest
+================================================= test session starts =================================================
+platform win32 -- Python 3.12.0, pytest-8.3.4, pluggy-1.5.0
+benchmark: 5.1.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
+rootdir: C:\Repos\ekr-study\ekr-pylint-study
+configfile: pyproject.toml
+plugins: benchmark-5.1.0, cov-6.0.0, timeout-2.3.1, xdist-3.6.1
+collected 2209 items
+
+benchmark\test_baseline_benchmarks.py ...........                                                                [  0%]
+checkers\base\unittest_base.py s                                                                                 [  0%]
+checkers\base\unittest_multi_naming_style.py ....                                                                [  0%]
+checkers\base\unittest_name_preset.py ....                                                                       [  0%]
+checkers\unittest_base_checker.py ....                                                                           [  1%]
+checkers\unittest_deprecated.py ..........................                                                       [  2%]
+checkers\unittest_design.py ...                                                                                  [  2%]
+checkers\unittest_format.py .........                                                                            [  2%]
+checkers\unittest_imports.py ........                                                                            [  3%]
+checkers\unittest_misc.py ...........                                                                            [  3%]
+checkers\unittest_non_ascii_name.py ..........................x                                                  [  4%]
+checkers\unittest_refactoring.py ..                                                                              [  4%]
+checkers\unittest_spelling.py ...........................................                                        [  6%]
+checkers\unittest_stdlib.py .                                                                                    [  6%]
+checkers\unittest_strings.py .                                                                                   [  7%]
+checkers\unittest_symilar.py .....................                                                               [  7%]
+checkers\unittest_typecheck.py ...                                                                               [  8%]
+checkers\unittest_unicode\unittest_bad_chars.py ....................................................             [ 10%]
+checkers\unittest_unicode\unittest_bidirectional_unicode.py ...................................................  [ 12%]
+checkers\unittest_unicode\unittest_functions.py ................................................................ [ 15%]
+............................                                                                                     [ 16%]
+checkers\unittest_unicode\unittest_invalid_encoding.py xx........x...........                                    [ 17%]
+checkers\unittest_utils.py .......................................                                               [ 19%]
+checkers\unittest_variables.py ..........                                                                        [ 20%]
+config\pylint_config\test_pylint_config_generate.py ....                                                         [ 20%]
+config\pylint_config\test_pylint_config_help.py .                                                                [ 20%]
+config\pylint_config\test_pylint_config_utils.py .                                                               [ 20%]
+config\pylint_config\test_run_pylint_config.py .                                                                 [ 20%]
+config\test_argparse_config.py ......                                                                            [ 20%]
+config\test_config.py ....................                                                                       [ 21%]
+config\test_find_default_config_files.py .................                                                       [ 22%]
+config\test_functional_config_loading.py ....FFF.........FFF.F....F....                                          [ 23%]
+config\test_per_directory_config.py .                                                                            [ 23%]
+extensions\test_check_docs_utils.py ...............                                                              [ 24%]
+extensions\test_private_import.py .....                                                                          [ 24%]
+functional\r\redundant_unittest_assert.py ss                                                                     [ 24%]
+lint\test_caching.py ...ss......                                                                                 [ 25%]
+lint\test_pylinter.py ....                                                                                       [ 25%]
+lint\test_run_pylint.py ..                                                                                       [ 25%]
+lint\test_utils.py ...                                                                                           [ 25%]
+lint\unittest_expand_modules.py ..........                                                                       [ 26%]
+lint\unittest_lint.py .......................................F..........................                         [ 29%]
+message\test_no_removed_msgid_or_symbol_used.py .                                                                [ 29%]
+message\unittest_message.py .                                                                                    [ 29%]
+message\unittest_message_definition.py .......                                                                   [ 29%]
+message\unittest_message_definition_store.py .................                                                   [ 30%]
+message\unittest_message_id_store.py ........                                                                    [ 30%]
+primer\test_primer_stdlib.py sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 34%]
+ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss [ 39%]
+sss                                                                                                              [ 39%]
+pyreverse\test_diadefs.py ...........                                                                            [ 40%]
+pyreverse\test_diagrams.py .                                                                                     [ 40%]
+pyreverse\test_inspector.py ....                                                                                 [ 40%]
+pyreverse\test_main.py ............................                                                              [ 41%]
+pyreverse\test_printer.py ..........                                                                             [ 42%]
+pyreverse\test_printer_factory.py ....                                                                           [ 42%]
+pyreverse\test_pyreverse_functional.py .............                                                             [ 42%]
+pyreverse\test_utils.py ......................                                                                   [ 43%]
+pyreverse\test_writer.py ...............................                                                         [ 45%]
+reporters\unittest_json_reporter.py .......                                                                      [ 45%]
+reporters\unittest_reporting.py ..........                                                                       [ 46%]
+test_check_parallel.py ......................................FFF                                                 [ 47%]
+test_func.py ............                                                                                        [ 48%]
+test_functional.py .......................s............................s........................................ [ 52%]
+............................s...s.s..ss......................................................................... [ 57%]
+....................................................................................s..........s................ [ 62%]
+................................................................................................................ [ 67%]
+.....................F.......................................................................................... [ 72%]
+............s...........................s..............s...........................................s...F..s..ss. [ 77%]
+.................................................s...........................................s.................. [ 83%]
+..............................................................sF.......................                          [ 87%]
+test_functional_directories.py .                                                                                 [ 87%]
+test_import_graph.py ..F...                                                                                      [ 87%]
+test_numversion.py ...........                                                                                   [ 87%]
+test_pragma_parser.py .............                                                                              [ 88%]
+test_pylint_runners.py .............................                                                             [ 89%]
+test_regr.py ..................                                                                                  [ 90%]
+test_self.py .............xFFFFF......F....F.FsF...............................................................F [ 95%]
+FFF.........................F.....................                                                               [ 97%]
+test_similar.py ..............                                                                                   [ 97%]
+testutils\_primer\test_package_to_lint.py ..                                                                     [ 98%]
+testutils\_primer\test_primer.py ..sssss                                                                         [ 98%]
+testutils\test_configuration_test.py .                                                                           [ 98%]
+testutils\test_functional_testutils.py .....                                                                     [ 98%]
+testutils\test_lint_module_output_update.py ...........                                                          [ 99%]
+testutils\test_output_line.py .....                                                                              [ 99%]
+testutils\test_pyreverse_testutils.py ...                                                                        [ 99%]
+testutils\test_testutils_utils.py ........                                                                       [ 99%]
+utils\unittest_ast_walker.py ..                                                                                  [ 99%]
+utils\unittest_utils.py ..                                                                                       [100%]
+
+====================================================== FAILURES =======================================================
+_________________________ test_functional_config_loading[toml\\toml_with_unknown_option.toml] _________________________
+
+configuration_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\functional\\toml\\toml_with_unknown_option.toml'
+default_configuration = {'additional_builtins': (), 'allow_any_import_level': (), 'allow_global_unused_variables': True, 'allow_reexport_from_package': False, ...}
+file_to_lint_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\file_to_lint.py'
+capsys = &lt;_pytest.capture.CaptureFixture object at 0x000001A368FF6E40&gt;
+caplog = &lt;_pytest.logging.LogCaptureFixture object at 0x000001A368DE5850&gt;
+
+    @pytest.mark.parametrize("configuration_path", CONFIGURATION_PATHS)
+    def test_functional_config_loading(
+        configuration_path: str,
+        default_configuration: PylintConfiguration,
+        file_to_lint_path: str,
+        capsys: CaptureFixture[str],
+        caplog: LogCaptureFixture,
+    ) -&gt; None:
+        """Functional tests for configurations."""
+        # logging is helpful to see what's expected and why. The output of the
+        # program is checked during the test so printing messes with the result.
+        caplog.set_level(logging.INFO)
+        configuration_path = str(FUNCTIONAL_DIR / configuration_path)
+        msg = f"Wrong result with configuration {configuration_path}"
+        expected_code, expected_output = get_expected_output(
+            configuration_path, USER_SPECIFIC_PATH
+        )
+        expected_loaded_configuration = get_expected_configuration(
+            configuration_path, default_configuration
+        )
+        runner = None  # The runner can fail to init if conf is bad enough.
+        with warnings.catch_warnings():
+            warnings.filterwarnings(
+                "ignore", message="The use of 'MASTER'.*", category=UserWarning
+            )
+            try:
+                runner = run_using_a_configuration_file(
+                    configuration_path, file_to_lint_path
+                )
+                assert runner.linter.msg_status == expected_code
+            except SystemExit as e:
+                # Case where the conf exit with an argparse error
+                assert e.code == expected_code
+                out, err = capsys.readouterr()
+                assert out == ""
+                assert err.rstrip() == expected_output.rstrip()
+                return
+
+        out, err = capsys.readouterr()
+        # 'rstrip()' applied, so we can have a final newline in the expected test file
+&gt;       assert expected_output.rstrip() == out.rstrip(), msg
+E       AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\toml_with_unknown_option.toml
+E       assert '************...nized-option)' == '************...nized-option)'
+E
+E         Skipping 106 identical leading characters in diff, use -v to show
+E           tion.toml
+E         - config\functional\toml\toml_with_unknown_option.toml:1:0: E0015: Unrecognized option found: unknown-option, another-unknown-option (unrecognized-option)
+E         + tests\config\functional\toml\toml_with_unknown_option.toml:1:0: E0015: Unrecognized option found: unknown-option, another-unknown-option (unrecognized-option)
+E         ? ++++++
+
+config\test_functional_config_loading.py:105: AssertionError
+-------------------------------------------------- Captured log call --------------------------------------------------
+INFO     root:configuration_test.py:39 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\toml_with_unknown_option.2.out exists.
+INFO     root:configuration_test.py:124 Output exists for C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\toml_with_unknown_option.toml so the expected exit code is 2
+INFO     root:configuration_test.py:39 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\toml_with_unknown_option.result.json exists.
+___________________ test_functional_config_loading[toml\\issue_3122\\toml_with_missing_comma.toml] ____________________
+
+configuration_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\functional\\toml\\issue_3122\\toml_with_missing_comma.toml'
+default_configuration = {'additional_builtins': (), 'allow_any_import_level': (), 'allow_global_unused_variables': True, 'allow_reexport_from_package': False, ...}
+file_to_lint_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\file_to_lint.py'
+capsys = &lt;_pytest.capture.CaptureFixture object at 0x000001A369112300&gt;
+caplog = &lt;_pytest.logging.LogCaptureFixture object at 0x000001A369127B00&gt;
+
+    @pytest.mark.parametrize("configuration_path", CONFIGURATION_PATHS)
+    def test_functional_config_loading(
+        configuration_path: str,
+        default_configuration: PylintConfiguration,
+        file_to_lint_path: str,
+        capsys: CaptureFixture[str],
+        caplog: LogCaptureFixture,
+    ) -&gt; None:
+        """Functional tests for configurations."""
+        # logging is helpful to see what's expected and why. The output of the
+        # program is checked during the test so printing messes with the result.
+        caplog.set_level(logging.INFO)
+        configuration_path = str(FUNCTIONAL_DIR / configuration_path)
+        msg = f"Wrong result with configuration {configuration_path}"
+        expected_code, expected_output = get_expected_output(
+            configuration_path, USER_SPECIFIC_PATH
+        )
+        expected_loaded_configuration = get_expected_configuration(
+            configuration_path, default_configuration
+        )
+        runner = None  # The runner can fail to init if conf is bad enough.
+        with warnings.catch_warnings():
+            warnings.filterwarnings(
+                "ignore", message="The use of 'MASTER'.*", category=UserWarning
+            )
+            try:
+                runner = run_using_a_configuration_file(
+                    configuration_path, file_to_lint_path
+                )
+                assert runner.linter.msg_status == expected_code
+            except SystemExit as e:
+                # Case where the conf exit with an argparse error
+                assert e.code == expected_code
+                out, err = capsys.readouterr()
+                assert out == ""
+                assert err.rstrip() == expected_output.rstrip()
+                return
+
+        out, err = capsys.readouterr()
+        # 'rstrip()' applied, so we can have a final newline in the expected test file
+&gt;       assert expected_output.rstrip() == out.rstrip(), msg
+E       AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\issue_3122\toml_with_missing_comma.toml
+E       assert '************...option-value)' == '************...option-value)'
+E
+E         Skipping 116 identical leading characters in diff, use -v to show
+E           omma.toml
+E         - config\functional\toml\issue_3122\toml_with_missing_comma.toml:1:0: W0012: Unknown option value for '--disable', expected a valid pylint message and got 'logging-not-lazylogging-format-interpolation' (unknown-option-value)
+E         + tests\config\functional\toml\issue_3122\toml_with_missing_comma.toml:1:0: W0012: Unknown option value for '--disable', expected a valid pylint message and got 'logging-not-lazylogging-format-interpolation' (unknown-option-value)
+E         ? ++++++
+E         - config\functional\toml\issue_3122\to...
+E
+E         ...Full output truncated (3 lines hidden), use '-vv' to show
+
+config\test_functional_config_loading.py:105: AssertionError
+-------------------------------------------------- Captured log call --------------------------------------------------
+INFO     root:configuration_test.py:39 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\issue_3122\toml_with_missing_comma.4.out exists.
+INFO     root:configuration_test.py:124 Output exists for C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\issue_3122\toml_with_missing_comma.toml so the expected exit code is 4
+INFO     root:configuration_test.py:39 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\issue_3122\toml_with_missing_comma.result.json exists.
+______________________ test_functional_config_loading[toml\\issue_3181\\toml_decode_error.toml] _______________________
+
+configuration_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\functional\\toml\\issue_3181\\toml_decode_error.toml'
+default_configuration = {'additional_builtins': (), 'allow_any_import_level': (), 'allow_global_unused_variables': True, 'allow_reexport_from_package': False, ...}
+file_to_lint_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\file_to_lint.py'
+capsys = &lt;_pytest.capture.CaptureFixture object at 0x000001A36913A8A0&gt;
+caplog = &lt;_pytest.logging.LogCaptureFixture object at 0x000001A3690F16D0&gt;
+
+    @pytest.mark.parametrize("configuration_path", CONFIGURATION_PATHS)
+    def test_functional_config_loading(
+        configuration_path: str,
+        default_configuration: PylintConfiguration,
+        file_to_lint_path: str,
+        capsys: CaptureFixture[str],
+        caplog: LogCaptureFixture,
+    ) -&gt; None:
+        """Functional tests for configurations."""
+        # logging is helpful to see what's expected and why. The output of the
+        # program is checked during the test so printing messes with the result.
+        caplog.set_level(logging.INFO)
+        configuration_path = str(FUNCTIONAL_DIR / configuration_path)
+        msg = f"Wrong result with configuration {configuration_path}"
+        expected_code, expected_output = get_expected_output(
+            configuration_path, USER_SPECIFIC_PATH
+        )
+        expected_loaded_configuration = get_expected_configuration(
+            configuration_path, default_configuration
+        )
+        runner = None  # The runner can fail to init if conf is bad enough.
+        with warnings.catch_warnings():
+            warnings.filterwarnings(
+                "ignore", message="The use of 'MASTER'.*", category=UserWarning
+            )
+            try:
+                runner = run_using_a_configuration_file(
+                    configuration_path, file_to_lint_path
+                )
+                assert runner.linter.msg_status == expected_code
+            except SystemExit as e:
+                # Case where the conf exit with an argparse error
+                assert e.code == expected_code
+                out, err = capsys.readouterr()
+                assert out == ""
+                assert err.rstrip() == expected_output.rstrip()
+                return
+
+        out, err = capsys.readouterr()
+        # 'rstrip()' applied, so we can have a final newline in the expected test file
+&gt;       assert expected_output.rstrip() == out.rstrip(), msg
+E       AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\issue_3181\toml_decode_error.toml
+E       assert '************...-parse-error)' == '************...-parse-error)'
+E
+E         Skipping 110 identical leading characters in diff, use -v to show
+E           rror.toml
+E         - config\functional\toml\issue_3181\toml_decode_error.toml:1:0: F0011: error while parsing the configuration: Invalid statement (at line 3, column 1) (config-parse-error)
+E         + tests\config\functional\toml\issue_3181\toml_decode_error.toml:1:0: F0011: error while parsing the configuration: Invalid statement (at line 3, column 1) (config-parse-error)
+E         ? ++++++
+
+config\test_functional_config_loading.py:105: AssertionError
+-------------------------------------------------- Captured log call --------------------------------------------------
+INFO     root:configuration_test.py:39 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\issue_3181\toml_decode_error.1.out exists.
+INFO     root:configuration_test.py:124 Output exists for C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\issue_3181\toml_decode_error.toml so the expected exit code is 1
+INFO     root:configuration_test.py:41 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\issue_3181\toml_decode_error.result.json not found, using '{}'.
+___________________ test_functional_config_loading[toml\\unknown_msgid\\enable_unknown_msgid.toml] ____________________
+
+configuration_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\functional\\toml\\unknown_msgid\\enable_unknown_msgid.toml'
+default_configuration = {'additional_builtins': (), 'allow_any_import_level': (), 'allow_global_unused_variables': True, 'allow_reexport_from_package': False, ...}
+file_to_lint_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\file_to_lint.py'
+capsys = &lt;_pytest.capture.CaptureFixture object at 0x000001A3694E1010&gt;
+caplog = &lt;_pytest.logging.LogCaptureFixture object at 0x000001A36950DCD0&gt;
+
+    @pytest.mark.parametrize("configuration_path", CONFIGURATION_PATHS)
+    def test_functional_config_loading(
+        configuration_path: str,
+        default_configuration: PylintConfiguration,
+        file_to_lint_path: str,
+        capsys: CaptureFixture[str],
+        caplog: LogCaptureFixture,
+    ) -&gt; None:
+        """Functional tests for configurations."""
+        # logging is helpful to see what's expected and why. The output of the
+        # program is checked during the test so printing messes with the result.
+        caplog.set_level(logging.INFO)
+        configuration_path = str(FUNCTIONAL_DIR / configuration_path)
+        msg = f"Wrong result with configuration {configuration_path}"
+        expected_code, expected_output = get_expected_output(
+            configuration_path, USER_SPECIFIC_PATH
+        )
+        expected_loaded_configuration = get_expected_configuration(
+            configuration_path, default_configuration
+        )
+        runner = None  # The runner can fail to init if conf is bad enough.
+        with warnings.catch_warnings():
+            warnings.filterwarnings(
+                "ignore", message="The use of 'MASTER'.*", category=UserWarning
+            )
+            try:
+                runner = run_using_a_configuration_file(
+                    configuration_path, file_to_lint_path
+                )
+                assert runner.linter.msg_status == expected_code
+            except SystemExit as e:
+                # Case where the conf exit with an argparse error
+                assert e.code == expected_code
+                out, err = capsys.readouterr()
+                assert out == ""
+                assert err.rstrip() == expected_output.rstrip()
+                return
+
+        out, err = capsys.readouterr()
+        # 'rstrip()' applied, so we can have a final newline in the expected test file
+&gt;       assert expected_output.rstrip() == out.rstrip(), msg
+E       AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\unknown_msgid\enable_unknown_msgid.toml
+E       assert '************...option-value)' == '************...option-value)'
+E
+E         Skipping 116 identical leading characters in diff, use -v to show
+E           sgid.toml
+E         - config\functional\toml\unknown_msgid\enable_unknown_msgid.toml:1:0: W0012: Unknown option value for '--disable', expected a valid pylint message and got 'logging-not-layzy' (unknown-option-value)
+E         + tests\config\functional\toml\unknown_msgid\enable_unknown_msgid.toml:1:0: W0012: Unknown option value for '--disable', expected a valid pylint message and got 'logging-not-layzy' (unknown-option-value)
+E         ? ++++++
+E         - config\functional\toml\unknown_msgid\enable_unknown_msgid.toml:1:0: W0012: Unknown option ...
+E
+E         ...Full output truncated (3 lines hidden), use '-vv' to show
+
+config\test_functional_config_loading.py:105: AssertionError
+-------------------------------------------------- Captured log call --------------------------------------------------
+INFO     root:configuration_test.py:39 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\unknown_msgid\enable_unknown_msgid.4.out exists.
+INFO     root:configuration_test.py:124 Output exists for C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\unknown_msgid\enable_unknown_msgid.toml so the expected exit code is 4
+INFO     root:configuration_test.py:39 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\unknown_msgid\enable_unknown_msgid.result.json exists.
+_______________________ test_functional_config_loading[ini\\pylintrc_with_deleted_message.ini] ________________________
+
+configuration_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\functional\\ini\\pylintrc_with_deleted_message.ini'
+default_configuration = {'additional_builtins': (), 'allow_any_import_level': (), 'allow_global_unused_variables': True, 'allow_reexport_from_package': False, ...}
+file_to_lint_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\file_to_lint.py'
+capsys = &lt;_pytest.capture.CaptureFixture object at 0x000001A369547B30&gt;
+caplog = &lt;_pytest.logging.LogCaptureFixture object at 0x000001A369563E30&gt;
+
+    @pytest.mark.parametrize("configuration_path", CONFIGURATION_PATHS)
+    def test_functional_config_loading(
+        configuration_path: str,
+        default_configuration: PylintConfiguration,
+        file_to_lint_path: str,
+        capsys: CaptureFixture[str],
+        caplog: LogCaptureFixture,
+    ) -&gt; None:
+        """Functional tests for configurations."""
+        # logging is helpful to see what's expected and why. The output of the
+        # program is checked during the test so printing messes with the result.
+        caplog.set_level(logging.INFO)
+        configuration_path = str(FUNCTIONAL_DIR / configuration_path)
+        msg = f"Wrong result with configuration {configuration_path}"
+        expected_code, expected_output = get_expected_output(
+            configuration_path, USER_SPECIFIC_PATH
+        )
+        expected_loaded_configuration = get_expected_configuration(
+            configuration_path, default_configuration
+        )
+        runner = None  # The runner can fail to init if conf is bad enough.
+        with warnings.catch_warnings():
+            warnings.filterwarnings(
+                "ignore", message="The use of 'MASTER'.*", category=UserWarning
+            )
+            try:
+                runner = run_using_a_configuration_file(
+                    configuration_path, file_to_lint_path
+                )
+                assert runner.linter.msg_status == expected_code
+            except SystemExit as e:
+                # Case where the conf exit with an argparse error
+                assert e.code == expected_code
+                out, err = capsys.readouterr()
+                assert out == ""
+                assert err.rstrip() == expected_output.rstrip()
+                return
+
+        out, err = capsys.readouterr()
+        # 'rstrip()' applied, so we can have a final newline in the expected test file
+&gt;       assert expected_output.rstrip() == out.rstrip(), msg
+E       AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\ini\pylintrc_with_deleted_message.ini
+E       assert '************...option-value)' == '************...option-value)'
+E
+E         Skipping 109 identical leading characters in diff, use -v to show
+E           ssage.ini
+E         - config\functional\ini\pylintrc_with_deleted_message.ini:1:0: R0022: Useless option value for '--disable', 'buffer-builtin' was removed from pylint, see https://github.com/pylint-dev/pylint/pull/4942. (useless-option-value)
+E         + tests\config\functional\ini\pylintrc_with_deleted_message.ini:1:0: R0022: Useless option value for '--disable', 'buffer-builtin' was removed from pylint, see https://github.com/pylint-dev/pylint/pull/4942. (useless-option-value)
+E         ? ++++++
+E         - config\functional\ini\pylintrc_with_...
+E
+E         ...Full output truncated (3 lines hidden), use '-vv' to show
+
+config\test_functional_config_loading.py:105: AssertionError
+-------------------------------------------------- Captured log call --------------------------------------------------
+INFO     root:configuration_test.py:39 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\ini\pylintrc_with_deleted_message.8.out exists.
+INFO     root:configuration_test.py:124 Output exists for C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\ini\pylintrc_with_deleted_message.ini so the expected exit code is 8
+INFO     root:configuration_test.py:39 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\ini\pylintrc_with_deleted_message.result.json exists.
+_____________________ test_functional_config_loading[ini\\pylintrc_with_interpolation_error.ini] ______________________
+
+configuration_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\functional\\ini\\pylintrc_with_interpolation_error.ini'
+default_configuration = {'additional_builtins': (), 'allow_any_import_level': (), 'allow_global_unused_variables': True, 'allow_reexport_from_package': False, ...}
+file_to_lint_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\file_to_lint.py'
+capsys = &lt;_pytest.capture.CaptureFixture object at 0x000001A3695933B0&gt;
+caplog = &lt;_pytest.logging.LogCaptureFixture object at 0x000001A3695DBC50&gt;
+
+    @pytest.mark.parametrize("configuration_path", CONFIGURATION_PATHS)
+    def test_functional_config_loading(
+        configuration_path: str,
+        default_configuration: PylintConfiguration,
+        file_to_lint_path: str,
+        capsys: CaptureFixture[str],
+        caplog: LogCaptureFixture,
+    ) -&gt; None:
+        """Functional tests for configurations."""
+        # logging is helpful to see what's expected and why. The output of the
+        # program is checked during the test so printing messes with the result.
+        caplog.set_level(logging.INFO)
+        configuration_path = str(FUNCTIONAL_DIR / configuration_path)
+        msg = f"Wrong result with configuration {configuration_path}"
+        expected_code, expected_output = get_expected_output(
+            configuration_path, USER_SPECIFIC_PATH
+        )
+        expected_loaded_configuration = get_expected_configuration(
+            configuration_path, default_configuration
+        )
+        runner = None  # The runner can fail to init if conf is bad enough.
+        with warnings.catch_warnings():
+            warnings.filterwarnings(
+                "ignore", message="The use of 'MASTER'.*", category=UserWarning
+            )
+            try:
+                runner = run_using_a_configuration_file(
+                    configuration_path, file_to_lint_path
+                )
+                assert runner.linter.msg_status == expected_code
+            except SystemExit as e:
+                # Case where the conf exit with an argparse error
+                assert e.code == expected_code
+                out, err = capsys.readouterr()
+                assert out == ""
+                assert err.rstrip() == expected_output.rstrip()
+                return
+
+        out, err = capsys.readouterr()
+        # 'rstrip()' applied, so we can have a final newline in the expected test file
+&gt;       assert expected_output.rstrip() == out.rstrip(), msg
+E       AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\ini\pylintrc_with_interpolation_error.ini
+E       assert '************...-parse-error)' == '************...-parse-error)'
+E
+E         Skipping 113 identical leading characters in diff, use -v to show
+E           error.ini
+E         - config\functional\ini\pylintrc_with_interpolation_error.ini:1:0: F0011: error while parsing the configuration: '%' must be followed by '%' or '(', found: "%A'" (config-parse-error)
+E         + tests\config\functional\ini\pylintrc_with_interpolation_error.ini:1:0: F0011: error while parsing the configuration: '%' must be followed by '%' or '(', found: "%A'" (config-parse-error)
+E         ? ++++++
+
+config\test_functional_config_loading.py:105: AssertionError
+-------------------------------------------------- Captured log call --------------------------------------------------
+INFO     root:configuration_test.py:39 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\ini\pylintrc_with_interpolation_error.1.out exists.
+INFO     root:configuration_test.py:124 Output exists for C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\ini\pylintrc_with_interpolation_error.ini so the expected exit code is 1
+INFO     root:configuration_test.py:39 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\ini\pylintrc_with_interpolation_error.result.json exists.
+________________________ test_functional_config_loading[ini\\pylintrc_with_missing_comma.ini] _________________________
+
+configuration_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\functional\\ini\\pylintrc_with_missing_comma.ini'
+default_configuration = {'additional_builtins': (), 'allow_any_import_level': (), 'allow_global_unused_variables': True, 'allow_reexport_from_package': False, ...}
+file_to_lint_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\file_to_lint.py'
+capsys = &lt;_pytest.capture.CaptureFixture object at 0x000001A36968F260&gt;
+caplog = &lt;_pytest.logging.LogCaptureFixture object at 0x000001A3696A98B0&gt;
+
+    @pytest.mark.parametrize("configuration_path", CONFIGURATION_PATHS)
+    def test_functional_config_loading(
+        configuration_path: str,
+        default_configuration: PylintConfiguration,
+        file_to_lint_path: str,
+        capsys: CaptureFixture[str],
+        caplog: LogCaptureFixture,
+    ) -&gt; None:
+        """Functional tests for configurations."""
+        # logging is helpful to see what's expected and why. The output of the
+        # program is checked during the test so printing messes with the result.
+        caplog.set_level(logging.INFO)
+        configuration_path = str(FUNCTIONAL_DIR / configuration_path)
+        msg = f"Wrong result with configuration {configuration_path}"
+        expected_code, expected_output = get_expected_output(
+            configuration_path, USER_SPECIFIC_PATH
+        )
+        expected_loaded_configuration = get_expected_configuration(
+            configuration_path, default_configuration
+        )
+        runner = None  # The runner can fail to init if conf is bad enough.
+        with warnings.catch_warnings():
+            warnings.filterwarnings(
+                "ignore", message="The use of 'MASTER'.*", category=UserWarning
+            )
+            try:
+                runner = run_using_a_configuration_file(
+                    configuration_path, file_to_lint_path
+                )
+                assert runner.linter.msg_status == expected_code
+            except SystemExit as e:
+                # Case where the conf exit with an argparse error
+                assert e.code == expected_code
+                out, err = capsys.readouterr()
+                assert out == ""
+                assert err.rstrip() == expected_output.rstrip()
+                return
+
+        out, err = capsys.readouterr()
+        # 'rstrip()' applied, so we can have a final newline in the expected test file
+&gt;       assert expected_output.rstrip() == out.rstrip(), msg
+E       AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\ini\pylintrc_with_missing_comma.ini
+E       assert '************...option-value)' == '************...option-value)'
+E
+E         Skipping 107 identical leading characters in diff, use -v to show
+E           comma.ini
+E         - config\functional\ini\pylintrc_with_missing_comma.ini:1:0: W0012: Unknown option value for '--disable', expected a valid pylint message and got 'logging-not-lazylogging-format-interpolation' (unknown-option-value)
+E         + tests\config\functional\ini\pylintrc_with_missing_comma.ini:1:0: W0012: Unknown option value for '--disable', expected a valid pylint message and got 'logging-not-lazylogging-format-interpolation' (unknown-option-value)
+E         ? ++++++
+E         - config\functional\ini\pylintrc_with_missing_comma.ini:...
+E
+E         ...Full output truncated (4 lines hidden), use '-vv' to show
+
+config\test_functional_config_loading.py:105: AssertionError
+-------------------------------------------------- Captured log call --------------------------------------------------
+INFO     root:configuration_test.py:39 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\ini\pylintrc_with_missing_comma.4.out exists.
+INFO     root:configuration_test.py:124 Output exists for C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\ini\pylintrc_with_missing_comma.ini so the expected exit code is 4
+INFO     root:configuration_test.py:39 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\ini\pylintrc_with_missing_comma.result.json exists.
+_____________ test_functional_config_loading[setup_cfg\\do_not_read_other_tools_configuration\\setup.cfg] _____________
+
+configuration_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\functional\\setup_cfg\\do_not_read_other_tools_configuration\\setup.cfg'
+default_configuration = {'additional_builtins': (), 'allow_any_import_level': (), 'allow_global_unused_variables': True, 'allow_reexport_from_package': False, ...}
+file_to_lint_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\config\\file_to_lint.py'
+capsys = &lt;_pytest.capture.CaptureFixture object at 0x000001A3697C5850&gt;
+caplog = &lt;_pytest.logging.LogCaptureFixture object at 0x000001A369845A00&gt;
+
+    @pytest.mark.parametrize("configuration_path", CONFIGURATION_PATHS)
+    def test_functional_config_loading(
+        configuration_path: str,
+        default_configuration: PylintConfiguration,
+        file_to_lint_path: str,
+        capsys: CaptureFixture[str],
+        caplog: LogCaptureFixture,
+    ) -&gt; None:
+        """Functional tests for configurations."""
+        # logging is helpful to see what's expected and why. The output of the
+        # program is checked during the test so printing messes with the result.
+        caplog.set_level(logging.INFO)
+        configuration_path = str(FUNCTIONAL_DIR / configuration_path)
+        msg = f"Wrong result with configuration {configuration_path}"
+        expected_code, expected_output = get_expected_output(
+            configuration_path, USER_SPECIFIC_PATH
+        )
+        expected_loaded_configuration = get_expected_configuration(
+            configuration_path, default_configuration
+        )
+        runner = None  # The runner can fail to init if conf is bad enough.
+        with warnings.catch_warnings():
+            warnings.filterwarnings(
+                "ignore", message="The use of 'MASTER'.*", category=UserWarning
+            )
+            try:
+                runner = run_using_a_configuration_file(
+                    configuration_path, file_to_lint_path
+                )
+                assert runner.linter.msg_status == expected_code
+            except SystemExit as e:
+                # Case where the conf exit with an argparse error
+                assert e.code == expected_code
+                out, err = capsys.readouterr()
+                assert out == ""
+                assert err.rstrip() == expected_output.rstrip()
+                return
+
+        out, err = capsys.readouterr()
+        # 'rstrip()' applied, so we can have a final newline in the expected test file
+&gt;       assert expected_output.rstrip() == out.rstrip(), msg
+E       AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\setup_cfg\do_not_read_other_tools_configuration\setup.cfg
+E       assert '************...option-value)' == '************...option-value)'
+E
+E         Skipping 129 identical leading characters in diff, use -v to show
+E           setup.cfg
+E         - config\functional\setup_cfg\do_not_read_other_tools_configuration\setup.cfg:1:0: W0012: Unknown option value for '--enable', expected a valid pylint message and got 'useless-supression' (unknown-option-value)
+E         + tests\config\functional\setup_cfg\do_not_read_other_tools_configuration\setup.cfg:1:0: W0012: Unknown option value for '--enable', expected a valid pylint message and got 'useless-supression' (unknown-option-value)
+E         ? ++++++
+
+config\test_functional_config_loading.py:105: AssertionError
+-------------------------------------------------- Captured log call --------------------------------------------------
+INFO     root:configuration_test.py:39 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\setup_cfg\do_not_read_other_tools_configuration\setup.4.out exists.
+INFO     root:configuration_test.py:124 Output exists for C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\setup_cfg\do_not_read_other_tools_configuration\setup.cfg so the expected exit code is 4
+INFO     root:configuration_test.py:39 C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\setup_cfg\do_not_read_other_tools_configuration\setup.result.json exists.
+____________________________________________ test_analyze_explicit_script _____________________________________________
+
+linter = Checker 'main' (responsible for 'F0001', 'F0002', 'F0010', 'F0011', 'I0001', 'I0010', 'I0011', 'I0013', 'I0020', 'I0021', 'I0022', 'E0001', 'E0011', 'W0012', 'R0022', 'E0013', 'E0014', 'E0015')
+
+    def test_analyze_explicit_script(linter: PyLinter) -&gt; None:
+        linter.set_reporter(testutils.GenericTestReporter())
+        linter.check([os.path.join(DATA_DIR, "a_script")])
+        assert len(linter.reporter.messages) == 1
+&gt;       assert linter.reporter.messages[0] == Message(
+            msg_id="C0301",
+            symbol="line-too-long",
+            msg="Line too long (175/100)",
+            confidence=interfaces.Confidence(
+                name="UNDEFINED",
+                description="Warning without any associated confidence level.",
+            ),
+            location=MessageLocationTuple(
+                abspath=os.path.join(abspath(dirname(__file__)), "a_script").replace(
+                    f"lint{os.path.sep}a_script", f"data{os.path.sep}a_script"
+                ),
+                path=f"tests{os.path.sep}data{os.path.sep}a_script",
+                module="data.a_script",
+                obj="",
+                line=2,
+                column=0,
+                end_line=None,
+                end_column=None,
+            ),
+        )
+E       AssertionError: assert Message(msg_i...d_column=None) == Message(msg_i...d_column=None)
+E
+E         Omitting 13 identical items, use -vv to show
+E         Differing attributes:
+E         ['path']
+E
+E         Drill down into differing attribute path:
+E           path: 'data\\a_script' != 'tests\\data\\a_script'...
+E
+E         ...Full output truncated (3 lines hidden), use '-vv' to show
+
+lint\unittest_lint.py:864: AssertionError
+____________________________________ TestCheckParallel.test_cyclic_import_parallel ____________________________________
+
+self = &lt;test_check_parallel.TestCheckParallel object at 0x000001A35ED5B2F0&gt;
+
+    @pytest.mark.needs_two_cores
+    def test_cyclic_import_parallel(self) -&gt; None:
+        tests_dir = Path("tests")
+        package_path = Path("input") / "func_w0401_package"
+        linter = PyLinter(reporter=Reporter())
+        linter.register_checker(ImportsChecker(linter))
+
+&gt;       with _test_cwd(tests_dir):
+
+test_check_parallel.py:653:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Python\Python3.12\Lib\contextlib.py:137: in __enter__
+    return next(self.gen)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+current_working_directory = WindowsPath('tests')
+
+    @contextlib.contextmanager
+    def _test_cwd(
+        current_working_directory: str | Path | None = None,
+    ) -&gt; Generator[None]:
+        original_dir = os.getcwd()
+        try:
+            if current_working_directory is not None:
+&gt;               os.chdir(current_working_directory)
+E               FileNotFoundError: [WinError 2] The system cannot find the file specified: 'tests'
+
+C:\Python\Python3.12\Lib\site-packages\pylint\testutils\utils.py:47: FileNotFoundError
+___________________________ TestCheckParallel.test_cyclic_import_parallel_disabled_globally ___________________________
+
+self = &lt;test_check_parallel.TestCheckParallel object at 0x000001A35ED5B470&gt;
+mock = &lt;MagicMock name='close' id='1801406646416'&gt;
+
+    @pytest.mark.needs_two_cores
+    @patch("pylint.checkers.imports.ImportsChecker.close")
+    def test_cyclic_import_parallel_disabled_globally(self, mock: MagicMock) -&gt; None:
+        tests_dir = Path("tests")
+        package_path = Path("input") / "func_w0401_package"
+        linter = PyLinter(reporter=Reporter())
+        linter.register_checker(ImportsChecker(linter))
+        linter.disable("cyclic-import")
+
+&gt;       with _test_cwd(tests_dir):
+
+test_check_parallel.py:682:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Python\Python3.12\Lib\contextlib.py:137: in __enter__
+    return next(self.gen)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+current_working_directory = WindowsPath('tests')
+
+    @contextlib.contextmanager
+    def _test_cwd(
+        current_working_directory: str | Path | None = None,
+    ) -&gt; Generator[None]:
+        original_dir = os.getcwd()
+        try:
+            if current_working_directory is not None:
+&gt;               os.chdir(current_working_directory)
+E               FileNotFoundError: [WinError 2] The system cannot find the file specified: 'tests'
+
+C:\Python\Python3.12\Lib\site-packages\pylint\testutils\utils.py:47: FileNotFoundError
+___________________________ TestCheckParallel.test_cyclic_import_parallel_disabled_locally ____________________________
+
+self = &lt;test_check_parallel.TestCheckParallel object at 0x000001A35ED5B590&gt;
+
+    @pytest.mark.needs_two_cores
+    def test_cyclic_import_parallel_disabled_locally(self) -&gt; None:
+        tests_dir = Path("tests")
+        package_path = Path("input") / "func_noerror_cycle"
+        linter = PyLinter(reporter=Reporter())
+        linter.register_checker(ImportsChecker(linter))
+
+&gt;       with _test_cwd(tests_dir):
+
+test_check_parallel.py:710:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Python\Python3.12\Lib\contextlib.py:137: in __enter__
+    return next(self.gen)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+current_working_directory = WindowsPath('tests')
+
+    @contextlib.contextmanager
+    def _test_cwd(
+        current_working_directory: str | Path | None = None,
+    ) -&gt; Generator[None]:
+        original_dir = os.getcwd()
+        try:
+            if current_working_directory is not None:
+&gt;               os.chdir(current_working_directory)
+E               FileNotFoundError: [WinError 2] The system cannot find the file specified: 'tests'
+
+C:\Python\Python3.12\Lib\site-packages\pylint\testutils\utils.py:47: FileNotFoundError
+_________________________________________ test_functional[no_name_in_module] __________________________________________
+
+self = &lt;pylint.testutils.lint_module_test.LintModuleTest object at 0x000001A360BE5F10&gt;
+
+    def runTest(self) -&gt; None:
+&gt;       self._runTest()
+E       AssertionError: Wrong message(s) raised for "no_name_in_module.py":
+E
+E       Unexpected in testdata:
+E         85: no-name-in-module
+
+C:\Python\Python3.12\Lib\site-packages\pylint\testutils\lint_module_test.py:142: AssertionError
+__________________________________________ test_functional[symlink_module0] ___________________________________________
+
+self = &lt;pylint.testutils.lint_module_test.LintModuleTest object at 0x000001A320F54B00&gt;
+
+    def runTest(self) -&gt; None:
+&gt;       self._runTest()
+E       AssertionError: Wrong message(s) raised for "symlink_module.py":
+E
+E       Unexpected in testdata:
+E          1: syntax-error
+
+C:\Python\Python3.12\Lib\site-packages\pylint\testutils\lint_module_test.py:142: AssertionError
+_________________________________________ test_functional[wrong_import_order] _________________________________________
+
+self = &lt;pylint.testutils.lint_module_test.LintModuleTest object at 0x000001A323653D10&gt;
+
+    def runTest(self) -&gt; None:
+&gt;       self._runTest()
+
+C:\Python\Python3.12\Lib\site-packages\pylint\testutils\lint_module_test.py:142:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;pylint.testutils.lint_module_test.LintModuleTest object at 0x000001A323653D10&gt;
+_ = Counter({(32, 'wrong-import-order'): 2, (12, 'wrong-import-order'): 1, (14, 'wrong-import-order'): 1, (15, 'wrong-impo...'wrong-import-order'): 1, (33, 'wrong-import-order'): 1, (34, 'wrong-import-order'): 1, (35, 'wrong-import-order'): 1})
+expected_output = [OutputLine(symbol='wrong-import-order', lineno=12, column=0, end_lineno=12, end_column=14, object='', msg='standard i...heckers" should be placed before local imports "package.Class", ".package", ".package2"', confidence='UNDEFINED'), ...]
+actual_output = [OutputLine(symbol='wrong-import-order', lineno=12, column=0, end_lineno=12, end_column=14, object='', msg='standard i...heckers" should be placed before local imports "package.Class", ".package", ".package2"', confidence='UNDEFINED'), ...]
+
+    def _check_output_text(
+        self,
+        _: MessageCounter,
+        expected_output: list[OutputLine],
+        actual_output: list[OutputLine],
+    ) -&gt; None:
+        """This is a function because we want to be able to update the text in
+        LintModuleOutputUpdate.
+        """
+&gt;       assert expected_output == actual_output, self.error_msg_for_unequal_output(
+            expected_output, actual_output
+        )
+E       AssertionError: Wrong output for "wrong_import_order.txt":
+E       - Missing lines:
+E       OutputLine(symbol='wrong-import-order', lineno=22, column=0, end_lineno=22, end_column=22, object='', msg='first party import "pylint.checkers" should be placed before local imports "package.Class", ".package", ".package2"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=23, column=0, end_lineno=23, end_column=25, object='', msg='first party import "pylint.config" should be placed before local imports "package.Class", ".package", ".package2"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=24, column=0, end_lineno=24, end_column=17, object='', msg='first party import "pylint.sys" should be placed before local imports "package.Class", ".package", ".package2"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=25, column=0, end_lineno=25, end_column=28, object='', msg='first party import "pylint.pyreverse" should be placed before local imports "package.Class", ".package", ".package2"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=30, column=0, end_lineno=30, end_column=40, object='', msg='third party import "six.moves.urllib.parse.quote" should be placed before first party imports "pylint.checkers", "pylint.config", "pylint.sys", "pylint.pyreverse" and local imports "package.Class", ".package", ".package2" (...) "package3.Class3", ".package4", "package4.Class4"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=31, column=0, end_lineno=31, end_column=23, object='', msg='first party import "pylint.constants" should be placed before local imports "package.Class", ".package", ".package2" (...) "package3.Class3", ".package4", "package4.Class4"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=32, column=0, end_lineno=32, end_column=19, object='', msg='third party import "requests" should be placed before first party imports "pylint.checkers", "pylint.config", "pylint.sys", "pylint.pyreverse", "pylint.constants" and local imports "package.Class", ".package", ".package2" (...) "package3.Class3", ".package4", "package4.Class4"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=32, column=0, end_lineno=32, end_column=19, object='', msg='standard import "re" should be placed before third party imports "six", "astroid.are_exclusive", "unused_import", "totally_missing", "astroid", "six.moves.urllib.parse.quote", first party imports "pylint.checkers", "pylint.config", "pylint.sys", "pylint.pyreverse", "pylint.constants", and local imports "package.Class", ".package", ".package2" (...) "package3.Class3", ".package4", "package4.Class4"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=33, column=0, end_lineno=33, end_column=24, object='', msg='first party import "pylint.exceptions" should be placed before local imports "package.Class", ".package", ".package2" (...) "package3.Class3", ".package4", "package4.Class4"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=34, column=0, end_lineno=34, end_column=21, object='', msg='first party import "pylint.message" should be placed before local imports "package.Class", ".package", ".package2" (...) "package3.Class3", ".package4", "package4.Class4"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=35, column=0, end_lineno=35, end_column=11, object='', msg='standard import "time" should be placed before third party imports "six", "astroid.are_exclusive", "unused_import" (...) "astroid", "six.moves.urllib.parse.quote", "requests", first party imports "pylint.checkers", "pylint.config", "pylint.sys" (...) "pylint.constants", "pylint.exceptions", "pylint.message", and local imports "package.Class", ".package", ".package2" (...) "package3.Class3", ".package4", "package4.Class4"', confidence='UNDEFINED')
+E
+E       - Unexpected lines:
+E       OutputLine(symbol='wrong-import-order', lineno=22, column=0, end_lineno=22, end_column=22, object='', msg='third party import "pylint.checkers" should be placed before local imports "package.Class", ".package", ".package2"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=23, column=0, end_lineno=23, end_column=25, object='', msg='third party import "pylint.config" should be placed before local imports "package.Class", ".package", ".package2"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=24, column=0, end_lineno=24, end_column=17, object='', msg='third party import "pylint.sys" should be placed before local imports "package.Class", ".package", ".package2"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=25, column=0, end_lineno=25, end_column=28, object='', msg='third party import "pylint.pyreverse" should be placed before local imports "package.Class", ".package", ".package2"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=30, column=0, end_lineno=30, end_column=40, object='', msg='third party import "six.moves.urllib.parse.quote" should be placed before local imports "package.Class", ".package", ".package2" (...) "package3.Class3", ".package4", "package4.Class4"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=31, column=0, end_lineno=31, end_column=23, object='', msg='third party import "pylint.constants" should be placed before local imports "package.Class", ".package", ".package2" (...) "package3.Class3", ".package4", "package4.Class4"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=32, column=0, end_lineno=32, end_column=19, object='', msg='standard import "re" should be placed before third party imports "six", "astroid.are_exclusive", "unused_import" (...) "pylint.pyreverse", "six.moves.urllib.parse.quote", "pylint.constants" and local imports "package.Class", ".package", ".package2" (...) "package3.Class3", ".package4", "package4.Class4"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=32, column=0, end_lineno=32, end_column=19, object='', msg='third party import "requests" should be placed before local imports "package.Class", ".package", ".package2" (...) "package3.Class3", ".package4", "package4.Class4"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=33, column=0, end_lineno=33, end_column=24, object='', msg='third party import "pylint.exceptions" should be placed before local imports "package.Class", ".package", ".package2" (...) "package3.Class3", ".package4", "package4.Class4"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=34, column=0, end_lineno=34, end_column=21, object='', msg='third party import "pylint.message" should be placed before local imports "package.Class", ".package", ".package2" (...) "package3.Class3", ".package4", "package4.Class4"', confidence='UNDEFINED')
+E       OutputLine(symbol='wrong-import-order', lineno=35, column=0, end_lineno=35, end_column=11, object='', msg='standard import "time" should be placed before third party imports "six", "astroid.are_exclusive", "unused_import" (...) "requests", "pylint.exceptions", "pylint.message" and local imports "package.Class", ".package", ".package2" (...) "package3.Class3", ".package4", "package4.Class4"', confidence='UNDEFINED')
+E
+E       You can update the expected output automatically with:
+E       'python tests/test_functional.py --update-functional-output -k "test_functional[wrong_import_order]"'
+E
+E       Here's the update text in case you can't:
+E       wrong-import-order:12:0:12:14::"standard import ""os.path"" should be placed before third party import ""six""":UNDEFINED
+E       wrong-import-order:14:0:14:10::"standard import ""sys"" should be placed before third party imports ""six"", ""astroid.are_exclusive""":UNDEFINED
+E       wrong-import-order:15:0:15:15::"standard import ""datetime"" should be placed before third party imports ""six"", ""astroid.are_exclusive""":UNDEFINED
+E       wrong-import-order:18:0:18:22::"third party import ""totally_missing"" should be placed before local import ""package.Class""":UNDEFINED
+E       wrong-import-order:20:0:20:14::"third party import ""astroid"" should be placed before local imports ""package.Class"", "".package""":UNDEFINED
+E       wrong-import-order:22:0:22:22::"third party import ""pylint.checkers"" should be placed before local imports ""package.Class"", "".package"", "".package2""":UNDEFINED
+E       wrong-import-order:23:0:23:25::"third party import ""pylint.config"" should be placed before local imports ""package.Class"", "".package"", "".package2""":UNDEFINED
+E       wrong-import-order:24:0:24:17::"third party import ""pylint.sys"" should be placed before local imports ""package.Class"", "".package"", "".package2""":UNDEFINED
+E       wrong-import-order:25:0:25:28::"third party import ""pylint.pyreverse"" should be placed before local imports ""package.Class"", "".package"", "".package2""":UNDEFINED
+E       wrong-import-order:30:0:30:40::"third party import ""six.moves.urllib.parse.quote"" should be placed before local imports ""package.Class"", "".package"", "".package2"" (...) ""package3.Class3"", "".package4"", ""package4.Class4""":UNDEFINED
+E       wrong-import-order:31:0:31:23::"third party import ""pylint.constants"" should be placed before local imports ""package.Class"", "".package"", "".package2"" (...) ""package3.Class3"", "".package4"", ""package4.Class4""":UNDEFINED
+E       wrong-import-order:32:0:32:19::"standard import ""re"" should be placed before third party imports ""six"", ""astroid.are_exclusive"", ""unused_import"" (...) ""pylint.pyreverse"", ""six.moves.urllib.parse.quote"", ""pylint.constants"" and local imports ""package.Class"", "".package"", "".package2"" (...) ""package3.Class3"", "".package4"", ""package4.Class4""":UNDEFINED
+E       wrong-import-order:32:0:32:19::"third party import ""requests"" should be placed before local imports ""package.Class"", "".package"", "".package2"" (...) ""package3.Class3"", "".package4"", ""package4.Class4""":UNDEFINED
+E       wrong-import-order:33:0:33:24::"third party import ""pylint.exceptions"" should be placed before local imports ""package.Class"", "".package"", "".package2"" (...) ""package3.Class3"", "".package4"", ""package4.Class4""":UNDEFINED
+E       wrong-import-order:34:0:34:21::"third party import ""pylint.message"" should be placed before local imports ""package.Class"", "".package"", "".package2"" (...) ""package3.Class3"", "".package4"", ""package4.Class4""":UNDEFINED
+E       wrong-import-order:35:0:35:11::"standard import ""time"" should be placed before third party imports ""six"", ""astroid.are_exclusive"", ""unused_import"" (...) ""requests"", ""pylint.exceptions"", ""pylint.message"" and local imports ""package.Class"", "".package"", "".package2"" (...) ""package3.Class3"", "".package4"", ""package4.Class4""":UNDEFINED
+
+C:\Python\Python3.12\Lib\site-packages\pylint\testutils\lint_module_test.py:319: AssertionError
+________________________________ test_dependencies_graph[tests/regrtest_data/foo.dot] _________________________________
+
+dest = 'tests/regrtest_data/foo.dot'
+
+    @pytest.mark.parametrize("dest", POSSIBLE_DOT_FILENAMES, indirect=True)
+    def test_dependencies_graph(dest: str) -&gt; None:
+        """DOC files are correctly generated, and the graphname is the basename."""
+&gt;       imports._dependencies_graph(dest, {"labas": {"hoho", "yep"}, "hoho": {"yep"}})
+
+test_import_graph.py:39:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Python\Python3.12\Lib\site-packages\pylint\checkers\imports.py:213: in _dependencies_graph
+    return printer.generate(filename)
+C:\Python\Python3.12\Lib\site-packages\pylint\graph.py:106: in generate
+    with codecs.open(dot_sourcepath, "w", encoding="utf8") as file:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+filename = 'tests/regrtest_data/foo.dot', mode = 'wb', encoding = 'utf8', errors = 'strict', buffering = -1
+
+&gt;   ???
+E   FileNotFoundError: [Errno 2] No such file or directory: 'tests/regrtest_data/foo.dot'
+
+&lt;frozen codecs&gt;:906: FileNotFoundError
+___________________________________________ TestRunTC.test_enable_all_works ___________________________________________
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F0BAAB0&gt;
+
+    def test_enable_all_works(self) -&gt; None:
+        module = join(HERE, "data", "clientmodule_test.py")
+        expected = textwrap.dedent(
+            f"""
+        ************* Module data.clientmodule_test
+        {module}:9:8: W0612: Unused variable 'local_variable' (unused-variable)
+        {module}:17:4: C0116: Missing function or method docstring (missing-function-docstring)
+        {module}:21:0: C0115: Missing class docstring (missing-class-docstring)
+        """
+        )
+&gt;       self._test_output(
+            [module, "--disable=I", "--enable=all", "-rn"], expected_output=expected
+        )
+
+test_self.py:310:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F0BAAB0&gt;
+args = ['--rcfile=C:\\Python\\Python3.12\\Lib\\site-packages\\pylint\\testutils\\testing_pylintrc', 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\data\\clientmodule_test.py', '--disable=I', '--enable=all', '-rn']
+expected_output = "\n************* Module data.clientmodule_test\ntests/data/clientmodule_test.py:9:8: W0612: Unused variable 'local_var...-function-docstring)\ntests/data/clientmodule_test.py:21:0: C0115: Missing class docstring (missing-class-docstring)\n"
+unexpected_output = ''
+
+    def _test_output(
+        self, args: list[str], expected_output: str, unexpected_output: str = ""
+    ) -&gt; None:
+        out = StringIO()
+        args = _add_rcfile_default_pylintrc(args)
+        self._run_pylint(args, out=out)
+        actual_output = self._clean_paths(out.getvalue())
+        expected_output = self._clean_paths(expected_output)
+&gt;       assert expected_output.strip() in actual_output.strip()
+E       assert "************* Module data.clientmodule_test\ntests/data/clientmodule_test.py:9:8: W0612: Unused variable 'local_varia...ng-function-docstring)\ntests/data/clientmodule_test.py:21:0: C0115: Missing class docstring (missing-class-docstring)" in "************* Module data.clientmodule_test\ndata/clientmodule_test.py:9:8: W0612: Unused variable 'local_variable' (...m data.suppliermodule_test (unused-import)\n\n-----------------------------------\nYour code has been rated at 7.31/10"
+E        +  where "************* Module data.clientmodule_test\ntests/data/clientmodule_test.py:9:8: W0612: Unused variable 'local_varia...ng-function-docstring)\ntests/data/clientmodule_test.py:21:0: C0115: Missing class docstring (missing-class-docstring)" = &lt;built-in method strip of str object at 0x000001A32C176740&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A32C176740&gt; = "\n************* Module data.clientmodule_test\ntests/data/clientmodule_test.py:9:8: W0612: Unused variable 'local_var...-function-docstring)\ntests/data/clientmodule_test.py:21:0: C0115: Missing class docstring (missing-class-docstring)\n".strip
+E        +  and   "************* Module data.clientmodule_test\ndata/clientmodule_test.py:9:8: W0612: Unused variable 'local_variable' (...m data.suppliermodule_test (unused-import)\n\n-----------------------------------\nYour code has been rated at 7.31/10" = &lt;built-in method strip of str object at 0x000001A323360400&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A323360400&gt; = "************* Module data.clientmodule_test\ndata/clientmodule_test.py:9:8: W0612: Unused variable 'local_variable' (...ta.suppliermodule_test (unused-import)\n\n-----------------------------------\nYour code has been rated at 7.31/10\n\n".strip
+
+test_self.py:158: AssertionError
+______________________________ TestRunTC.test_wrong_import_position_when_others_disabled ______________________________
+
+self = &lt;test_self.TestRunTC object at 0x000001A35ED91430&gt;
+
+    def test_wrong_import_position_when_others_disabled(self) -&gt; None:
+        module1 = join(HERE, "regrtest_data", "import_something.py")
+        module2 = join(HERE, "regrtest_data", "wrong_import_position.py")
+        expected_output = textwrap.dedent(
+            f"""
+        ************* Module wrong_import_position
+        {module2}:11:0: C0413: Import "import os" should be placed at the top of the module (wrong-import-position)
+        """
+        )
+        args = [
+            module2,
+            module1,
+            "--disable=all",
+            "--enable=wrong-import-position",
+            "-rn",
+            "-sn",
+        ]
+        out = StringIO()
+        self._run_pylint(args, out=out)
+        actual_output = self._clean_paths(out.getvalue().strip())
+
+        to_remove = "No config file found, using default configuration"
+        if to_remove in actual_output:
+            actual_output = actual_output[len(to_remove) :]
+        if actual_output.startswith("Using config file "):
+            # If ~/.pylintrc is present remove the
+            # Using config file...  line
+            actual_output = actual_output[actual_output.find("\n") :]
+&gt;       assert self._clean_paths(expected_output.strip()) == actual_output.strip()
+E       assert '************...ort-position)' == '************...ort-position)'
+E
+E         Skipping 33 identical leading characters in diff, use -v to show
+E           _position
+E         - regrtest_data/wrong_import_position.py:11:0: C0413: Import "import os" should be placed at the top of the module (wrong-import-position)
+E         + tests/regrtest_data/wrong_import_position.py:11:0: C0413: Import "import os" should be placed at the top of the module (wrong-import-position)
+E         ? ++++++
+
+test_self.py:342: AssertionError
+__________________________________________ TestRunTC.test_progress_reporting __________________________________________
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F0BA600&gt;
+
+    def test_progress_reporting(self) -&gt; None:
+        module1 = join(HERE, "regrtest_data", "import_something.py")
+        module2 = join(HERE, "regrtest_data", "wrong_import_position.py")
+        args = [
+            module2,
+            module1,
+            "--disable=all",
+            "--enable=wrong-import-position",
+            "--verbose",
+            "-rn",
+            "-sn",
+        ]
+        out = StringIO()
+        self._run_pylint(args, out=out)
+        actual_output = self._clean_paths(out.getvalue().strip())
+
+        expected_output = textwrap.dedent(
+            f"""
+        Using config file pylint/testutils/testing_pylintrc
+        Get ASTs.
+        AST for {module2}
+        AST for {module1}
+        Linting 2 modules.
+        {module2} (1 of 2)
+        ************* Module wrong_import_position
+        {module2}:11:0: C0413: Import "import os" should be placed at the top of the module (wrong-import-position)
+        {module1} (2 of 2)
+        """
+        )
+&gt;       assert self._clean_paths(expected_output.strip()) == actual_output.strip()
+E       AssertionError: assert 'Using config...g.py (2 of 2)' == 'Using config...g.py (2 of 2)'
+E
+E         - Using config file C:/Python/Python3.12/Lib/site-packages/pylint/testutils/testing_pylintrc
+E         + Using config file pylint/testutils/testing_pylintrc
+E           Get ASTs.
+E           AST for tests/regrtest_data/wrong_import_position.py
+E           AST for tests/regrtest_data/import_something.py
+E           Linting 2 modules....
+E
+E         ...Full output truncated (6 lines hidden), use '-vv' to show
+
+test_self.py:373: AssertionError
+_____________________________ TestRunTC.test_progress_reporting_not_shown_if_not_verbose ______________________________
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F0BA2D0&gt;
+
+    def test_progress_reporting_not_shown_if_not_verbose(self) -&gt; None:
+        module1 = join(HERE, "regrtest_data", "import_something.py")
+        module2 = join(HERE, "regrtest_data", "wrong_import_position.py")
+        args = [
+            module2,
+            module1,
+            "--disable=all",
+            "--enable=wrong-import-position",
+            "-rn",
+            "-sn",
+        ]
+        out = StringIO()
+        self._run_pylint(args, out=out)
+        actual_output = self._clean_paths(out.getvalue().strip())
+
+        expected_output = textwrap.dedent(
+            f"""
+        ************* Module wrong_import_position
+        {module2}:11:0: C0413: Import "import os" should be placed at the top of the module (wrong-import-position)
+        """
+        )
+&gt;       assert self._clean_paths(expected_output.strip()) == actual_output.strip()
+E       assert '************...ort-position)' == '************...ort-position)'
+E
+E         Skipping 33 identical leading characters in diff, use -v to show
+E           _position
+E         - regrtest_data/wrong_import_position.py:11:0: C0413: Import "import os" should be placed at the top of the module (wrong-import-position)
+E         + tests/regrtest_data/wrong_import_position.py:11:0: C0413: Import "import os" should be placed at the top of the module (wrong-import-position)
+E         ? ++++++
+
+test_self.py:396: AssertionError
+________________________________________ TestRunTC.test_type_annotation_names _________________________________________
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F0B9E80&gt;
+
+    def test_type_annotation_names(self) -&gt; None:
+        """Test resetting the `_type_annotation_names` list to `[]` when leaving a module.
+
+        An import inside `module_a`, which is used as a type annotation in `module_a`, should not prevent
+        emitting the `unused-import` message when the same import occurs in `module_b` &amp; is unused.
+        See: https://github.com/pylint-dev/pylint/issues/4150
+        """
+        module1 = join(
+            HERE, "regrtest_data", "imported_module_in_typehint", "module_a.py"
+        )
+
+        module2 = join(
+            HERE, "regrtest_data", "imported_module_in_typehint", "module_b.py"
+        )
+        expected_output = textwrap.dedent(
+            f"""
+        ************* Module module_b
+        {module2}:1:0: W0611: Unused import uuid (unused-import)
+        """
+        )
+        args = [
+            module1,
+            module2,
+            "--disable=all",
+            "--enable=unused-import",
+            "-rn",
+            "-sn",
+        ]
+        out = StringIO()
+        self._run_pylint(args, out=out)
+        actual_output = self._clean_paths(out.getvalue().strip())
+&gt;       assert self._clean_paths(expected_output.strip()) in actual_output.strip()
+E       AssertionError: assert '************* Module module_b\ntests/regrtest_data/imported_module_in_typehint/module_b.py:1:0: W0611: Unused import uuid (unused-import)' in '************* Module module_b\nregrtest_data/imported_module_in_typehint/module_b.py:1:0: W0611: Unused import uuid (unused-import)'
+E        +  where '************* Module module_b\ntests/regrtest_data/imported_module_in_typehint/module_b.py:1:0: W0611: Unused import uuid (unused-import)' = &lt;function TestRunTC._clean_paths at 0x000001A35F063A60&gt;('************* Module module_b\nC:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\regrtest_data\\imported_module_in_typehint\\module_b.py:1:0: W0611: Unused import uuid (unused-import)')
+E        +    where &lt;function TestRunTC._clean_paths at 0x000001A35F063A60&gt; = &lt;test_self.TestRunTC object at 0x000001A35F0B9E80&gt;._clean_paths
+E        +    and   '************* Module module_b\nC:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\regrtest_data\\imported_module_in_typehint\\module_b.py:1:0: W0611: Unused import uuid (unused-import)' = &lt;built-in method strip of str object at 0x000001A3244E72F0&gt;()
+E        +      where &lt;built-in method strip of str object at 0x000001A3244E72F0&gt; = '\n************* Module module_b\nC:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\regrtest_data\\imported_module_in_typehint\\module_b.py:1:0: W0611: Unused import uuid (unused-import)\n'.strip
+E        +  and   '************* Module module_b\nregrtest_data/imported_module_in_typehint/module_b.py:1:0: W0611: Unused import uuid (unused-import)' = &lt;built-in method strip of str object at 0x000001A32363B9F0&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A32363B9F0&gt; = '************* Module module_b\nregrtest_data/imported_module_in_typehint/module_b.py:1:0: W0611: Unused import uuid (unused-import)'.strip
+
+test_self.py:429: AssertionError
+______________________________________ TestRunTC.test_error_mode_shows_no_score _______________________________________
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F0BB350&gt;
+
+    def test_error_mode_shows_no_score(self) -&gt; None:
+        module = join(HERE, "regrtest_data", "application_crash.py")
+        expected_output = textwrap.dedent(
+            f"""
+        ************* Module application_crash
+        {module}:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)
+        """
+        )
+&gt;       self._test_output([module, "-E"], expected_output=expected_output)
+
+test_self.py:525:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F0BB350&gt;
+args = ['--rcfile=C:\\Python\\Python3.12\\Lib\\site-packages\\pylint\\testutils\\testing_pylintrc', 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\regrtest_data\\application_crash.py', '-E']
+expected_output = "\n************* Module application_crash\ntests/regrtest_data/application_crash.py:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)\n"
+unexpected_output = ''
+
+    def _test_output(
+        self, args: list[str], expected_output: str, unexpected_output: str = ""
+    ) -&gt; None:
+        out = StringIO()
+        args = _add_rcfile_default_pylintrc(args)
+        self._run_pylint(args, out=out)
+        actual_output = self._clean_paths(out.getvalue())
+        expected_output = self._clean_paths(expected_output)
+&gt;       assert expected_output.strip() in actual_output.strip()
+E       assert "************* Module application_crash\ntests/regrtest_data/application_crash.py:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)" in "************* Module application_crash\nregrtest_data/application_crash.py:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)"
+E        +  where "************* Module application_crash\ntests/regrtest_data/application_crash.py:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)" = &lt;built-in method strip of str object at 0x000001A35EF64FA0&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A35EF64FA0&gt; = "\n************* Module application_crash\ntests/regrtest_data/application_crash.py:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)\n".strip
+E        +  and   "************* Module application_crash\nregrtest_data/application_crash.py:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)" = &lt;built-in method strip of str object at 0x000001A32BFA9170&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A32BFA9170&gt; = "************* Module application_crash\nregrtest_data/application_crash.py:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)\n".strip
+
+test_self.py:158: AssertionError
+_____________________________________ TestRunTC.test_pylintrc_comments_in_values ______________________________________
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F0BBB00&gt;
+
+    def test_pylintrc_comments_in_values(self) -&gt; None:
+        path = join(HERE, "regrtest_data", "test_pylintrc_comments.py")
+        config_path = join(HERE, "regrtest_data", "comments_pylintrc")
+        expected = textwrap.dedent(
+            f"""
+        ************* Module test_pylintrc_comments
+        {path}:2:0: W0311: Bad indentation. Found 1 spaces, expected 4 (bad-indentation)
+        {path}:1:0: C0114: Missing module docstring (missing-module-docstring)
+        {path}:1:0: C0116: Missing function or method docstring (missing-function-docstring)
+        """
+        )
+&gt;       self._test_output(
+            [path, f"--rcfile={config_path}", "-rn"], expected_output=expected
+        )
+
+test_self.py:584:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F0BBB00&gt;
+args = ['C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\regrtest_data\\test_pylintrc_comments.py', '--rcfile=C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\regrtest_data\\comments_pylintrc', '-rn']
+expected_output = '\n************* Module test_pylintrc_comments\ntests/regrtest_data/test_pylintrc_comments.py:2:0: W0311: Bad indentat...egrtest_data/test_pylintrc_comments.py:1:0: C0116: Missing function or method docstring (missing-function-docstring)\n'
+unexpected_output = ''
+
+    def _test_output(
+        self, args: list[str], expected_output: str, unexpected_output: str = ""
+    ) -&gt; None:
+        out = StringIO()
+        args = _add_rcfile_default_pylintrc(args)
+        self._run_pylint(args, out=out)
+        actual_output = self._clean_paths(out.getvalue())
+        expected_output = self._clean_paths(expected_output)
+&gt;       assert expected_output.strip() in actual_output.strip()
+E       AssertionError: assert '************* Module test_pylintrc_comments\ntests/regrtest_data/test_pylintrc_comments.py:2:0: W0311: Bad indentatio.../regrtest_data/test_pylintrc_comments.py:1:0: C0116: Missing function or method docstring (missing-function-docstring)' in '************* Module test_pylintrc_comments\nregrtest_data/test_pylintrc_comments.py:2:0: W0311: Bad indentation. Fou...hod docstring (missing-function-docstring)\n\n-----------------------------------\nYour code has been rated at 0.00/10'
+E        +  where '************* Module test_pylintrc_comments\ntests/regrtest_data/test_pylintrc_comments.py:2:0: W0311: Bad indentatio.../regrtest_data/test_pylintrc_comments.py:1:0: C0116: Missing function or method docstring (missing-function-docstring)' = &lt;built-in method strip of str object at 0x000001A324AC18B0&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A324AC18B0&gt; = '\n************* Module test_pylintrc_comments\ntests/regrtest_data/test_pylintrc_comments.py:2:0: W0311: Bad indentat...egrtest_data/test_pylintrc_comments.py:1:0: C0116: Missing function or method docstring (missing-function-docstring)\n'.strip
+E        +  and   '************* Module test_pylintrc_comments\nregrtest_data/test_pylintrc_comments.py:2:0: W0311: Bad indentation. Fou...hod docstring (missing-function-docstring)\n\n-----------------------------------\nYour code has been rated at 0.00/10' = &lt;built-in method strip of str object at 0x000001A3200DACC0&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A3200DACC0&gt; = '************* Module test_pylintrc_comments\nregrtest_data/test_pylintrc_comments.py:2:0: W0311: Bad indentation. Fou...docstring (missing-function-docstring)\n\n-----------------------------------\nYour code has been rated at 0.00/10\n\n'.strip
+
+test_self.py:158: AssertionError
+____________________________ TestRunTC.test_getdefaultencoding_crashes_with_lc_ctype_utf8 _____________________________
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F0BBE00&gt;
+
+    def test_getdefaultencoding_crashes_with_lc_ctype_utf8(self) -&gt; None:
+        module = join(HERE, "regrtest_data", "application_crash.py")
+        expected_output = textwrap.dedent(
+            f"""
+        {module}:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)
+        """
+        )
+        with _configure_lc_ctype("UTF-8"):
+&gt;           self._test_output([module, "-E"], expected_output=expected_output)
+
+test_self.py:601:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F0BBE00&gt;
+args = ['--rcfile=C:\\Python\\Python3.12\\Lib\\site-packages\\pylint\\testutils\\testing_pylintrc', 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\regrtest_data\\application_crash.py', '-E']
+expected_output = "\ntests/regrtest_data/application_crash.py:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)\n"
+unexpected_output = ''
+
+    def _test_output(
+        self, args: list[str], expected_output: str, unexpected_output: str = ""
+    ) -&gt; None:
+        out = StringIO()
+        args = _add_rcfile_default_pylintrc(args)
+        self._run_pylint(args, out=out)
+        actual_output = self._clean_paths(out.getvalue())
+        expected_output = self._clean_paths(expected_output)
+&gt;       assert expected_output.strip() in actual_output.strip()
+E       assert "tests/regrtest_data/application_crash.py:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)" in "************* Module application_crash\nregrtest_data/application_crash.py:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)"
+E        +  where "tests/regrtest_data/application_crash.py:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)" = &lt;built-in method strip of str object at 0x000001A32C16DA70&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A32C16DA70&gt; = "\ntests/regrtest_data/application_crash.py:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)\n".strip
+E        +  and   "************* Module application_crash\nregrtest_data/application_crash.py:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)" = &lt;built-in method strip of str object at 0x000001A32BFA8030&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A32BFA8030&gt; = "************* Module application_crash\nregrtest_data/application_crash.py:1:6: E0602: Undefined variable 'something_undefined' (undefined-variable)\n".strip
+
+test_self.py:158: AssertionError
+_ TestRunTC.test_stdin[C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\mymodule.py-mymodule-C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\mymodule.py] _
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F0EC350&gt;
+input_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\mymodule.py', module = 'mymodule'
+expected_path = 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\mymodule.py'
+
+        @pytest.mark.parametrize(
+            "input_path,module,expected_path",
+            [
+                (join(HERE, "mymodule.py"), "mymodule", join(HERE, "mymodule.py")),
+                ("mymodule.py", "mymodule", "mymodule.py"),
+            ],
+        )
+        def test_stdin(self, input_path: str, module: str, expected_path: str) -&gt; None:
+            expected_output = f"""************* Module {module}
+    {expected_path}:1:0: W0611: Unused import os (unused-import)
+
+    """
+
+            with mock.patch(
+                "pylint.lint.pylinter._read_stdin", return_value="import os\n"
+            ) as mock_stdin:
+&gt;               self._test_output(
+                    ["--from-stdin", input_path, "--disable=all", "--enable=unused-import"],
+                    expected_output=expected_output,
+                )
+
+test_self.py:639:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F0EC350&gt;
+args = ['--rcfile=C:\\Python\\Python3.12\\Lib\\site-packages\\pylint\\testutils\\testing_pylintrc', '--from-stdin', 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\mymodule.py', '--disable=all', '--enable=unused-import']
+expected_output = '************* Module mymodule\ntests/mymodule.py:1:0: W0611: Unused import os (unused-import)\n\n'
+unexpected_output = ''
+
+    def _test_output(
+        self, args: list[str], expected_output: str, unexpected_output: str = ""
+    ) -&gt; None:
+        out = StringIO()
+        args = _add_rcfile_default_pylintrc(args)
+        self._run_pylint(args, out=out)
+        actual_output = self._clean_paths(out.getvalue())
+        expected_output = self._clean_paths(expected_output)
+&gt;       assert expected_output.strip() in actual_output.strip()
+E       AssertionError: assert '************* Module mymodule\ntests/mymodule.py:1:0: W0611: Unused import os (unused-import)' in '************* Module mymodule\nmymodule.py:1:0: W0611: Unused import os (unused-import)\n\n-----------------------------------\nYour code has been rated at 0.00/10'
+E        +  where '************* Module mymodule\ntests/mymodule.py:1:0: W0611: Unused import os (unused-import)' = &lt;built-in method strip of str object at 0x000001A3238ED110&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A3238ED110&gt; = '************* Module mymodule\ntests/mymodule.py:1:0: W0611: Unused import os (unused-import)\n\n'.strip
+E        +  and   '************* Module mymodule\nmymodule.py:1:0: W0611: Unused import os (unused-import)\n\n-----------------------------------\nYour code has been rated at 0.00/10' = &lt;built-in method strip of str object at 0x000001A37F98BC50&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A37F98BC50&gt; = '************* Module mymodule\nmymodule.py:1:0: W0611: Unused import os (unused-import)\n\n-----------------------------------\nYour code has been rated at 0.00/10\n\n'.strip
+
+test_self.py:158: AssertionError
+_ TestRunTC.test_output_file_can_be_combined_with_output_format_option[text-{path}:4:4: W0612: Unused variable 'variable' (unused-variable)] _
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F0EE8D0&gt;
+tmp_path = WindowsPath('C:/Users/Dev/AppData/Local/Temp/pytest-of-Dev/pytest-0/test_output_file_can_be_combin0')
+output_format = 'text', expected_output = "{path}:4:4: W0612: Unused variable 'variable' (unused-variable)"
+
+    @pytest.mark.parametrize(
+        "output_format, expected_output",
+        [
+            (
+                "text",
+                "{path}:4:4: W0612: Unused variable 'variable' (unused-variable)",
+            ),
+            (
+                "parseable",
+                "{path}:4: [W0612(unused-variable), test] Unused variable 'variable'",
+            ),
+            (
+                "msvs",
+                "{path}(4): [W0612(unused-variable)test] Unused variable 'variable'",
+            ),
+            (
+                "colorized",
+                (
+                    "{path}:4:4: W0612: \x1b[35mUnused variable 'variable'\x1b[0m (\x1b[35munused-variable\x1b[0m)"
+                ),
+            ),
+            ("json", '"message": "Unused variable \'variable\'",'),
+            ("json2", '"message": "Unused variable \'variable\'",'),
+        ],
+    )
+    def test_output_file_can_be_combined_with_output_format_option(
+        self, tmp_path: Path, output_format: str, expected_output: str
+    ) -&gt; None:
+        path = join(HERE, "regrtest_data", "unused_variable.py")
+        output_file = tmp_path / "output.txt"
+&gt;       self._test_output_file(
+            [path, f"--output={output_file}", f"--output-format={output_format}"],
+            output_file,
+            expected_output.format(path="tests/regrtest_data/unused_variable.py"),
+        )
+
+test_self.py:1188:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F0EE8D0&gt;
+args = ['--rcfile=C:\\Python\\Python3.12\\Lib\\site-packages\\pylint\\testutils\\testing_pylintrc', 'C:\\Repos\\ekr-study\\ek...v\\AppData\\Local\\Temp\\pytest-of-Dev\\pytest-0\\test_output_file_can_be_combin0\\output.txt', '--output-format=text']
+filename = WindowsPath('C:/Users/Dev/AppData/Local/Temp/pytest-of-Dev/pytest-0/test_output_file_can_be_combin0/output.txt')
+expected_output = "tests/regrtest_data/unused_variable.py:4:4: W0612: Unused variable 'variable' (unused-variable)"
+
+    def _test_output_file(
+        self, args: list[str], filename: Path, expected_output: str
+    ) -&gt; None:
+        """Run Pylint with the ``output`` option set (must be included in
+        the ``args`` passed to this method!) and check the file content afterwards.
+        """
+        out = StringIO()
+        args = _add_rcfile_default_pylintrc(args)
+        self._run_pylint(args, out=out)
+        cmdline_output = out.getvalue()
+        file_output = self._clean_paths(Path(filename).read_text(encoding="utf-8"))
+        expected_output = self._clean_paths(expected_output)
+        assert (
+            cmdline_output == ""
+        ), "Unexpected output to stdout/stderr while output option was set"
+&gt;       assert expected_output.strip() in file_output.strip()
+E       assert "tests/regrtest_data/unused_variable.py:4:4: W0612: Unused variable 'variable' (unused-variable)" in "************* Module unused_variable\nregrtest_data/unused_variable.py:4:4: W0612: Unused variable 'variable' (unused-variable)\n\n-----------------------------------\nYour code has been rated at 7.50/10"
+E        +  where "tests/regrtest_data/unused_variable.py:4:4: W0612: Unused variable 'variable' (unused-variable)" = &lt;built-in method strip of str object at 0x000001A37CD3FB40&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A37CD3FB40&gt; = "tests/regrtest_data/unused_variable.py:4:4: W0612: Unused variable 'variable' (unused-variable)".strip
+E        +  and   "************* Module unused_variable\nregrtest_data/unused_variable.py:4:4: W0612: Unused variable 'variable' (unused-variable)\n\n-----------------------------------\nYour code has been rated at 7.50/10" = &lt;built-in method strip of str object at 0x000001A32D656F30&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A32D656F30&gt; = "************* Module unused_variable\nregrtest_data/unused_variable.py:4:4: W0612: Unused variable 'variable' (unused-variable)\n\n-----------------------------------\nYour code has been rated at 7.50/10\n\n".strip
+
+test_self.py:178: AssertionError
+_ TestRunTC.test_output_file_can_be_combined_with_output_format_option[parseable-{path}:4: [W0612(unused-variable), test] Unused variable 'variable'] _
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F10C560&gt;
+tmp_path = WindowsPath('C:/Users/Dev/AppData/Local/Temp/pytest-of-Dev/pytest-0/test_output_file_can_be_combin1')
+output_format = 'parseable', expected_output = "{path}:4: [W0612(unused-variable), test] Unused variable 'variable'"
+
+    @pytest.mark.parametrize(
+        "output_format, expected_output",
+        [
+            (
+                "text",
+                "{path}:4:4: W0612: Unused variable 'variable' (unused-variable)",
+            ),
+            (
+                "parseable",
+                "{path}:4: [W0612(unused-variable), test] Unused variable 'variable'",
+            ),
+            (
+                "msvs",
+                "{path}(4): [W0612(unused-variable)test] Unused variable 'variable'",
+            ),
+            (
+                "colorized",
+                (
+                    "{path}:4:4: W0612: \x1b[35mUnused variable 'variable'\x1b[0m (\x1b[35munused-variable\x1b[0m)"
+                ),
+            ),
+            ("json", '"message": "Unused variable \'variable\'",'),
+            ("json2", '"message": "Unused variable \'variable\'",'),
+        ],
+    )
+    def test_output_file_can_be_combined_with_output_format_option(
+        self, tmp_path: Path, output_format: str, expected_output: str
+    ) -&gt; None:
+        path = join(HERE, "regrtest_data", "unused_variable.py")
+        output_file = tmp_path / "output.txt"
+&gt;       self._test_output_file(
+            [path, f"--output={output_file}", f"--output-format={output_format}"],
+            output_file,
+            expected_output.format(path="tests/regrtest_data/unused_variable.py"),
+        )
+
+test_self.py:1188:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F10C560&gt;
+args = ['--rcfile=C:\\Python\\Python3.12\\Lib\\site-packages\\pylint\\testutils\\testing_pylintrc', 'C:\\Repos\\ekr-study\\ek...pData\\Local\\Temp\\pytest-of-Dev\\pytest-0\\test_output_file_can_be_combin1\\output.txt', '--output-format=parseable']
+filename = WindowsPath('C:/Users/Dev/AppData/Local/Temp/pytest-of-Dev/pytest-0/test_output_file_can_be_combin1/output.txt')
+expected_output = "tests/regrtest_data/unused_variable.py:4: [W0612(unused-variable), test] Unused variable 'variable'"
+
+    def _test_output_file(
+        self, args: list[str], filename: Path, expected_output: str
+    ) -&gt; None:
+        """Run Pylint with the ``output`` option set (must be included in
+        the ``args`` passed to this method!) and check the file content afterwards.
+        """
+        out = StringIO()
+        args = _add_rcfile_default_pylintrc(args)
+        self._run_pylint(args, out=out)
+        cmdline_output = out.getvalue()
+        file_output = self._clean_paths(Path(filename).read_text(encoding="utf-8"))
+        expected_output = self._clean_paths(expected_output)
+        assert (
+            cmdline_output == ""
+        ), "Unexpected output to stdout/stderr while output option was set"
+&gt;       assert expected_output.strip() in file_output.strip()
+E       assert "tests/regrtest_data/unused_variable.py:4: [W0612(unused-variable), test] Unused variable 'variable'" in "************* Module unused_variable\nregrtest_data/unused_variable.py:4: [W0612(unused-variable), test] Unused variable 'variable'\n\n-----------------------------------\nYour code has been rated at 7.50/10"
+E        +  where "tests/regrtest_data/unused_variable.py:4: [W0612(unused-variable), test] Unused variable 'variable'" = &lt;built-in method strip of str object at 0x000001A37CD3C780&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A37CD3C780&gt; = "tests/regrtest_data/unused_variable.py:4: [W0612(unused-variable), test] Unused variable 'variable'".strip
+E        +  and   "************* Module unused_variable\nregrtest_data/unused_variable.py:4: [W0612(unused-variable), test] Unused variable 'variable'\n\n-----------------------------------\nYour code has been rated at 7.50/10" = &lt;built-in method strip of str object at 0x000001A32D656A30&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A32D656A30&gt; = "************* Module unused_variable\nregrtest_data/unused_variable.py:4: [W0612(unused-variable), test] Unused variable 'variable'\n\n-----------------------------------\nYour code has been rated at 7.50/10\n\n".strip
+
+test_self.py:178: AssertionError
+_ TestRunTC.test_output_file_can_be_combined_with_output_format_option[msvs-{path}(4): [W0612(unused-variable)test] Unused variable 'variable'] _
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F10C620&gt;
+tmp_path = WindowsPath('C:/Users/Dev/AppData/Local/Temp/pytest-of-Dev/pytest-0/test_output_file_can_be_combin2')
+output_format = 'msvs', expected_output = "{path}(4): [W0612(unused-variable)test] Unused variable 'variable'"
+
+    @pytest.mark.parametrize(
+        "output_format, expected_output",
+        [
+            (
+                "text",
+                "{path}:4:4: W0612: Unused variable 'variable' (unused-variable)",
+            ),
+            (
+                "parseable",
+                "{path}:4: [W0612(unused-variable), test] Unused variable 'variable'",
+            ),
+            (
+                "msvs",
+                "{path}(4): [W0612(unused-variable)test] Unused variable 'variable'",
+            ),
+            (
+                "colorized",
+                (
+                    "{path}:4:4: W0612: \x1b[35mUnused variable 'variable'\x1b[0m (\x1b[35munused-variable\x1b[0m)"
+                ),
+            ),
+            ("json", '"message": "Unused variable \'variable\'",'),
+            ("json2", '"message": "Unused variable \'variable\'",'),
+        ],
+    )
+    def test_output_file_can_be_combined_with_output_format_option(
+        self, tmp_path: Path, output_format: str, expected_output: str
+    ) -&gt; None:
+        path = join(HERE, "regrtest_data", "unused_variable.py")
+        output_file = tmp_path / "output.txt"
+&gt;       self._test_output_file(
+            [path, f"--output={output_file}", f"--output-format={output_format}"],
+            output_file,
+            expected_output.format(path="tests/regrtest_data/unused_variable.py"),
+        )
+
+test_self.py:1188:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F10C620&gt;
+args = ['--rcfile=C:\\Python\\Python3.12\\Lib\\site-packages\\pylint\\testutils\\testing_pylintrc', 'C:\\Repos\\ekr-study\\ek...v\\AppData\\Local\\Temp\\pytest-of-Dev\\pytest-0\\test_output_file_can_be_combin2\\output.txt', '--output-format=msvs']
+filename = WindowsPath('C:/Users/Dev/AppData/Local/Temp/pytest-of-Dev/pytest-0/test_output_file_can_be_combin2/output.txt')
+expected_output = "tests/regrtest_data/unused_variable.py(4): [W0612(unused-variable)test] Unused variable 'variable'"
+
+    def _test_output_file(
+        self, args: list[str], filename: Path, expected_output: str
+    ) -&gt; None:
+        """Run Pylint with the ``output`` option set (must be included in
+        the ``args`` passed to this method!) and check the file content afterwards.
+        """
+        out = StringIO()
+        args = _add_rcfile_default_pylintrc(args)
+        self._run_pylint(args, out=out)
+        cmdline_output = out.getvalue()
+        file_output = self._clean_paths(Path(filename).read_text(encoding="utf-8"))
+        expected_output = self._clean_paths(expected_output)
+        assert (
+            cmdline_output == ""
+        ), "Unexpected output to stdout/stderr while output option was set"
+&gt;       assert expected_output.strip() in file_output.strip()
+E       assert "tests/regrtest_data/unused_variable.py(4): [W0612(unused-variable)test] Unused variable 'variable'" in "************* Module unused_variable\nregrtest_data/unused_variable.py(4): [W0612(unused-variable)test] Unused variable 'variable'\n\n-----------------------------------\nYour code has been rated at 7.50/10"
+E        +  where "tests/regrtest_data/unused_variable.py(4): [W0612(unused-variable)test] Unused variable 'variable'" = &lt;built-in method strip of str object at 0x000001A37CD3F1B0&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A37CD3F1B0&gt; = "tests/regrtest_data/unused_variable.py(4): [W0612(unused-variable)test] Unused variable 'variable'".strip
+E        +  and   "************* Module unused_variable\nregrtest_data/unused_variable.py(4): [W0612(unused-variable)test] Unused variable 'variable'\n\n-----------------------------------\nYour code has been rated at 7.50/10" = &lt;built-in method strip of str object at 0x000001A32D472630&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A32D472630&gt; = "************* Module unused_variable\nregrtest_data/unused_variable.py(4): [W0612(unused-variable)test] Unused variable 'variable'\n\n-----------------------------------\nYour code has been rated at 7.50/10\n\n".strip
+
+test_self.py:178: AssertionError
+_ TestRunTC.test_output_file_can_be_combined_with_output_format_option[colorized-{path}:4:4: W0612: \x1b[35mUnused variable 'variable'\x1b[0m (\x1b[35munused-variable\x1b[0m)] _
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F10C6E0&gt;
+tmp_path = WindowsPath('C:/Users/Dev/AppData/Local/Temp/pytest-of-Dev/pytest-0/test_output_file_can_be_combin3')
+output_format = 'colorized'
+expected_output = "{path}:4:4: W0612: \x1b[35mUnused variable 'variable'\x1b[0m (\x1b[35munused-variable\x1b[0m)"
+
+    @pytest.mark.parametrize(
+        "output_format, expected_output",
+        [
+            (
+                "text",
+                "{path}:4:4: W0612: Unused variable 'variable' (unused-variable)",
+            ),
+            (
+                "parseable",
+                "{path}:4: [W0612(unused-variable), test] Unused variable 'variable'",
+            ),
+            (
+                "msvs",
+                "{path}(4): [W0612(unused-variable)test] Unused variable 'variable'",
+            ),
+            (
+                "colorized",
+                (
+                    "{path}:4:4: W0612: \x1b[35mUnused variable 'variable'\x1b[0m (\x1b[35munused-variable\x1b[0m)"
+                ),
+            ),
+            ("json", '"message": "Unused variable \'variable\'",'),
+            ("json2", '"message": "Unused variable \'variable\'",'),
+        ],
+    )
+    def test_output_file_can_be_combined_with_output_format_option(
+        self, tmp_path: Path, output_format: str, expected_output: str
+    ) -&gt; None:
+        path = join(HERE, "regrtest_data", "unused_variable.py")
+        output_file = tmp_path / "output.txt"
+&gt;       self._test_output_file(
+            [path, f"--output={output_file}", f"--output-format={output_format}"],
+            output_file,
+            expected_output.format(path="tests/regrtest_data/unused_variable.py"),
+        )
+
+test_self.py:1188:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F10C6E0&gt;
+args = ['--rcfile=C:\\Python\\Python3.12\\Lib\\site-packages\\pylint\\testutils\\testing_pylintrc', 'C:\\Repos\\ekr-study\\ek...pData\\Local\\Temp\\pytest-of-Dev\\pytest-0\\test_output_file_can_be_combin3\\output.txt', '--output-format=colorized']
+filename = WindowsPath('C:/Users/Dev/AppData/Local/Temp/pytest-of-Dev/pytest-0/test_output_file_can_be_combin3/output.txt')
+expected_output = "tests/regrtest_data/unused_variable.py:4:4: W0612: \x1b[35mUnused variable 'variable'\x1b[0m (\x1b[35munused-variable\x1b[0m)"
+
+    def _test_output_file(
+        self, args: list[str], filename: Path, expected_output: str
+    ) -&gt; None:
+        """Run Pylint with the ``output`` option set (must be included in
+        the ``args`` passed to this method!) and check the file content afterwards.
+        """
+        out = StringIO()
+        args = _add_rcfile_default_pylintrc(args)
+        self._run_pylint(args, out=out)
+        cmdline_output = out.getvalue()
+        file_output = self._clean_paths(Path(filename).read_text(encoding="utf-8"))
+        expected_output = self._clean_paths(expected_output)
+        assert (
+            cmdline_output == ""
+        ), "Unexpected output to stdout/stderr while output option was set"
+&gt;       assert expected_output.strip() in file_output.strip()
+E       assert "tests/regrtest_data/unused_variable.py:4:4: W0612: \x1b[35mUnused variable 'variable'\x1b[0m (\x1b[35munused-variable\x1b[0m)" in "\x1b[7;33m************* Module unused_variable\x1b[0m\nregrtest_data/unused_variable.py:4:4: W0612: \x1b[35mUnused va...e'\x1b[0m (\x1b[35munused-variable\x1b[0m)\n\n-----------------------------------\nYour code has been rated at 7.50/10"
+E        +  where "tests/regrtest_data/unused_variable.py:4:4: W0612: \x1b[35mUnused variable 'variable'\x1b[0m (\x1b[35munused-variable\x1b[0m)" = &lt;built-in method strip of str object at 0x000001A32D770030&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A32D770030&gt; = "tests/regrtest_data/unused_variable.py:4:4: W0612: \x1b[35mUnused variable 'variable'\x1b[0m (\x1b[35munused-variable\x1b[0m)".strip
+E        +  and   "\x1b[7;33m************* Module unused_variable\x1b[0m\nregrtest_data/unused_variable.py:4:4: W0612: \x1b[35mUnused va...e'\x1b[0m (\x1b[35munused-variable\x1b[0m)\n\n-----------------------------------\nYour code has been rated at 7.50/10" = &lt;built-in method strip of str object at 0x000001A32A7A0CF0&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A32A7A0CF0&gt; = "\x1b[7;33m************* Module unused_variable\x1b[0m\nregrtest_data/unused_variable.py:4:4: W0612: \x1b[35mUnused va...1b[0m (\x1b[35munused-variable\x1b[0m)\n\n-----------------------------------\nYour code has been rated at 7.50/10\n\n".strip
+
+test_self.py:178: AssertionError
+__________________________________ TestRunTC.test_line_too_long_useless_suppression ___________________________________
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F10C980&gt;
+
+    def test_line_too_long_useless_suppression(self) -&gt; None:
+        """A test that demonstrates a known false positive for useless-suppression.
+
+        See https://github.com/pylint-dev/pylint/issues/3368
+
+        If you manage to make this test fail and remove the useless-suppression
+        warning please contact open a Pylint PR!
+        """
+        module = join(HERE, "regrtest_data", "line_too_long_no_code.py")
+        expected = textwrap.dedent(
+            f"""
+        {module}:1:0: I0011: Locally disabling line-too-long (C0301) (locally-disabled)
+        {module}:1:0: I0021: Useless suppression of 'line-too-long' (useless-suppression)
+        """
+        )
+
+&gt;       self._test_output([module, "--enable=all"], expected_output=expected)
+
+test_self.py:1421:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;test_self.TestRunTC object at 0x000001A35F10C980&gt;
+args = ['--rcfile=C:\\Python\\Python3.12\\Lib\\site-packages\\pylint\\testutils\\testing_pylintrc', 'C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\regrtest_data\\line_too_long_no_code.py', '--enable=all']
+expected_output = "\ntests/regrtest_data/line_too_long_no_code.py:1:0: I0011: Locally disabling line-too-long (C0301) (locally-disabled)\ntests/regrtest_data/line_too_long_no_code.py:1:0: I0021: Useless suppression of 'line-too-long' (useless-suppression)\n"
+unexpected_output = ''
+
+    def _test_output(
+        self, args: list[str], expected_output: str, unexpected_output: str = ""
+    ) -&gt; None:
+        out = StringIO()
+        args = _add_rcfile_default_pylintrc(args)
+        self._run_pylint(args, out=out)
+        actual_output = self._clean_paths(out.getvalue())
+        expected_output = self._clean_paths(expected_output)
+&gt;       assert expected_output.strip() in actual_output.strip()
+E       assert "tests/regrtest_data/line_too_long_no_code.py:1:0: I0011: Locally disabling line-too-long (C0301) (locally-disabled)\ntests/regrtest_data/line_too_long_no_code.py:1:0: I0021: Useless suppression of 'line-too-long' (useless-suppression)" in "************* Module line_too_long_no_code\nregrtest_data/line_too_long_no_code.py:1:0: I0011: Locally disabling line...bled)\nregrtest_data/line_too_long_no_code.py:1:0: I0021: Useless suppression of 'line-too-long' (useless-suppression)"
+E        +  where "tests/regrtest_data/line_too_long_no_code.py:1:0: I0011: Locally disabling line-too-long (C0301) (locally-disabled)\ntests/regrtest_data/line_too_long_no_code.py:1:0: I0021: Useless suppression of 'line-too-long' (useless-suppression)" = &lt;built-in method strip of str object at 0x000001A32DC60150&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A32DC60150&gt; = "\ntests/regrtest_data/line_too_long_no_code.py:1:0: I0011: Locally disabling line-too-long (C0301) (locally-disabled)\ntests/regrtest_data/line_too_long_no_code.py:1:0: I0021: Useless suppression of 'line-too-long' (useless-suppression)\n".strip
+E        +  and   "************* Module line_too_long_no_code\nregrtest_data/line_too_long_no_code.py:1:0: I0011: Locally disabling line...bled)\nregrtest_data/line_too_long_no_code.py:1:0: I0021: Useless suppression of 'line-too-long' (useless-suppression)" = &lt;built-in method strip of str object at 0x000001A372EE6E70&gt;()
+E        +    where &lt;built-in method strip of str object at 0x000001A372EE6E70&gt; = "************* Module line_too_long_no_code\nregrtest_data/line_too_long_no_code.py:1:0: I0011: Locally disabling line...ed)\nregrtest_data/line_too_long_no_code.py:1:0: I0021: Useless suppression of 'line-too-long' (useless-suppression)\n".strip
+
+test_self.py:158: AssertionError
+
+--------------------------------------------------------------------------------------------------------------- benchmark 'baseline': 11 tests ---------------------------------------------------------------------------------------------------------------
+Name (time in us)                                                  Min                       Max                      Mean                 StdDev                    Median                    IQR            Outliers       OPS            Rounds  Iterations
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+test_baseline_benchmark_j1                                    985.1000 (1.0)          1,304.3000 (1.0)          1,041.8737 (1.0)          38.3286 (1.0)          1,029.7000 (1.0)          40.1250 (1.0)        108;20  959.8093 (1.0)         433           1
+test_baseline_benchmark_j1_all_checks_single_file         184,824.8000 (187.62)     192,409.4000 (147.52)     187,629.8400 (180.09)    2,935.0342 (76.58)      187,168.9000 (181.77)    3,534.9750 (88.10)         1;0    5.3296 (0.01)          5           1
+test_baseline_benchmark_j1_all_checks_lots_of_files       400,602.4000 (406.66)     415,834.0000 (318.82)     408,266.5400 (391.86)    6,720.0364 (175.33)     411,566.0000 (399.70)   11,203.2750 (279.21)        2;0    2.4494 (0.00)          5           1
+test_baseline_lots_of_files_j1                            402,773.9000 (408.87)     419,485.7000 (321.62)     408,282.4200 (391.87)    6,743.4928 (175.94)     407,762.0000 (396.00)    7,910.4750 (197.15)        1;0    2.4493 (0.00)          5           1
+test_baseline_lots_of_files_j1_empty_checker              404,456.6000 (410.57)     448,506.5000 (343.87)     424,615.6000 (407.55)   15,885.5336 (414.46)     421,930.3000 (409.76)   16,260.5250 (405.25)        2;0    2.3551 (0.00)          5           1
+test_baseline_benchmark_j1_single_working_checker         502,280.7000 (509.88)     503,034.0000 (385.67)     502,616.4800 (482.42)      272.6557 (7.11)       502,597.0000 (488.10)      283.0500 (7.05)          2;0    1.9896 (0.00)          5           1
+test_baseline_benchmark_check_parallel_j2                 816,100.5000 (828.44)     830,755.7000 (636.94)     823,867.5600 (790.76)    5,663.0091 (147.75)     824,809.2000 (801.02)    8,361.5000 (208.39)        2;0    1.2138 (0.00)          5           1
+test_baseline_benchmark_j2                                826,298.9000 (838.80)     848,005.6000 (650.16)     836,635.4000 (803.01)    9,241.0322 (241.10)     836,023.8000 (811.91)   16,295.1500 (406.11)        2;0    1.1953 (0.00)          5           1
+test_baseline_lots_of_files_j2                          1,236,911.5000 (&gt;1000.0)  1,319,424.8000 (&gt;1000.0)  1,261,716.7400 (&gt;1000.0)  33,287.4602 (868.48)   1,248,549.0000 (&gt;1000.0)  32,178.0250 (801.94)        1;0    0.7926 (0.00)          5           1
+test_baseline_lots_of_files_j2_empty_checker            1,270,358.8000 (&gt;1000.0)  1,337,008.8000 (&gt;1000.0)  1,302,132.0200 (&gt;1000.0)  30,871.4072 (805.44)   1,295,737.1000 (&gt;1000.0)  58,284.9500 (&gt;1000.0)       2;0    0.7680 (0.00)          5           1
+test_baseline_benchmark_j2_single_working_checker       1,372,149.5000 (&gt;1000.0)  1,403,749.3000 (&gt;1000.0)  1,386,555.2800 (&gt;1000.0)  12,059.1242 (314.62)   1,383,868.6000 (&gt;1000.0)  16,856.4500 (420.10)        2;0    0.7212 (0.00)          5           1
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Legend:
+  Outliers: 1 Standard Deviation from Mean; 1.5 IQR (InterQuartile Range) from 1st Quartile and 3rd Quartile.
+  OPS: Operations Per Second, computed as 1 / Mean
+=============================================== short test summary info ===============================================
+FAILED config\test_functional_config_loading.py::test_functional_config_loading[toml\\toml_with_unknown_option.toml] - AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\to...
+FAILED config\test_functional_config_loading.py::test_functional_config_loading[toml\\issue_3122\\toml_with_missing_comma.toml] - AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\is...
+FAILED config\test_functional_config_loading.py::test_functional_config_loading[toml\\issue_3181\\toml_decode_error.toml] - AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\is...
+FAILED config\test_functional_config_loading.py::test_functional_config_loading[toml\\unknown_msgid\\enable_unknown_msgid.toml] - AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\toml\un...
+FAILED config\test_functional_config_loading.py::test_functional_config_loading[ini\\pylintrc_with_deleted_message.ini] - AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\ini\pyl...
+FAILED config\test_functional_config_loading.py::test_functional_config_loading[ini\\pylintrc_with_interpolation_error.ini] - AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\ini\pyl...
+FAILED config\test_functional_config_loading.py::test_functional_config_loading[ini\\pylintrc_with_missing_comma.ini] - AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\ini\pyl...
+FAILED config\test_functional_config_loading.py::test_functional_config_loading[setup_cfg\\do_not_read_other_tools_configuration\\setup.cfg] - AssertionError: Wrong result with configuration C:\Repos\ekr-study\ekr-pylint-study\tests\config\functional\setup_c...
+FAILED lint\unittest_lint.py::test_analyze_explicit_script - AssertionError: assert Message(msg_i...d_column=None) == Message(msg_i...d_column=None)
+FAILED test_check_parallel.py::TestCheckParallel::test_cyclic_import_parallel - FileNotFoundError: [WinError 2] The system cannot find the file specified: 'tests'
+FAILED test_check_parallel.py::TestCheckParallel::test_cyclic_import_parallel_disabled_globally - FileNotFoundError: [WinError 2] The system cannot find the file specified: 'tests'
+FAILED test_check_parallel.py::TestCheckParallel::test_cyclic_import_parallel_disabled_locally - FileNotFoundError: [WinError 2] The system cannot find the file specified: 'tests'
+FAILED test_functional.py::test_functional[no_name_in_module] - AssertionError: Wrong message(s) raised for "no_name_in_module.py":
+FAILED test_functional.py::test_functional[symlink_module0] - AssertionError: Wrong message(s) raised for "symlink_module.py":
+FAILED test_functional.py::test_functional[wrong_import_order] - AssertionError: Wrong output for "wrong_import_order.txt":
+FAILED test_import_graph.py::test_dependencies_graph[tests/regrtest_data/foo.dot] - FileNotFoundError: [Errno 2] No such file or directory: 'tests/regrtest_data/foo.dot'
+FAILED test_self.py::TestRunTC::test_enable_all_works - assert "************* Module data.clientmodule_test\ntests/data/clientmodule_test.py:9:8: W0612: Unused variable 'l...
+FAILED test_self.py::TestRunTC::test_wrong_import_position_when_others_disabled - assert '************...ort-position)' == '************...ort-position)'
+FAILED test_self.py::TestRunTC::test_progress_reporting - AssertionError: assert 'Using config...g.py (2 of 2)' == 'Using config...g.py (2 of 2)'
+FAILED test_self.py::TestRunTC::test_progress_reporting_not_shown_if_not_verbose - assert '************...ort-position)' == '************...ort-position)'
+FAILED test_self.py::TestRunTC::test_type_annotation_names - AssertionError: assert '************* Module module_b\ntests/regrtest_data/imported_module_in_typehint/module_b.py:...
+FAILED test_self.py::TestRunTC::test_error_mode_shows_no_score - assert "************* Module application_crash\ntests/regrtest_data/application_crash.py:1:6: E0602: Undefined vari...
+FAILED test_self.py::TestRunTC::test_pylintrc_comments_in_values - AssertionError: assert '************* Module test_pylintrc_comments\ntests/regrtest_data/test_pylintrc_comments.py:...
+FAILED test_self.py::TestRunTC::test_getdefaultencoding_crashes_with_lc_ctype_utf8 - assert "tests/regrtest_data/application_crash.py:1:6: E0602: Undefined variable 'something_undefined' (undefined-va...
+FAILED test_self.py::TestRunTC::test_stdin[C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\mymodule.py-mymodule-C:\\Repos\\ekr-study\\ekr-pylint-study\\tests\\mymodule.py] - AssertionError: assert '************* Module mymodule\ntests/mymodule.py:1:0: W0611: Unused import os (unused-impor...
+FAILED test_self.py::TestRunTC::test_output_file_can_be_combined_with_output_format_option[text-{path}:4:4: W0612: Unused variable 'variable' (unused-variable)] - assert "tests/regrtest_data/unused_variable.py:4:4: W0612: Unused variable 'variable' (unused-variable)" in "******...
+FAILED test_self.py::TestRunTC::test_output_file_can_be_combined_with_output_format_option[parseable-{path}:4: [W0612(unused-variable), test] Unused variable 'variable'] - assert "tests/regrtest_data/unused_variable.py:4: [W0612(unused-variable), test] Unused variable 'variable'" in "**...
+FAILED test_self.py::TestRunTC::test_output_file_can_be_combined_with_output_format_option[msvs-{path}(4): [W0612(unused-variable)test] Unused variable 'variable'] - assert "tests/regrtest_data/unused_variable.py(4): [W0612(unused-variable)test] Unused variable 'variable'" in "***...
+FAILED test_self.py::TestRunTC::test_output_file_can_be_combined_with_output_format_option[colorized-{path}:4:4: W0612: \x1b[35mUnused variable 'variable'\x1b[0m (\x1b[35munused-variable\x1b[0m)] - assert "tests/regrtest_data/unused_variable.py:4:4: W0612: \x1b[35mUnused variable 'variable'\x1b[0m (\x1b[35munuse...
+FAILED test_self.py::TestRunTC::test_line_too_long_useless_suppression - assert "tests/regrtest_data/line_too_long_no_code.py:1:0: I0011: Locally disabling line-too-long (C0301) (locally-d...
+========================= 30 failed, 1946 passed, 228 skipped, 5 xfailed in 520.67s (0:08:40) =========================
+
+C:\Repos\ekr-study\ekr-pylint-study\tests&gt;</t>
+<t tx="ekr.20250202073620.1">C:\Repos\ekr-study\ekr-pylint-study&gt;python -m pip install -r requirements_test.txt
+
+Processing c:\repos\ekr-study\ekr-pylint-study
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... done
+  Preparing metadata (pyproject.toml) ... done
+Requirement already satisfied: astroid==3.3.8 in c:\python\python3.12\lib\site-packages (from -r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 3)) (3.3.8)
+Requirement already satisfied: typing-extensions~=4.12 in c:\python\python3.12\lib\site-packages (from -r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 4)) (4.12.2)
+Collecting py~=1.11.0 (from -r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 5))
+  Downloading py-1.11.0-py2.py3-none-any.whl.metadata (2.8 kB)
+Requirement already satisfied: pytest~=8.3 in c:\python\python3.12\lib\site-packages (from -r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 6)) (8.3.4)
+Collecting pytest-benchmark~=5.1 (from -r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 7))
+  Downloading pytest_benchmark-5.1.0-py3-none-any.whl.metadata (25 kB)
+Collecting pytest-timeout~=2.3 (from -r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 8))
+  Downloading pytest_timeout-2.3.1-py3-none-any.whl.metadata (20 kB)
+Collecting towncrier~=24.8 (from -r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 9))
+  Downloading towncrier-24.8.0-py3-none-any.whl.metadata (4.2 kB)
+Requirement already satisfied: requests in c:\python\python3.12\lib\site-packages (from -r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 10)) (2.32.3)
+Collecting setuptools (from -r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 12))
+  Using cached setuptools-75.8.0-py3-none-any.whl.metadata (6.7 kB)
+Requirement already satisfied: coverage~=7.6 in c:\python\python3.12\lib\site-packages (from -r requirements_test.txt (line 2)) (7.6.10)
+Collecting tbump~=6.11.0 (from -r requirements_test.txt (line 3))
+  Downloading tbump-6.11.0-py3-none-any.whl.metadata (9.5 kB)
+Collecting contributors-txt&gt;=1.0.0 (from -r requirements_test.txt (line 4))
+  Downloading contributors_txt-1.0.0-py3-none-any.whl.metadata (1.0 kB)
+Requirement already satisfied: pytest-cov~=6.0 in c:\python\python3.12\lib\site-packages (from -r requirements_test.txt (line 5)) (6.0.0)
+Collecting pytest-xdist~=3.6 (from -r requirements_test.txt (line 6))
+  Downloading pytest_xdist-3.6.1-py3-none-any.whl.metadata (4.3 kB)
+Requirement already satisfied: six in c:\python\python3.12\lib\site-packages (from -r requirements_test.txt (line 7)) (1.17.0)
+Collecting types-setuptools==75.8.0.20250110 (from -r requirements_test.txt (line 9))
+  Downloading types_setuptools-75.8.0.20250110-py3-none-any.whl.metadata (2.2 kB)
+Collecting tox&gt;=3 (from -r requirements_test.txt (line 10))
+  Downloading tox-4.24.1-py3-none-any.whl.metadata (3.7 kB)
+Requirement already satisfied: dill&gt;=0.3.6 in c:\python\python3.12\lib\site-packages (from pylint==4.0.0.dev0) (0.3.9)
+Requirement already satisfied: platformdirs&gt;=2.2.0 in c:\python\python3.12\lib\site-packages (from pylint==4.0.0.dev0) (4.3.6)
+Requirement already satisfied: isort!=5.13.0,&lt;7,&gt;=4.2.5 in c:\python\python3.12\lib\site-packages (from pylint==4.0.0.dev0) (5.13.2)
+Requirement already satisfied: mccabe&lt;0.8,&gt;=0.6 in c:\python\python3.12\lib\site-packages (from pylint==4.0.0.dev0) (0.7.0)
+Requirement already satisfied: tomlkit&gt;=0.10.1 in c:\python\python3.12\lib\site-packages (from pylint==4.0.0.dev0) (0.13.2)
+Requirement already satisfied: colorama&gt;=0.4.5 in c:\python\python3.12\lib\site-packages (from pylint==4.0.0.dev0) (0.4.6)
+Requirement already satisfied: iniconfig in c:\python\python3.12\lib\site-packages (from pytest~=8.3-&gt;-r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 6)) (2.0.0)
+Requirement already satisfied: packaging in c:\python\python3.12\lib\site-packages (from pytest~=8.3-&gt;-r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 6)) (24.2)
+Requirement already satisfied: pluggy&lt;2,&gt;=1.5 in c:\python\python3.12\lib\site-packages (from pytest~=8.3-&gt;-r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 6)) (1.5.0)
+Collecting py-cpuinfo (from pytest-benchmark~=5.1-&gt;-r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 7))
+  Downloading py_cpuinfo-9.0.0-py3-none-any.whl.metadata (794 bytes)
+Requirement already satisfied: click in c:\python\python3.12\lib\site-packages (from towncrier~=24.8-&gt;-r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 9)) (8.1.8)
+Requirement already satisfied: jinja2 in c:\python\python3.12\lib\site-packages (from towncrier~=24.8-&gt;-r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 9)) (3.1.5)
+Requirement already satisfied: charset-normalizer&lt;4,&gt;=2 in c:\python\python3.12\lib\site-packages (from requests-&gt;-r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 10)) (3.4.1)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\python\python3.12\lib\site-packages (from requests-&gt;-r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 10)) (3.10)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.21.1 in c:\python\python3.12\lib\site-packages (from requests-&gt;-r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 10)) (2.3.0)
+Requirement already satisfied: certifi&gt;=2017.4.17 in c:\python\python3.12\lib\site-packages (from requests-&gt;-r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 10)) (2024.12.14)
+Collecting cli-ui&gt;=0.10.3 (from tbump~=6.11.0-&gt;-r requirements_test.txt (line 3))
+  Downloading cli_ui-0.18.0-py3-none-any.whl.metadata (3.6 kB)
+Collecting docopt&lt;0.7.0,&gt;=0.6.2 (from tbump~=6.11.0-&gt;-r requirements_test.txt (line 3))
+  Downloading docopt-0.6.2.tar.gz (25 kB)
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... done
+  Preparing metadata (pyproject.toml) ... done
+Collecting schema&lt;0.8.0,&gt;=0.7.1 (from tbump~=6.11.0-&gt;-r requirements_test.txt (line 3))
+  Downloading schema-0.7.7-py2.py3-none-any.whl.metadata (34 kB)
+Collecting tomlkit&gt;=0.10.1 (from pylint==4.0.0.dev0)
+  Downloading tomlkit-0.11.8-py3-none-any.whl.metadata (2.7 kB)
+Collecting execnet&gt;=2.1 (from pytest-xdist~=3.6-&gt;-r requirements_test.txt (line 6))
+  Downloading execnet-2.1.1-py3-none-any.whl.metadata (2.9 kB)
+Collecting cachetools&gt;=5.5 (from tox&gt;=3-&gt;-r requirements_test.txt (line 10))
+  Downloading cachetools-5.5.1-py3-none-any.whl.metadata (5.4 kB)
+Collecting chardet&gt;=5.2 (from tox&gt;=3-&gt;-r requirements_test.txt (line 10))
+  Downloading chardet-5.2.0-py3-none-any.whl.metadata (3.4 kB)
+Collecting filelock&gt;=3.16.1 (from tox&gt;=3-&gt;-r requirements_test.txt (line 10))
+  Downloading filelock-3.17.0-py3-none-any.whl.metadata (2.9 kB)
+Collecting pyproject-api&gt;=1.8 (from tox&gt;=3-&gt;-r requirements_test.txt (line 10))
+  Downloading pyproject_api-1.9.0-py3-none-any.whl.metadata (2.7 kB)
+Collecting virtualenv&gt;=20.27.1 (from tox&gt;=3-&gt;-r requirements_test.txt (line 10))
+  Downloading virtualenv-20.29.1-py3-none-any.whl.metadata (4.5 kB)
+Collecting gitpython&gt;3 (from pylint==4.0.0.dev0)
+  Downloading GitPython-3.1.44-py3-none-any.whl.metadata (13 kB)
+Requirement already satisfied: pyenchant~=3.2 in c:\python\python3.12\lib\site-packages (from pylint==4.0.0.dev0) (3.2.2)
+Collecting tabulate&lt;0.10.0,&gt;=0.9.0 (from cli-ui&gt;=0.10.3-&gt;tbump~=6.11.0-&gt;-r requirements_test.txt (line 3))
+  Downloading tabulate-0.9.0-py3-none-any.whl.metadata (34 kB)
+Collecting unidecode&lt;2.0.0,&gt;=1.3.6 (from cli-ui&gt;=0.10.3-&gt;tbump~=6.11.0-&gt;-r requirements_test.txt (line 3))
+  Downloading Unidecode-1.3.8-py3-none-any.whl.metadata (13 kB)
+Collecting gitdb&lt;5,&gt;=4.0.1 (from gitpython&gt;3-&gt;pylint==4.0.0.dev0)
+  Downloading gitdb-4.0.12-py3-none-any.whl.metadata (1.2 kB)
+Collecting distlib&lt;1,&gt;=0.3.7 (from virtualenv&gt;=20.27.1-&gt;tox&gt;=3-&gt;-r requirements_test.txt (line 10))
+  Downloading distlib-0.3.9-py2.py3-none-any.whl.metadata (5.2 kB)
+Requirement already satisfied: MarkupSafe&gt;=2.0 in c:\python\python3.12\lib\site-packages (from jinja2-&gt;towncrier~=24.8-&gt;-r C:\Repos\ekr-study\ekr-pylint-study\requirements_test_min.txt (line 9)) (3.0.2)
+Collecting smmap&lt;6,&gt;=3.0.1 (from gitdb&lt;5,&gt;=4.0.1-&gt;gitpython&gt;3-&gt;pylint==4.0.0.dev0)
+  Downloading smmap-5.0.2-py3-none-any.whl.metadata (4.3 kB)
+Downloading types_setuptools-75.8.0.20250110-py3-none-any.whl (71 kB)
+Downloading py-1.11.0-py2.py3-none-any.whl (98 kB)
+Downloading pytest_benchmark-5.1.0-py3-none-any.whl (44 kB)
+Downloading pytest_timeout-2.3.1-py3-none-any.whl (14 kB)
+Downloading towncrier-24.8.0-py3-none-any.whl (56 kB)
+Using cached setuptools-75.8.0-py3-none-any.whl (1.2 MB)
+Downloading tbump-6.11.0-py3-none-any.whl (35 kB)
+Downloading contributors_txt-1.0.0-py3-none-any.whl (11 kB)
+Downloading pytest_xdist-3.6.1-py3-none-any.whl (46 kB)
+Downloading tox-4.24.1-py3-none-any.whl (171 kB)
+Downloading cachetools-5.5.1-py3-none-any.whl (9.5 kB)
+Downloading chardet-5.2.0-py3-none-any.whl (199 kB)
+Downloading cli_ui-0.18.0-py3-none-any.whl (13 kB)
+Downloading execnet-2.1.1-py3-none-any.whl (40 kB)
+Downloading filelock-3.17.0-py3-none-any.whl (16 kB)
+Downloading GitPython-3.1.44-py3-none-any.whl (207 kB)
+Downloading pyproject_api-1.9.0-py3-none-any.whl (13 kB)
+Downloading schema-0.7.7-py2.py3-none-any.whl (18 kB)
+Downloading tomlkit-0.11.8-py3-none-any.whl (35 kB)
+Downloading virtualenv-20.29.1-py3-none-any.whl (4.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 2.7 MB/s eta 0:00:00
+Downloading py_cpuinfo-9.0.0-py3-none-any.whl (22 kB)
+Downloading distlib-0.3.9-py2.py3-none-any.whl (468 kB)
+Downloading gitdb-4.0.12-py3-none-any.whl (62 kB)
+Downloading tabulate-0.9.0-py3-none-any.whl (35 kB)
+Downloading Unidecode-1.3.8-py3-none-any.whl (235 kB)
+Downloading smmap-5.0.2-py3-none-any.whl (24 kB)
+
+Building wheels for collected packages: pylint, docopt
+  Building wheel for pylint (pyproject.toml) ... done
+  Created wheel for pylint: filename=pylint-4.0.0.dev0-py3-none-any.whl size=525063 sha256=7f74fba4e8a14e8ba7619e17fe394b2c57a181187d00836206594651cba7fbd7
+  Stored in directory: c:\users\dev\appdata\local\pip\cache\wheels\46\a5\b2\7ec2118d67d5f095418d8847840b07a43199e5fe890dc47d37
+  Building wheel for docopt (pyproject.toml) ... done
+  Created wheel for docopt: filename=docopt-0.6.2-py2.py3-none-any.whl size=13822 sha256=913972106de3b1254e33c4b0cafc61071014bc4bb39a711419edf15f57d2acad
+  Stored in directory: c:\users\dev\appdata\local\pip\cache\wheels\1a\bf\a1\4cee4f7678c68c5875ca89eaccf460593539805c3906722228
+Successfully built pylint docopt
+Installing collected packages: schema, py-cpuinfo, docopt, distlib, contributors-txt, unidecode, types-setuptools, tomlkit, tabulate, smmap, setuptools, pyproject-api, py, filelock, execnet, chardet, cachetools, virtualenv, towncrier, pytest-xdist, pytest-timeout, pytest-benchmark, pylint, gitdb, cli-ui, tox, tbump, gitpython
+  WARNING: The script cpuinfo.exe is installed in 'C:\Python\Python3.12\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts contributors-txt-extract-comment.exe, contributors-txt-normalize-configuration.exe and contributors-txt.exe are installed in 'C:\Python\Python3.12\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The script unidecode.exe is installed in 'C:\Python\Python3.12\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  Attempting uninstall: tomlkit
+    Found existing installation: tomlkit 0.13.2
+    Uninstalling tomlkit-0.13.2:
+      Successfully uninstalled tomlkit-0.13.2</t>
+<t tx="ekr.20250202073850.1"></t>
 </tnodes>
 </leo_file>
